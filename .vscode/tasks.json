@@ -1,0 +1,40 @@
+{
+    // See https://go.microsoft.com/fwlink/?LinkId=733558
+    // for the documentation about the tasks.json format
+    "version": "2.0.0",
+    "tasks": [
+        {
+            "label": "build",
+            "type": "shell",
+            "command": "cd ./WORKSPACE_RESCAPT/stm32-nucleo-f103rb_base/;make",
+            "group": {
+                "kind": "build",
+                "isDefault": true
+            }
+        },
+        {
+            "label": "clean",
+            "type": "shell",
+            "command": "cd ./WORKSPACE_RESCAPT/stm32-nucleo-f103rb_base/;make clean",
+            "problemMatcher": []
+        },
+        {
+            "label": "ocd",
+            "type": "shell",
+            "command": "openocd -s /local/sdk_elec/openocd/share/openocd/scripts -f board/st_nucleo_f103rb.cfg -c init",
+            "problemMatcher": []
+        },
+        {
+            "label": "eclipse",
+            "type": "shell",
+            "command": "/local/sdk_elec/eclipse/eclipse",
+            "problemMatcher": []
+        },
+        {
+            "label": "serial",
+            "type": "shell",
+            "command": "picocom -b 115200 -r -l /dev/ttyACM1",
+            "problemMatcher": []
+        }
+    ]
+}

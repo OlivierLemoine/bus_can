@@ -1,6 +1,6 @@
-09:59:11 **** Incremental Build of configuration Default for project stm32-nucleo-f103rb_base ****
+12:14:52 **** Incremental Build of configuration Default for project stm32-nucleo-f103rb_base ****
 make all 
 make: Nothing to be done for `all'.
 
-09:59:11 Build Finished (took 64ms)
+12:14:52 Build Finished (took 61ms)
 
