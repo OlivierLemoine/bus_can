@@ -1,6 +1,10 @@
 {
     "files.associations": {
         "iostream": "cpp",
-        "main.h": "c"
+        "main.h": "c",
+        "drv_uart.h": "c",
+        "stdlib.h": "c",
+        "can.h": "c",
+        "array": "c"
     }
 }
