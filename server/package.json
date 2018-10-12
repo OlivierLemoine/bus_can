@@ -1,0 +1,23 @@
+{
+    "name": "server",
+    "version": "1.0.0",
+    "description": "",
+    "main": "server.js",
+    "scripts": {
+        "start": "node server.js",
+        "test": "nodemon server.js",
+        "compile": "node-gyp rebuild"
+    },
+    "repository": {
+        "type": "git",
+        "url": "../."
+    },
+    "author": "",
+    "license": "MIT",
+    "dependencies": {
+        "express": "^4.16.3",
+        "nodemon": "^1.18.4",
+        "node-gyp": "^3.8.0"
+    },
+    "gypfile": true
+}
