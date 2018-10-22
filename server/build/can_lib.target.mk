@@ -37,7 +37,10 @@ CFLAGS_CC_Debug := \
 INCS_Debug := \
 	-I/home/e2015/o5lemoin/.node-gyp/9.6.1/include/node \
 	-I/home/e2015/o5lemoin/.node-gyp/9.6.1/src \
+	-I/home/e2015/o5lemoin/.node-gyp/9.6.1/deps/openssl/config \
+	-I/home/e2015/o5lemoin/.node-gyp/9.6.1/deps/openssl/openssl/include \
 	-I/home/e2015/o5lemoin/.node-gyp/9.6.1/deps/uv/include \
+	-I/home/e2015/o5lemoin/.node-gyp/9.6.1/deps/zlib \
 	-I/home/e2015/o5lemoin/.node-gyp/9.6.1/deps/v8/include
 
 DEFS_Release := \
@@ -72,11 +75,14 @@ CFLAGS_CC_Release := \
 INCS_Release := \
 	-I/home/e2015/o5lemoin/.node-gyp/9.6.1/include/node \
 	-I/home/e2015/o5lemoin/.node-gyp/9.6.1/src \
+	-I/home/e2015/o5lemoin/.node-gyp/9.6.1/deps/openssl/config \
+	-I/home/e2015/o5lemoin/.node-gyp/9.6.1/deps/openssl/openssl/include \
 	-I/home/e2015/o5lemoin/.node-gyp/9.6.1/deps/uv/include \
+	-I/home/e2015/o5lemoin/.node-gyp/9.6.1/deps/zlib \
 	-I/home/e2015/o5lemoin/.node-gyp/9.6.1/deps/v8/include
 
 OBJS := \
-	$(obj).target/$(TARGET)/main.o
+	$(obj).target/$(TARGET)/can_lib.o
 
 # Add to the list of files we specially track dependencies for.
 all_deps += $(OBJS)

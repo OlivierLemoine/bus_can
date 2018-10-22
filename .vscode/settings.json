@@ -5,6 +5,7 @@
         "drv_uart.h": "c",
         "stdlib.h": "c",
         "can.h": "c",
-        "array": "c"
+        "array": "c",
+        "thread": "cpp"
     }
 }
