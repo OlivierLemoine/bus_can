@@ -1,7 +1,7 @@
-
-
 #include <node.h>
 #include <v8.h>
+
+#include <cstring>
 
 #include <libpcan.h>
 #include <fcntl.h>
@@ -39,19 +39,22 @@ void initialize(const v8::FunctionCallbackInfo<Value> &args)
         return;
     }
 
-    // const char *szDevNode = "/dev/pcanusb32";
-    const char *szDevNode = args[0].StringValue().c_str();
+    const char *szDevNode = "/dev/pcanusb32";
+    // const char *szDevNode = args[0].StringValue().c_str();
+    // const char *szDevNode = Local<String>::Cast(args[0]).c_str();
 
-    can_opt_work.h = LINUX_CAN_Open(szDevNode, O_RDWR);
+    can_opt.h = LINUX_CAN_Open(szDevNode, O_RDWR);
 
-    CAN_Init(can_opt_work.h, CAN_BAUD_500K, CAN_INIT_TYPE_ST);
-    CAN_Status(can_opt_work.h);
+    CAN_Init(can_opt.h, CAN_BAUD_500K, CAN_INIT_TYPE_ST);
+    CAN_Status(can_opt.h);
 
     args.GetReturnValue().Set(Undefined(isolate));
 }
 
 void getValue(const v8::FunctionCallbackInfo<Value> &args)
 {
+    Isolate *isolate = args.GetIsolate();
+
     if (!can_opt.isInitialize)
     {
         isolate->ThrowException(Exception::TypeError(
@@ -61,15 +64,15 @@ void getValue(const v8::FunctionCallbackInfo<Value> &args)
 
     TPCANRdMsg pMsgBuff;
 
-    LINUX_CAN_Read_Timeout(h, &pMsgBuff, 1);
+    LINUX_CAN_Read_Timeout(can_opt.h, &pMsgBuff, 1);
     
     Local<Array> result_list = Array::New(isolate);
 
-    result_list.Set(0, pMsgBuff.Msg.ID);
+    result_list->Set(0, pMsgBuff.Msg.ID);
     
     for(size_t i = 0; i < 8; i++)
     {
-        result_list.Set(i+1, pMsgBuff.Msg.DATA[i]);
+        result_list->Set(i+1, pMsgBuff.Msg.DATA[i]);
     }
 
     args.GetReturnValue().Set(result_list);
@@ -77,6 +80,8 @@ void getValue(const v8::FunctionCallbackInfo<Value> &args)
 
 void sendValue(const v8::FunctionCallbackInfo<Value> &args)
 {
+    Isolate *isolate = args.GetIsolate();
+    
     if (!can_opt.isInitialize)
     {
         isolate->ThrowException(Exception::TypeError(
@@ -100,16 +105,16 @@ void sendValue(const v8::FunctionCallbackInfo<Value> &args)
 
     Local<Array> data = Local<Array>::Cast(args[0]);
 
-    TPCANRdMsg pMsgBuff;
+    TPCANMsg msgBuff;
 
     msgBuff.ID = 0x1;
     msgBuff.MSGTYPE = MSGTYPE_STANDARD;
-    msgBuff.LEN = data.Length();
+    msgBuff.LEN = data->Length();
 
     
-    for(size_t i = 0; i < data.Length(); i++)
+    for(size_t i = 0; i < data->Length(); i++)
     {
-        msgBuff.DATA[i] = data[i];
+        msgBuff.DATA[i] = data->Get(i)->Uint8Value();
     }
 
     LINUX_CAN_Write_Timeout(can_opt.h, &msgBuff, 0);
