@@ -1,6 +1,17 @@
 const express = require('express');
 const WebSocket = require('ws');
-// const can_lib = require('./can_lib.js');
+const can_lib = require('./can_lib.js');
+
+let lastestData = {};
+
+can_lib
+    .setMockData()
+    .init('test')
+    .useProcessedData()
+    .use(msg => {
+        lastestData[msg.data.id] = msg.data.values;
+        console.log(lastestData);
+    });
 
 let app = express();
 
@@ -17,12 +28,14 @@ var ws = new WebSocket.Server({ port: 8001 });
 ws.on('connection', socket => {
     socket.on('message', data => {
         if (data === 'swap') {
-            console.log("capteur swaped");
-            socket.send(JSON.stringify({
-                type: 'value',
-                id: 'pression',
-                value: 10
-            }))
+            console.log('capteur swaped');
+            socket.send(
+                JSON.stringify({
+                    type: 'value',
+                    id: 'pression',
+                    value: 10
+                })
+            );
             //swap capteur
         }
     });
