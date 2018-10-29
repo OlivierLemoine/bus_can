@@ -29,7 +29,8 @@ export default class Gauge {
         this.gauge = {
             min: gaugeParams.min || 0,
             max: gaugeParams.max || 100,
-            stroke: 0
+            stroke: 0,
+            opening: 0
         };
 
         htmlParams = htmlParams || {};
@@ -41,16 +42,28 @@ export default class Gauge {
         htmlParams.showValue = htmlParams.showValue || true;
         htmlParams.fontSize = htmlParams.fontSize || 20;
         htmlParams.transition = htmlParams.transition || 1;
+        htmlParams.opening = htmlParams.opening || 360;
 
         this.gauge.stroke = Math.PI * (100 - htmlParams.thickness);
 
+        this.gauge.opening = htmlParams.opening / 360 * this.gauge.stroke;
+
         this.element.gauge.innerHTML = `
-        <svg viewBox="0 0 100 100" transform="scale(-1,1)">
+        <svg viewBox="0 0 100 100" transform="scale(-1,1), rotate(${90 -
+            (360 - htmlParams.opening) / 2})">
             <circle cx="50" cy="50" r="${50 -
                 htmlParams.thickness / 2}" stroke="${
             htmlParams.backgroundColor
-        }" stroke-width="${htmlParams.thickness}" fill="none" />
-            <circle style="transition: stroke-dasharray ${htmlParams.transition}s;" cx="${htmlParams.size / 2}" cy="${htmlParams.size /
+        }" stroke-width="${
+            htmlParams.thickness
+        }" fill="none" stroke-dasharray="${this.gauge.stroke} ${((360 -
+            htmlParams.opening) /
+            360) *
+            this.gauge.stroke}"
+        stroke-dashoffset="${this.gauge.stroke}"/>
+            <circle style="transition: stroke-dasharray ${
+                htmlParams.transition
+            }s;" cx="${htmlParams.size / 2}" cy="${htmlParams.size /
             2}" r="${htmlParams.size / 2 - htmlParams.thickness / 2}" stroke="${
             htmlParams.color
         }" stroke-width="${
@@ -64,7 +77,8 @@ export default class Gauge {
         if (htmlParams.showValue) {
             this.element.value.style.display = 'table';
             this.element.value.style.position = 'relative';
-            this.element.value.style.top = `calc(-50% - ${htmlParams.fontSize / 2}px)`;
+            this.element.value.style.top = `calc(-50% - ${htmlParams.fontSize /
+                2}px)`;
             this.element.value.style.marginLeft = 'auto';
             this.element.value.style.marginRight = 'auto';
             this.element.value.style.fontSize = `${htmlParams.fontSize}px`;
@@ -88,7 +102,7 @@ export default class Gauge {
             'stroke-dasharray',
             `${this.gauge.stroke} ${this.gauge.stroke -
                 (value / (this.gauge.max - this.gauge.min)) *
-                    this.gauge.stroke}`
+                    this.gauge.opening}`
         );
     }
 }

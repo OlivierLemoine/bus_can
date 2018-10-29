@@ -13,7 +13,7 @@ let transformTable = {
 
 can_lib
     .setMockData()
-    .init('test')
+    .init('test', 200)
     .useProcessedData()
     .use(msg => {
         lastestData[msg.data.id] = msg.data.values;
