@@ -65,8 +65,8 @@ exports.setMockData = () => {
     can_lib.initialize = () => {};
     can_lib.getValue = () =>{
         let res = [];
-        for (let i = 0; i < 9; i++) {
-            res.push(Math.floor(Math.random() * 255));
+        for (let i = 0; i < 2; i++) {
+            res.push(Math.floor(Math.random() * 4) + 1);
         }
         return res;
     };

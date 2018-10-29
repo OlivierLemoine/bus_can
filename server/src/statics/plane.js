@@ -1,4 +1,4 @@
-// import * as THREE from './three';
+import * as THREE from './three.js';
 
 let width = 500;
 let height = 281;
@@ -105,7 +105,7 @@ var wing_line_left = new THREE.LineSegments(
 scene.add(plane);
 plane.add(plane_line);
 plane.add(wing_left);
-wing_left.add(wing_line);
+wing_left.add(wing_line_left);
 wing_left.rotation.z = -3.141592 / 2;
 wing_left.position.x = 10;
 wing_left.position.y = 10;

@@ -4,13 +4,29 @@ const can_lib = require('./can_lib.js');
 
 let lastestData = {};
 
+let transformTable = {
+    1: 'pression',
+    2: 'vent',
+    3: 'lumiere',
+    4: 'distance'
+};
+
 can_lib
     .setMockData()
     .init('test')
     .useProcessedData()
     .use(msg => {
         lastestData[msg.data.id] = msg.data.values;
-        console.log(lastestData);
+    })
+    .use(msg => {
+        msg.payload = {
+            type: 'value',
+            id: transformTable[msg.data.id],
+            value: msg.data.values
+        };
+    })
+    .use(msg => {
+        ws.broadcast(msg.payload);
     });
 
 let app = express();
@@ -43,6 +59,7 @@ ws.on('connection', socket => {
     socket.on('close', () => {});
 });
 ws.broadcast = function(data) {
+    if (typeof data !== 'string') data = JSON.stringify(data);
     ws.clients.forEach(function each(client) {
         if (client.readyState === WebSocket.OPEN) {
             client.send(data);
