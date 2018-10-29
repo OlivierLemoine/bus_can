@@ -42,8 +42,7 @@ export default class Gauge {
         htmlParams.fontSize = htmlParams.fontSize || 20;
         htmlParams.transition = htmlParams.transition || 1;
 
-        this.gauge.stroke = Math.PI * (htmlParams.size - htmlParams.thickness);
-        console.log(this.gauge.stroke);
+        this.gauge.stroke = Math.PI * (100 - htmlParams.thickness);
 
         this.element.gauge.innerHTML = `
         <svg viewBox="0 0 100 100" transform="scale(-1,1)">
