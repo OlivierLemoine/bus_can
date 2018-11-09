@@ -15,7 +15,8 @@
 //     clip-path: polygon(0 0, 100% 0, 100% 100%, 50% 50%, 0 100%);
 // }
 
-export default class Gauge {
+// export default 
+class Gauge {
     constructor(htmlParams, gaugeParams) {
         this.element = {
             gauge: document.createElement('div'),

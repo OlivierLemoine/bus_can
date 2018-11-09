@@ -1,4 +1,4 @@
-import * as THREE from './three.js';
+// import * as THREE from './three.js';
 
 let width = 500;
 let height = 281;

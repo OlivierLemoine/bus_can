@@ -1,5 +1,5 @@
 // import './plane.js';
-import Gauge from './gauge.js';
+// import Gauge from './gauge.js';
 
 let gauges = {
     pression: new Gauge({ opening: 270, thickness: 20 }, { min: 0, max: 4 }),

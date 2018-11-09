@@ -2,7 +2,9 @@
 let can_lib = {};
 try {
     can_lib = require('./build/Release/can_lib.node');
+    console.log('can_lib loaded');
 } catch (error) {
+    throw 'cant require can_lib';
     can_lib.sendValues = (a) => {};
     can_lib.initialize = (a) => {};
     can_lib.getValue = () =>{

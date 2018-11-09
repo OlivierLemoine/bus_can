@@ -12,7 +12,7 @@ let transformTable = {
 };
 
 can_lib
-    .setMockData()
+    // .setMockData()
     .init('test', 200)
     .useProcessedData()
     .use(msg => {
