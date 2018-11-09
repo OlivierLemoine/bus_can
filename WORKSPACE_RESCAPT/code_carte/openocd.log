@@ -1,0 +1,5 @@
+Warn : deprecated option: -p/--pipe. Use '-c "gdb_port pipe; log_output openocd.log"' instead.
+Runtime Error: embedded:startup.tcl:47: Can't find openocd.cfg
+in procedure 'script' 
+at file "embedded:startup.tcl", line 47
+Error: couldn't bind to socket: Address already in use
