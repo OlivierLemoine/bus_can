@@ -48,6 +48,8 @@ void initialize(const v8::FunctionCallbackInfo<Value> &args)
     CAN_Init(can_opt.h, CAN_BAUD_500K, CAN_INIT_TYPE_ST);
     CAN_Status(can_opt.h);
 
+    can_opt.isInitialize = true;
+
     args.GetReturnValue().Set(Undefined(isolate));
 }
 

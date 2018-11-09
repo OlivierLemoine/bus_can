@@ -49,9 +49,10 @@ class Gauge {
 
         this.gauge.opening = htmlParams.opening / 360 * this.gauge.stroke;
 
+        // transform="scale(-1,1),rotate(${90 - (360 - htmlParams.opening) / 2})"
+
         this.element.gauge.innerHTML = `
-        <svg viewBox="0 0 100 100" transform="scale(-1,1), rotate(${90 -
-            (360 - htmlParams.opening) / 2})">
+        <svg viewBox="0 0 100 100">
             <circle cx="50" cy="50" r="${50 -
                 htmlParams.thickness / 2}" stroke="${
             htmlParams.backgroundColor
@@ -89,6 +90,8 @@ class Gauge {
         this.element.gauge.style.width = `${htmlParams.size}px`;
         this.element.gauge.style.height = `${htmlParams.size}px`;
         this.element.gauge.className += ' gauge';
+
+        this.element.gauge.style.transform = `scale(-1,1), rotate(${90 - (360 - htmlParams.opening) / 2})`;
 
         htmlParams.anchor.appendChild(this.element.gauge);
 
