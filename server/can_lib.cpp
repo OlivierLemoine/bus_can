@@ -68,11 +68,11 @@ void getValue(const v8::FunctionCallbackInfo<Value> &args)
     
     Local<Array> result_list = Array::New(isolate);
 
-    result_list->Set(0, pMsgBuff.Msg.ID);
+    result_list->Set(0, Number::New(isolate, pMsgBuff.Msg.ID));
     
     for(size_t i = 0; i < 8; i++)
     {
-        result_list->Set(i+1, pMsgBuff.Msg.DATA[i]);
+        result_list->Set(i+1, Number::New(isolate, pMsgBuff.Msg.DATA[i]));
     }
 
     args.GetReturnValue().Set(result_list);
@@ -114,7 +114,7 @@ void sendValue(const v8::FunctionCallbackInfo<Value> &args)
     
     for(size_t i = 0; i < data->Length(); i++)
     {
-        msgBuff.DATA[i] = data->Get(i)->Uint8Value();
+        msgBuff.DATA[i] = data->Get(i)->NumberValue();
     }
 
     LINUX_CAN_Write_Timeout(can_opt.h, &msgBuff, 0);
