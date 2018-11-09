@@ -7,5 +7,15 @@
         "can.h": "c",
         "array": "c",
         "thread": "cpp"
-    }
+    },
+    
+    "spellright.documentTypes": [
+        "markdown",
+        "latex",
+        "jsonc",
+        "plaintext"
+    ],
+    "spellright.language": [
+        "fr"
+    ]
 }
