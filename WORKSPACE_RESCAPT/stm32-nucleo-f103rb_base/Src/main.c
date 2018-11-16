@@ -1,7 +1,7 @@
 #include "main.h"
 //====================================================================
-#define VL6180X 1
-#define MPU9250 0
+#define VL6180X 0
+#define MPU9250 1
 #define MPL115A_ANEMO 0
 //====================================================================
 //			CAN ACCEPTANCE FILTER
@@ -111,26 +111,26 @@ int main(void)
 
 void can_callback(void)
 {
-
+    #if VL6180X
     new_switch_state = (new_switch_state == 0) ? 1 : 0;
+    #elif MPU9250
+    
+    #endif
+    // CAN_Message msg_rcv;
+    // int i = 0;
 
-    /*
-    CAN_Message msg_rcv;
-    int i = 0;
+    // can_Read(&msg_rcv);
+    // txMsg.id = 0x55; // Identifiant du message à envoyer
 
-    can_Read(&msg_rcv);
-    txMsg.id = 0x55; // Identifiant du message à envoyer
+    // for (i = 0; i < 8; i++)
+    // {
+    //     txMsg.data[i] = msg_rcv.data[i] + 1;
+    // }
+    // txMsg.len = 8; // Nombre d'octets à envoyer
+    // txMsg.format = CANStandard;
+    // txMsg.type = CANData;
 
-    for (i = 0; i < 8; i++)
-    {
-        txMsg.data[i] = msg_rcv.data[i] + 1;
-    }
-    txMsg.len = 8; // Nombre d'octets à envoyer
-    txMsg.format = CANStandard;
-    txMsg.type = CANData;
-
-    can_Write(txMsg);
-    */
+    // can_Write(txMsg);
 }
 //====================================================================
 //			TIMER CALLBACK PERIOD
