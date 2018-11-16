@@ -1,8 +1,8 @@
 #include "main.h"
 //====================================================================
-#define VL6180X 1
+#define VL6180X 0
 #define MPU9250 0
-#define MPL115A_ANEMO 0
+#define MPL115A_ANEMO 1
 //====================================================================
 //			CAN ACCEPTANCE FILTER
 //====================================================================
@@ -97,17 +97,19 @@ int main(void)
 
     // Décommenter pour utiliser ce Timer ; permet de déclencher une interruption toutes les N ms
     // Le programme d'interruption est dans tickTimer.c
-    //tickTimer_Init(10); // period in ms
+    tickTimer_Init(10); // period in ms
 
     while (1)
     {
 
 #if VL6180X
         VL6180x_Step();
+        
 
 #endif
 
 #if MPU9250
+    
 
 #endif
     }
@@ -149,6 +151,15 @@ void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef *htim)
 {
     //term_printf("from timer interrupt\n\r");
     // mpu9250_Step();
+
+    
+    displayPressure();
+    int anemo = anemo_GetCount();
+    displayAnemo(anemo);
+    anemo_ResetCount();
+    // convertion Hz to Km/h
+    
+
 }
 //====================================================================
 
@@ -221,6 +232,7 @@ void VL6180x_Step(void)
 
     case RunAlsPoll:
         displayLUX();
+        
         break;
 
     case InitErr:
@@ -340,3 +352,31 @@ void displayLENGTH()
     }
 }
 */
+
+void displayAnemo(int countAnemo)
+{
+    //float r = (float)countAnemo / 0.01 ; // secondes-1
+    // aproximation 10Hz = 10 Km/h ( voir le graph pour etre plus précis)
+
+    
+
+   // sendOverCan((int)r,sizeof(r),0x55); // 0x55 à changer
+}
+
+void displayPressure()
+{
+    uint8_t coef = 0;
+    uint8_t t1 = 0;
+    uint8_t t2 = 0;
+    coef = spi1_Transfer(0x24);
+    spi1_Transfer(0x00);
+    //HAL_Delay(4);
+    spi1_Transfer(0x24);
+    //HAL_Delay(4);
+    t1 = spi1_Transfer(0x80);
+    t2 = spi1_Transfer(0x82);
+
+    //term_printf("%d",t1);
+    //term_printf("%d",t2);
+   // sendOverCan((int)r,sizeof(r),0x55); // 0x55 à changer
+}
