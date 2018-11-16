@@ -1,7 +1,7 @@
 #include "main.h"
 //====================================================================
-#define VL6180X 0
-#define MPU9250 1
+#define VL6180X 1
+#define MPU9250 0
 #define MPL115A_ANEMO 0
 //====================================================================
 //			CAN ACCEPTANCE FILTER
@@ -86,15 +86,6 @@ int main(void)
     can_IrqInit();
     can_IrqSet(&can_callback);
 
-    txMsg.id = 0x55;
-    txMsg.data[0] = 1;
-    txMsg.data[1] = 2;
-    txMsg.len = 2;
-    txMsg.format = CANStandard;
-    txMsg.type = CANData;
-
-    can_Write(txMsg);
-
     // Décommenter pour utiliser ce Timer ; permet de déclencher une interruption toutes les N ms
     // Le programme d'interruption est dans tickTimer.c
     //tickTimer_Init(10); // period in ms
@@ -147,8 +138,8 @@ void can_callback(void)
 
 void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef *htim)
 {
-    term_printf("from timer interrupt\n\r");
-    mpu9250_Step();
+    //term_printf("from timer interrupt\n\r");
+    // mpu9250_Step();
 }
 //====================================================================
 
@@ -216,7 +207,7 @@ void VL6180x_Step(void)
     switch (State.mode)
     {
     case RunRangePoll:
-        RangeState();
+        displayLENGTH();
         break;
 
     case RunAlsPoll:
@@ -266,7 +257,7 @@ void VL6180x_Step(void)
 }
 //====================================================================
 
-void sendOverCan(char *data,int dateSize,int id)
+void sendOverCan(char *data, int dateSize, int id)
 {
     CAN_Message txMsg;
     txMsg.len = dateSize; // Nombre d'octets à envoyer
@@ -282,7 +273,7 @@ void sendOverCan(char *data,int dateSize,int id)
 }
 
 void displayLUX()
-{   
+{
     //char buffer[10];
     int status;
     status = VL6180x_AlsPollMeasurement(theVL6180xDev, &Als);
@@ -292,51 +283,159 @@ void displayLUX()
     }
     else
     {
-        if (Als.lux > 9999)
-        {
-            term_printf("L----\n\r");
-        }
-        else if (Als.lux > 999)
-        {
-            term_printf("LUM:%d.%d\n\r", (int)Als.lux / 1000, (int)(Als.lux % 1000) / 10); /* show LX.YY  X k Lux 2 digit*/
-            sprintf(buffer, "L%d.%02d", (int)Als.lux / 1000, (int)(Als.lux % 1000) / 10);  /* show LX.YY  X k Lux 2 digit*/
-        }
-        else
-        {
-            term_printf("lum:%d\n\r", (int)Als.lux);
-            sprintf(buffer, "l%3d", (int)Als.lux);
-        }
-
-        sendOverCan(Als.lux,sizeof(Als.lux),0x55);
+        sprintf(buffer, "Lux");
+        char buff[4];
+        int2char_ptr((int)Als.lux, buff);
+        sendOverCan(buff, 4, 0x55);
     }
 }
-/*
+
+void int2char_ptr(int in_value, char *out_value)
+{
+    out_value[0] = (char)((in_value >> 24) & 0xFF);
+    out_value[1] = (char)((in_value >> 16) & 0xFF);
+    out_value[2] = (char)((in_value >> 8) & 0xFF);
+    out_value[3] = (char)((in_value)&0xFF);
+}
+
 void displayLENGTH()
 {
     int status;
-    status = VL6180x_AlsPollMeasurement(theVL6180xDev, &Als);
+    uint16_t hlimit;
+    uint8_t scaling;
+
+    scaling = VL6180x_UpscaleGetScaling(theVL6180xDev);
+    status = VL6180x_RangePollMeasurement(theVL6180xDev, &Range); /* these invoke dipslay for  polling */
     if (status)
     {
-        // SetDisplayString("Er 4");
+        AbortErr("Er r");
+        return;
     }
-    else
+
+    hlimit = VL6180x_GetUpperLimit(theVL6180xDev);
+    if (Range.range_mm >= (hlimit * AutoThreshHigh) / 100 && scaling < 3 && State.AutoScale)
     {
-        if (Als.lux > 9999)
+        VL6180x_UpscaleSetScaling(theVL6180xDev, scaling + 1);
+    }
+    if (Range.range_mm < (hlimit * AutoThreshLow) / 100 && scaling > 1 && State.AutoScale)
+    {
+        VL6180x_UpscaleSetScaling(theVL6180xDev, scaling - 1);
+    }
+
+    if (Range.errorStatus)
+    {
+        /* no valid ranging*/
+        if (State.OutofRAnge)
         {
-            term_printf("L----\n\r");
-        }
-        else if (Als.lux > 999)
-        {
-            term_printf("LUM:%d.%d\n\r", (int)Als.lux / 1000, (int)(Als.lux % 1000) / 10); // show LX.YY  X k Lux 2 digit
-            sprintf(buffer, "L%d.%02d", (int)Als.lux / 1000, (int)(Als.lux % 1000) / 10);  // show LX.YY  X k Lux 2 digit 
+#if VL6180x_HAVE_DMAX_RANGING
+            if (g_TickCnt - TimeStarted >= ErrRangeDispTime && g_TickCnt - TimeStarted < ErrRangeDispTime + DMaxDispTime)
+            {
+                term_printf("d%d", (int)Range.DMax);
+                //SetDisplayString(buffer);
+            }
+            else
+
+#endif
+                if (g_TickCnt - TimeStarted < ErrRangeDispTime)
+            {
+
+                term_printf("rE%d\n\r", (int)Range.errorStatus);
+                // SetDisplayString(buffer);
+            }
+            else
+            {
+                State.OutofRAnge = 0; /* back to out of range display */
+                TimeStarted = g_TickCnt;
+            }
         }
         else
         {
-            term_printf("lum:%d\n\r", (int)Als.lux);
-            sprintf(buffer, "l%3d", (int)Als.lux);
+            int FilterEn;
+#if VL6180x_WRAP_AROUND_FILTER_SUPPORT
+            FilterEn = VL6180x_FilterGetState(theVL6180xDev);
+            if (FilterEn && VL6180x_RangeIsFilteredMeasurement(&Range))
+            {
+                SetDisplayString("F---");
+            }
+            else
+                SetDisplayString("r---");
+#else
+            SetDisplayString("r---");
+#endif
+            if (g_TickCnt - TimeStarted > OutORangeDispfTime)
+            {
+                State.OutofRAnge = 1;
+                TimeStarted = g_TickCnt;
+            }
+        }
+    }
+    else
+    {
+        State.OutofRAnge = 0;
+        TimeStarted = g_TickCnt;
+        int Alpha =(int)(0.85*(1<<16));
+        range = (range * Alpha + Range.range_mm * ((1 << 16) - Alpha)) >> 16;
+        
+        sprintf(buffer, "Ran");
+        char buff[4];
+        int2char_ptr((int)range, buff);
+        sendOverCan(buff, 4, 0x56);
+
+        if (State.AutoScale)
+        {
+            if (scaling == 1)
+            {
+                buffer[0] = '_';
+            }
+            else if (scaling == 2)
+                buffer[0] = '=';
+            else
+                buffer[0] = '~';
         }
 
-        sendOverCan(buffer);
+        SetDisplayString(buffer);
+    }
+
+#define max_scale 3
+    if (!BSP_GetPushButton())
+    {
+        TimeStarted = g_TickCnt;
+        status = PusbButton_WaitUnPress();
+        if (status)
+        {
+            GoToAlaramState();
+            return;
+        }
+        State.ScaleSwapCnt++;
+        if (State.ScaleSwapCnt % (max_scale + 1) == max_scale)
+        {
+            State.AutoScale = 1;
+            scaling = max_scale;
+        }
+        else
+        {
+#if ALLOW_DISABLE_WAF_FROM_BLUE_BUTTON
+            /* togle filtering every time we roll over all scaling(pass by autoscale) */
+            if (State.AutoScale)
+                State.FilterEn = !State.FilterEn;
+#endif
+            State.AutoScale = 0;
+            scaling = State.InitScale + (State.ScaleSwapCnt % max_scale);
+            if (scaling > max_scale)
+                scaling = scaling - (max_scale);
+        }
+
+        status = VL6180x_UpscaleSetScaling(theVL6180xDev, scaling);
+        if (status < 0)
+        {
+            AbortErr("ErUp");
+            State.mode = InitErr;
+        }
+        else
+        {
+            /* do not check status may fail when filter support not active */
+            VL6180x_FilterSetState(theVL6180xDev, State.FilterEn);
+            DoScalingSwap(scaling);
+        }
     }
 }
-*/
