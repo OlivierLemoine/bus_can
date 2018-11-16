@@ -91,25 +91,34 @@ void sendValue(const v8::FunctionCallbackInfo<Value> &args)
         return;
     }
 
-    if (args.Length() < 1)
+    if (args.Length() < 2)
     {
         isolate->ThrowException(Exception::TypeError(
             String::NewFromUtf8(isolate, "Wrong number of arguments")));
         return;
     }
 
-    if (!args[0]->IsArray())
+    if (!args[0]->IsInteger())
     {
         isolate->ThrowException(Exception::TypeError(
-            String::NewFromUtf8(isolate, "Wrong arguments")));
+            String::NewFromUtf8(isolate, "Argument 1 must be an integer")));
         return;
     }
 
-    Local<Array> data = Local<Array>::Cast(args[0]);
+    if (!args[1]->IsArray())
+    {
+        isolate->ThrowException(Exception::TypeError(
+            String::NewFromUtf8(isolate, "Argument 2 must be an array")));
+        return;
+    }
+
+    Local<Integer> id = Local<Integer>::Cast(args[0]);
+
+    Local<Array> data = Local<Array>::Cast(args[1]);
 
     TPCANMsg msgBuff;
 
-    msgBuff.ID = 0x1;
+    msgBuff.ID = id->NumberValue();
     msgBuff.MSGTYPE = MSGTYPE_STANDARD;
     msgBuff.LEN = data->Length();
 

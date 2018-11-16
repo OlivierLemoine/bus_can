@@ -20,6 +20,7 @@ void can_callback(void);
 
 CAN_Message rxMsg;
 CAN_Message txMsg;
+
 long int counter = 0;
 
 uint8_t *aTxBuffer[2];
@@ -103,6 +104,7 @@ int main(void)
 
 #if VL6180X
         VL6180x_Step();
+
 #endif
 
 #if MPU9250
@@ -118,6 +120,10 @@ int main(void)
 
 void can_callback(void)
 {
+
+    new_switch_state = (new_switch_state == 0) ? 1 : 0;
+
+    /*
     CAN_Message msg_rcv;
     int i = 0;
 
@@ -133,6 +139,7 @@ void can_callback(void)
     txMsg.type = CANData;
 
     can_Write(txMsg);
+    */
 }
 //====================================================================
 //			TIMER CALLBACK PERIOD
@@ -178,7 +185,7 @@ void VL6180x_Step(void)
 {
     DISP_ExecLoopBody();
 
-    new_switch_state = XNUCLEO6180XA1_GetSwitch();
+    //  new_switch_state = XNUCLEO6180XA1_GetSwitch();
     if (new_switch_state != switch_state)
     {
         switch_state = new_switch_state;
@@ -213,7 +220,7 @@ void VL6180x_Step(void)
         break;
 
     case RunAlsPoll:
-        AlsState();
+        displayLUX();
         break;
 
     case InitErr:
@@ -259,15 +266,77 @@ void VL6180x_Step(void)
 }
 //====================================================================
 
-void sendOverCan(char *data)
+void sendOverCan(char *data,int dateSize,int id)
 {
     CAN_Message txMsg;
-    txMsg.len = 8; // Nombre d'octets à envoyer
+    txMsg.len = dateSize; // Nombre d'octets à envoyer
     txMsg.format = CANStandard;
     txMsg.type = CANData;
-    
-    for(size_t i = 0; i < 8; i++)
+    txMsg.id = id;
+
+    for (size_t i = 0; i < dateSize; i++)
     {
         txMsg.data[i] = data[i];
     }
+    can_Write(txMsg);
 }
+
+void displayLUX()
+{   
+    //char buffer[10];
+    int status;
+    status = VL6180x_AlsPollMeasurement(theVL6180xDev, &Als);
+    if (status)
+    {
+        // SetDisplayString("Er 4");
+    }
+    else
+    {
+        if (Als.lux > 9999)
+        {
+            term_printf("L----\n\r");
+        }
+        else if (Als.lux > 999)
+        {
+            term_printf("LUM:%d.%d\n\r", (int)Als.lux / 1000, (int)(Als.lux % 1000) / 10); /* show LX.YY  X k Lux 2 digit*/
+            sprintf(buffer, "L%d.%02d", (int)Als.lux / 1000, (int)(Als.lux % 1000) / 10);  /* show LX.YY  X k Lux 2 digit*/
+        }
+        else
+        {
+            term_printf("lum:%d\n\r", (int)Als.lux);
+            sprintf(buffer, "l%3d", (int)Als.lux);
+        }
+
+        sendOverCan(Als.lux,sizeof(Als.lux),0x55);
+    }
+}
+/*
+void displayLENGTH()
+{
+    int status;
+    status = VL6180x_AlsPollMeasurement(theVL6180xDev, &Als);
+    if (status)
+    {
+        // SetDisplayString("Er 4");
+    }
+    else
+    {
+        if (Als.lux > 9999)
+        {
+            term_printf("L----\n\r");
+        }
+        else if (Als.lux > 999)
+        {
+            term_printf("LUM:%d.%d\n\r", (int)Als.lux / 1000, (int)(Als.lux % 1000) / 10); // show LX.YY  X k Lux 2 digit
+            sprintf(buffer, "L%d.%02d", (int)Als.lux / 1000, (int)(Als.lux % 1000) / 10);  // show LX.YY  X k Lux 2 digit 
+        }
+        else
+        {
+            term_printf("lum:%d\n\r", (int)Als.lux);
+            sprintf(buffer, "l%3d", (int)Als.lux);
+        }
+
+        sendOverCan(buffer);
+    }
+}
+*/

@@ -5,8 +5,13 @@
 		<item value="223" key="DIALOG_X_ORIGIN"/>
 	</section>
 	<section name="org.eclipse.ui.internal.QuickAccess">
+<<<<<<< HEAD
 		<item value="669" key="dialogHeight"/>
 		<item value="1194" key="dialogWidth"/>
+=======
+		<item value="675" key="dialogHeight"/>
+		<item value="1200" key="dialogWidth"/>
+>>>>>>> c5af368778ac1ba0ce24ee2a5288a95c67142486
 		<list key="textEntries">
 		</list>
 		<list key="orderedElements">

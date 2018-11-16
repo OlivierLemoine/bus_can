@@ -1,6 +1,7 @@
 // @ts-ignore
 let can_lib = {};
 try {
+    //@ts-ignore
     can_lib = require('./build/Release/can_lib.node');
     console.log('can_lib loaded');
 } catch (error) {
@@ -71,10 +72,10 @@ exports.useProcessedData = () => {
     return exports;
 };
 
-exports.send = data => {
+exports.send = (id, data) => {
     if (!isInit) throw 'CanLib not initialize !';
 
-    can_lib.sendValue(data);
+    can_lib.sendValue(id, data);
 
     return exports;
 };

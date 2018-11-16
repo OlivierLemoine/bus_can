@@ -650,3 +650,39 @@ arm-none-eabi-objcopy -O binary template.elf template.bin
 09:59:40 **** Incremental Build of configuration Default for project stm32-nucleo-f103rb_base ****
 make all 
 make: Nothing to be done for `all'.
+11:50:41 **** Build of configuration Default for project stm32-nucleo-f103rb_base ****
+make all 
+make: Nothing to be done for `all'.
+11:50:51 **** Incremental Build of configuration Default for project stm32-nucleo-f103rb_base ****
+make all 
+make: Nothing to be done for `all'.
+11:55:38 **** Incremental Build of configuration Default for project stm32-nucleo-f103rb_base ****
+make all 
+make: Nothing to be done for `all'.
+12:05:42 **** Incremental Build of configuration Default for project stm32-nucleo-f103rb_base ****
+make all 
+make: Nothing to be done for `all'.
+12:08:51 **** Incremental Build of configuration Default for project stm32-nucleo-f103rb_base ****
+make all 
+make: Nothing to be done for `all'.
+12:13:42 **** Incremental Build of configuration Default for project stm32-nucleo-f103rb_base ****
+make all 
+make: Nothing to be done for `all'.
+12:17:15 **** Incremental Build of configuration Default for project stm32-nucleo-f103rb_base ****
+make all 
+make: Nothing to be done for `all'.
+12:19:00 **** Incremental Build of configuration Default for project stm32-nucleo-f103rb_base ****
+make all 
+make: Nothing to be done for `all'.
+12:25:07 **** Incremental Build of configuration Default for project stm32-nucleo-f103rb_base ****
+make all 
+make: Nothing to be done for `all'.
+12:25:40 **** Incremental Build of configuration Default for project stm32-nucleo-f103rb_base ****
+make all 
+make: Nothing to be done for `all'.
+12:29:13 **** Incremental Build of configuration Default for project stm32-nucleo-f103rb_base ****
+make all 
+make: Nothing to be done for `all'.
+12:30:59 **** Incremental Build of configuration Default for project stm32-nucleo-f103rb_base ****
+make all 
+make: Nothing to be done for `all'.
