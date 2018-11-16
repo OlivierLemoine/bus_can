@@ -83,8 +83,9 @@ uint8_t mpu9250_MagWhoAmI(void)
 //================================================================
 void mpu9250_Step(void)
 {
+		const float conversion_Acc = 4.0/32768.0;
+		const float conversion_Gyro = (100.0/32768.0)*(PI/18.0);
 		uint8_t Buf[14];
-
 		// ____________________________________
 		// :::  accelerometer and gyroscope :::
 
@@ -99,7 +100,7 @@ void mpu9250_Step(void)
 
 		ax=ax+accel_bias_int[0];
 		ay=ay+accel_bias_int[1];
-		az=az-accel_bias_int[2];  
+		az=az-accel_bias_int[2];
 
 		int16_t gx=-(Buf[8]<<8 | Buf[9]);
 		int16_t gy=-(Buf[10]<<8 | Buf[11]);
@@ -109,11 +110,29 @@ void mpu9250_Step(void)
 		gy = gy + gyro_bias_int[1];
 		gz = gz - gyro_bias_int[2];
 
-		
-#if USE_MAGNETOMETER
+		float f_gx = gx * conversion_Gyro;
+		float f_gy = gy * conversion_Gyro;
+		float f_gz = gz * conversion_Gyro;
+
+		float f_ax = ax * conversion_Acc;
+		float f_ay = ay * conversion_Acc;
+		float f_az = az * conversion_Acc;
+		term_printf("________");
+		term_printf("f_gx: %f",f_gx);
+		term_printf("f_gy: %f",f_gy);
+		term_printf("f_gz: %f",f_gz);
+		term_printf("f_ax: %f",f_ax);
+		term_printf("f_ay: %f",f_ay);
+		term_printf("f_az: %f",f_az);
+
+#ifndef USE_MAGNETOMETER
+		MadgwickAHRSupdateIMU(f_gx,f_gy,f_gz,f_ax,f_ay,f_az);
+#elif USE_MAGNETOMETER
 	   	//_____________________
 	    // :::  Magnetometer :::
 	    // Read register Status 1 and wait for the DRDY: Data Ready
+		const float conversion_Mag = 1.0;
+
 	    uint8_t magStatus1=0;
 	    do
 	    {
@@ -126,7 +145,15 @@ void mpu9250_Step(void)
     	int16_t mx=-(Mag[3]<<8 | Mag[2]);
     	int16_t my=-(Mag[1]<<8 | Mag[0]);
     	int16_t mz=-(Mag[5]<<8 | Mag[4]);
-    	
+
+		float f_mx = mx * conversion_Mag;
+		float f_my = my * conversion_Mag;
+		float f_mz = mz * conversion_Mag;
+
+		MadgwickAHRSupdate(f_gx,f_gy,f_gz,f_ax,f_ay,f_az,);
+		term_printf("f_mx: %f",f_mx);
+		term_printf("f_my: %f",f_my);
+		term_printf("f_mz: %f",f_mz);
 #endif
 		
   }

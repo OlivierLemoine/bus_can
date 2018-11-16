@@ -6,7 +6,8 @@
         "stdlib.h": "c",
         "can.h": "c",
         "array": "c",
-        "thread": "cpp"
+        "thread": "cpp",
+        "madgwickahrs.h": "c"
     },
     
     "spellright.documentTypes": [

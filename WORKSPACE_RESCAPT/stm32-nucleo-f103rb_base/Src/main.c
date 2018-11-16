@@ -1,7 +1,7 @@
 #include "main.h"
 //====================================================================
-#define VL6180X 1
-#define MPU9250 0
+#define VL6180X 0
+#define MPU9250 1
 #define MPL115A_ANEMO 0
 //====================================================================
 //			CAN ACCEPTANCE FILTER
@@ -147,8 +147,8 @@ void can_callback(void)
 
 void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef *htim)
 {
-    //term_printf("from timer interrupt\n\r");
-    // mpu9250_Step();
+    term_printf("from timer interrupt\n\r");
+    mpu9250_Step();
 }
 //====================================================================
 
