@@ -108,7 +108,7 @@ int main(void)
 #endif
 
 #if MPU9250
-
+        mpu9250_Step();
 #endif
     }
     return 0;

@@ -13,7 +13,7 @@
 
 #include "main.h"
 #include "types.h"
-
+#include "MadgwickAHRS.h"
 
 
 /**************************************************

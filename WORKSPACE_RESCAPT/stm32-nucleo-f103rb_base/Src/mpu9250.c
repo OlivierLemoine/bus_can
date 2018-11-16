@@ -117,13 +117,6 @@ void mpu9250_Step(void)
 		float f_ax = ax * conversion_Acc;
 		float f_ay = ay * conversion_Acc;
 		float f_az = az * conversion_Acc;
-		term_printf("________");
-		term_printf("f_gx: %f",f_gx);
-		term_printf("f_gy: %f",f_gy);
-		term_printf("f_gz: %f",f_gz);
-		term_printf("f_ax: %f",f_ax);
-		term_printf("f_ay: %f",f_ay);
-		term_printf("f_az: %f",f_az);
 
 #ifndef USE_MAGNETOMETER
 		MadgwickAHRSupdateIMU(f_gx,f_gy,f_gz,f_ax,f_ay,f_az);
@@ -154,8 +147,12 @@ void mpu9250_Step(void)
 		term_printf("f_mx: %f",f_mx);
 		term_printf("f_my: %f",f_my);
 		term_printf("f_mz: %f",f_mz);
-#endif
-		
+#endif		
+		// term_printf("________\n");
+		// term_printf("q0: %f\n",get_q0());
+		// term_printf("q1: %f\n",get_q1());
+		// term_printf("q2: %f\n",get_q2());
+		// term_printf("q3: %f\n",get_q3());
   }
 //================================================================
 //			READ ACCELERATION
