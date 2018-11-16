@@ -6,7 +6,13 @@
         "stdlib.h": "c",
         "can.h": "c",
         "array": "c",
+<<<<<<< HEAD
+        "thread": "cpp",
+        "madgwickahrs.h": "c",
+        "mpu9250.h": "c"
+=======
         "thread": "cpp"
+>>>>>>> 34a97d6078afbc7979f34c626bf064d13f715f37
     },
     
     "spellright.documentTypes": [

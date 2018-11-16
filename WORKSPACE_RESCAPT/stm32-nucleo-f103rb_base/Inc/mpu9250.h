@@ -7,10 +7,13 @@
 
 #ifndef INC_MPU9250_H_
 #define INC_MPU9250_H_
+#ifndef PI
+#define PI	3.14159265358979f
+#endif
 
 #include "main.h"
 #include "types.h"
-
+#include "MadgwickAHRS.h"
 
 
 /**************************************************
