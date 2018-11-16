@@ -7,7 +7,8 @@
         "can.h": "c",
         "array": "c",
         "thread": "cpp",
-        "madgwickahrs.h": "c"
+        "madgwickahrs.h": "c",
+        "mpu9250.h": "c"
     },
     
     "spellright.documentTypes": [

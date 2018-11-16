@@ -53,4 +53,5 @@ dkms.conf
 */node_modules/*
 
 # eclipse garbage
-WORKSPACE_RESCAPT/.metadata/*
+WORKSPACE_RESCAPT/.metadata/
+WORKSPACE_RESCAPT/stm32-nucleo-f103rb_base/.nfs*
