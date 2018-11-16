@@ -686,3 +686,538 @@ make: Nothing to be done for `all'.
 12:30:59 **** Incremental Build of configuration Default for project stm32-nucleo-f103rb_base ****
 make all 
 make: Nothing to be done for `all'.
+09:42:06 **** Incremental Build of configuration Default for project stm32-nucleo-f103rb_base ****
+make all 
+make: Nothing to be done for `all'.
+09:42:15 **** Incremental Build of configuration Default for project stm32-nucleo-f103rb_base ****
+make all 
+make: Nothing to be done for `all'.
+09:49:43 **** Incremental Build of configuration Default for project stm32-nucleo-f103rb_base ****
+make all 
+make: Nothing to be done for `all'.
+10:00:51 **** Build of configuration Default for project stm32-nucleo-f103rb_base ****
+make all 
+make: Nothing to be done for `all'.
+10:00:53 **** Incremental Build of configuration Default for project stm32-nucleo-f103rb_base ****
+make all 
+make: Nothing to be done for `all'.
+10:02:47 **** Incremental Build of configuration Default for project stm32-nucleo-f103rb_base ****
+make all 
+arm-none-eabi-gcc -IInc/ -IDrivers/STM32F1xx_HAL_Driver/Inc/ -ISrc/vl6180x/ -IDrivers/BSP/STM32F1xx_Nucleo/ -IDrivers/CMSIS/Device/ST/STM32F1xx/Include/ -IDrivers/CMSIS/Include/ -DSTM32F103xBt -ggdb -O0 -mlittle-endian --specs=rdimon.specs -mthumb -mcpu=cortex-m3 -mthumb-interwork -Wl,--gc-sections -lgcc -lc -lm -lrdimon -Wall -Wextra -Warray-bounds -Wno-unused-parameter -TDevice/gcc.ld Src/main.c Device/startup_stm32f103xb.s Src/vl6180x/vl6180x_api.c Src/vl6180x/vl6180x_lib.c Src/vl6180x/x-nucleo-6180xa1.c Src/stm32f1xx_hal_msp.c Src/stm32f1xx_it.c Src/system_stm32f1xx.c Src/systemClock.c Src/drv_can.c Src/drv_spi.c Src/drv_uart.c Src/drv_i2c.c Src/anemo.c Src/mpu9250.c Src/tickTimer.c stm32f1xx_hal.o stm32f1xx_hal_rcc.o stm32f1xx_hal_rcc_ex.o stm32f1xx_hal_rtc.o stm32f1xx_hal_gpio.o stm32f1xx_hal_cortex.o stm32f1xx_hal_pcd.o stm32f1xx_hal_pcd_ex.o stm32f1xx_hal_uart.o stm32f1xx_hal_usart.o stm32f1xx_hal_dma.o stm32f1xx_hal_adc.o stm32f1xx_hal_adc_ex.o stm32f1xx_hal_spi.o stm32f1xx_hal_i2c.o stm32f1xx_hal_tim.o stm32f1xx_hal_tim_ex.o stm32f1xx_hal_can.o Drivers/BSP/STM32F1xx_Nucleo/stm32f1xx_nucleo.o -o template.elf
+Src/main.c: In function 'VL6180x_Step':
+Src/main.c:223:9: warning: implicit declaration of function 'displayLUX' [-Wimplicit-function-declaration]
+         displayLUX();
+         ^
+Src/main.c: In function 'sendOverCan':
+Src/main.c:277:26: warning: comparison between signed and unsigned integer expressions [-Wsign-compare]
+     for (size_t i = 0; i < dateSize; i++)
+                          ^
+Src/main.c: At top level:
+Src/main.c:284:6: warning: conflicting types for 'displayLUX'
+ void displayLUX()
+      ^
+Src/main.c:223:9: note: previous implicit declaration of 'displayLUX' was here
+         displayLUX();
+         ^
+Src/main.c: In function 'displayLUX':
+Src/main.c:310:9: warning: implicit declaration of function 'int2char_ptr' [-Wimplicit-function-declaration]
+         int2char_ptr((int)Als.lux, buff);
+         ^
+Src/main.c: At top level:
+Src/main.c:315:6: warning: conflicting types for 'int2char_ptr'
+ void int2char_ptr(int in_value, char *out_value)
+      ^
+Src/main.c:310:9: note: previous implicit declaration of 'int2char_ptr' was here
+         int2char_ptr((int)Als.lux, buff);
+         ^
+Src/vl6180x/vl6180x_api.c: In function '_DMax_Compute':
+Src/vl6180x/vl6180x_api.c:2574:18: warning: comparison between signed and unsigned integer expressions [-Wsign-compare]
+  if (rtnAmbRate  < rtnAmbLowLimit_KCps) {
+                  ^
+Src/vl6180x/vl6180x_lib.c: In function 'RangeState':
+Src/vl6180x/vl6180x_lib.c:439:41: warning: comparison of unsigned expression >= 0 is always true [-Wtype-limits]
+             if (g_TickCnt - TimeStarted >= ErrRangeDispTime &&  g_TickCnt - TimeStarted <  ErrRangeDispTime + DMaxDispTime ){
+                                         ^
+Src/vl6180x/vl6180x_lib.c:439:89: warning: comparison of unsigned expression < 0 is always false [-Wtype-limits]
+             if (g_TickCnt - TimeStarted >= ErrRangeDispTime &&  g_TickCnt - TimeStarted <  ErrRangeDispTime + DMaxDispTime ){
+                                                                                         ^
+Src/vl6180x/vl6180x_lib.c:446:40: warning: comparison of unsigned expression < 0 is always false [-Wtype-limits]
+             if(g_TickCnt - TimeStarted < ErrRangeDispTime  )
+                                        ^
+Src/anemo.c: In function 'anemo_ResetCount':
+Src/anemo.c:47:1: warning: control reaches end of non-void function [-Wreturn-type]
+ }
+ ^
+arm-none-eabi-objcopy -O ihex template.elf   template.hex
+arm-none-eabi-objcopy -O binary template.elf template.bin
+10:02:52 **** Incremental Build of configuration Default for project stm32-nucleo-f103rb_base ****
+make all 
+make: Nothing to be done for `all'.
+10:04:37 **** Incremental Build of configuration Default for project stm32-nucleo-f103rb_base ****
+make all 
+arm-none-eabi-gcc -IInc/ -IDrivers/STM32F1xx_HAL_Driver/Inc/ -ISrc/vl6180x/ -IDrivers/BSP/STM32F1xx_Nucleo/ -IDrivers/CMSIS/Device/ST/STM32F1xx/Include/ -IDrivers/CMSIS/Include/ -DSTM32F103xBt -ggdb -O0 -mlittle-endian --specs=rdimon.specs -mthumb -mcpu=cortex-m3 -mthumb-interwork -Wl,--gc-sections -lgcc -lc -lm -lrdimon -Wall -Wextra -Warray-bounds -Wno-unused-parameter -TDevice/gcc.ld Src/main.c Device/startup_stm32f103xb.s Src/vl6180x/vl6180x_api.c Src/vl6180x/vl6180x_lib.c Src/vl6180x/x-nucleo-6180xa1.c Src/stm32f1xx_hal_msp.c Src/stm32f1xx_it.c Src/system_stm32f1xx.c Src/systemClock.c Src/drv_can.c Src/drv_spi.c Src/drv_uart.c Src/drv_i2c.c Src/anemo.c Src/mpu9250.c Src/tickTimer.c stm32f1xx_hal.o stm32f1xx_hal_rcc.o stm32f1xx_hal_rcc_ex.o stm32f1xx_hal_rtc.o stm32f1xx_hal_gpio.o stm32f1xx_hal_cortex.o stm32f1xx_hal_pcd.o stm32f1xx_hal_pcd_ex.o stm32f1xx_hal_uart.o stm32f1xx_hal_usart.o stm32f1xx_hal_dma.o stm32f1xx_hal_adc.o stm32f1xx_hal_adc_ex.o stm32f1xx_hal_spi.o stm32f1xx_hal_i2c.o stm32f1xx_hal_tim.o stm32f1xx_hal_tim_ex.o stm32f1xx_hal_can.o Drivers/BSP/STM32F1xx_Nucleo/stm32f1xx_nucleo.o -o template.elf
+Src/main.c: In function 'VL6180x_Step':
+Src/main.c:223:9: warning: implicit declaration of function 'displayLUX' [-Wimplicit-function-declaration]
+         displayLUX();
+         ^
+Src/main.c: In function 'sendOverCan':
+Src/main.c:277:26: warning: comparison between signed and unsigned integer expressions [-Wsign-compare]
+     for (size_t i = 0; i < dateSize; i++)
+                          ^
+Src/main.c: At top level:
+Src/main.c:284:6: warning: conflicting types for 'displayLUX'
+ void displayLUX()
+      ^
+Src/main.c:223:9: note: previous implicit declaration of 'displayLUX' was here
+         displayLUX();
+         ^
+Src/main.c: In function 'displayLUX':
+Src/main.c:310:9: warning: implicit declaration of function 'int2char_ptr' [-Wimplicit-function-declaration]
+         int2char_ptr((int)Als.lux, buff);
+         ^
+Src/main.c: At top level:
+Src/main.c:315:6: warning: conflicting types for 'int2char_ptr'
+ void int2char_ptr(int in_value, char *out_value)
+      ^
+Src/main.c:310:9: note: previous implicit declaration of 'int2char_ptr' was here
+         int2char_ptr((int)Als.lux, buff);
+         ^
+Src/vl6180x/vl6180x_api.c: In function '_DMax_Compute':
+Src/vl6180x/vl6180x_api.c:2574:18: warning: comparison between signed and unsigned integer expressions [-Wsign-compare]
+  if (rtnAmbRate  < rtnAmbLowLimit_KCps) {
+                  ^
+Src/vl6180x/vl6180x_lib.c: In function 'RangeState':
+Src/vl6180x/vl6180x_lib.c:439:41: warning: comparison of unsigned expression >= 0 is always true [-Wtype-limits]
+             if (g_TickCnt - TimeStarted >= ErrRangeDispTime &&  g_TickCnt - TimeStarted <  ErrRangeDispTime + DMaxDispTime ){
+                                         ^
+Src/vl6180x/vl6180x_lib.c:439:89: warning: comparison of unsigned expression < 0 is always false [-Wtype-limits]
+             if (g_TickCnt - TimeStarted >= ErrRangeDispTime &&  g_TickCnt - TimeStarted <  ErrRangeDispTime + DMaxDispTime ){
+                                                                                         ^
+Src/vl6180x/vl6180x_lib.c:446:40: warning: comparison of unsigned expression < 0 is always false [-Wtype-limits]
+             if(g_TickCnt - TimeStarted < ErrRangeDispTime  )
+                                        ^
+Src/anemo.c: In function 'anemo_ResetCount':
+Src/anemo.c:47:1: warning: control reaches end of non-void function [-Wreturn-type]
+ }
+ ^
+arm-none-eabi-objcopy -O ihex template.elf   template.hex
+arm-none-eabi-objcopy -O binary template.elf template.bin
+10:04:43 **** Incremental Build of configuration Default for project stm32-nucleo-f103rb_base ****
+make all 
+make: Nothing to be done for `all'.
+10:07:48 **** Incremental Build of configuration Default for project stm32-nucleo-f103rb_base ****
+make all 
+arm-none-eabi-gcc -IInc/ -IDrivers/STM32F1xx_HAL_Driver/Inc/ -ISrc/vl6180x/ -IDrivers/BSP/STM32F1xx_Nucleo/ -IDrivers/CMSIS/Device/ST/STM32F1xx/Include/ -IDrivers/CMSIS/Include/ -DSTM32F103xBt -ggdb -O0 -mlittle-endian --specs=rdimon.specs -mthumb -mcpu=cortex-m3 -mthumb-interwork -Wl,--gc-sections -lgcc -lc -lm -lrdimon -Wall -Wextra -Warray-bounds -Wno-unused-parameter -TDevice/gcc.ld Src/main.c Device/startup_stm32f103xb.s Src/vl6180x/vl6180x_api.c Src/vl6180x/vl6180x_lib.c Src/vl6180x/x-nucleo-6180xa1.c Src/stm32f1xx_hal_msp.c Src/stm32f1xx_it.c Src/system_stm32f1xx.c Src/systemClock.c Src/drv_can.c Src/drv_spi.c Src/drv_uart.c Src/drv_i2c.c Src/anemo.c Src/mpu9250.c Src/tickTimer.c stm32f1xx_hal.o stm32f1xx_hal_rcc.o stm32f1xx_hal_rcc_ex.o stm32f1xx_hal_rtc.o stm32f1xx_hal_gpio.o stm32f1xx_hal_cortex.o stm32f1xx_hal_pcd.o stm32f1xx_hal_pcd_ex.o stm32f1xx_hal_uart.o stm32f1xx_hal_usart.o stm32f1xx_hal_dma.o stm32f1xx_hal_adc.o stm32f1xx_hal_adc_ex.o stm32f1xx_hal_spi.o stm32f1xx_hal_i2c.o stm32f1xx_hal_tim.o stm32f1xx_hal_tim_ex.o stm32f1xx_hal_can.o Drivers/BSP/STM32F1xx_Nucleo/stm32f1xx_nucleo.o -o template.elf
+Src/main.c: In function 'VL6180x_Step':
+Src/main.c:223:9: warning: implicit declaration of function 'displayLUX' [-Wimplicit-function-declaration]
+         displayLUX();
+         ^
+Src/main.c: In function 'sendOverCan':
+Src/main.c:277:26: warning: comparison between signed and unsigned integer expressions [-Wsign-compare]
+     for (size_t i = 0; i < dateSize; i++)
+                          ^
+Src/main.c: At top level:
+Src/main.c:284:6: warning: conflicting types for 'displayLUX'
+ void displayLUX()
+      ^
+Src/main.c:223:9: note: previous implicit declaration of 'displayLUX' was here
+         displayLUX();
+         ^
+Src/main.c: In function 'displayLUX':
+Src/main.c:310:9: warning: implicit declaration of function 'int2char_ptr' [-Wimplicit-function-declaration]
+         int2char_ptr((int)Als.lux, buff);
+         ^
+Src/main.c: At top level:
+Src/main.c:315:6: warning: conflicting types for 'int2char_ptr'
+ void int2char_ptr(int in_value, char *out_value)
+      ^
+Src/main.c:310:9: note: previous implicit declaration of 'int2char_ptr' was here
+         int2char_ptr((int)Als.lux, buff);
+         ^
+Src/vl6180x/vl6180x_api.c: In function '_DMax_Compute':
+Src/vl6180x/vl6180x_api.c:2574:18: warning: comparison between signed and unsigned integer expressions [-Wsign-compare]
+  if (rtnAmbRate  < rtnAmbLowLimit_KCps) {
+                  ^
+Src/vl6180x/vl6180x_lib.c: In function 'RangeState':
+Src/vl6180x/vl6180x_lib.c:439:41: warning: comparison of unsigned expression >= 0 is always true [-Wtype-limits]
+             if (g_TickCnt - TimeStarted >= ErrRangeDispTime &&  g_TickCnt - TimeStarted <  ErrRangeDispTime + DMaxDispTime ){
+                                         ^
+Src/vl6180x/vl6180x_lib.c:439:89: warning: comparison of unsigned expression < 0 is always false [-Wtype-limits]
+             if (g_TickCnt - TimeStarted >= ErrRangeDispTime &&  g_TickCnt - TimeStarted <  ErrRangeDispTime + DMaxDispTime ){
+                                                                                         ^
+Src/vl6180x/vl6180x_lib.c:446:40: warning: comparison of unsigned expression < 0 is always false [-Wtype-limits]
+             if(g_TickCnt - TimeStarted < ErrRangeDispTime  )
+                                        ^
+Src/anemo.c: In function 'anemo_ResetCount':
+Src/anemo.c:47:1: warning: control reaches end of non-void function [-Wreturn-type]
+ }
+ ^
+arm-none-eabi-objcopy -O ihex template.elf   template.hex
+arm-none-eabi-objcopy -O binary template.elf template.bin
+10:07:54 **** Incremental Build of configuration Default for project stm32-nucleo-f103rb_base ****
+make all 
+make: Nothing to be done for `all'.
+10:08:51 **** Incremental Build of configuration Default for project stm32-nucleo-f103rb_base ****
+make all 
+arm-none-eabi-gcc -IInc/ -IDrivers/STM32F1xx_HAL_Driver/Inc/ -ISrc/vl6180x/ -IDrivers/BSP/STM32F1xx_Nucleo/ -IDrivers/CMSIS/Device/ST/STM32F1xx/Include/ -IDrivers/CMSIS/Include/ -DSTM32F103xBt -ggdb -O0 -mlittle-endian --specs=rdimon.specs -mthumb -mcpu=cortex-m3 -mthumb-interwork -Wl,--gc-sections -lgcc -lc -lm -lrdimon -Wall -Wextra -Warray-bounds -Wno-unused-parameter -TDevice/gcc.ld Src/main.c Device/startup_stm32f103xb.s Src/vl6180x/vl6180x_api.c Src/vl6180x/vl6180x_lib.c Src/vl6180x/x-nucleo-6180xa1.c Src/stm32f1xx_hal_msp.c Src/stm32f1xx_it.c Src/system_stm32f1xx.c Src/systemClock.c Src/drv_can.c Src/drv_spi.c Src/drv_uart.c Src/drv_i2c.c Src/anemo.c Src/mpu9250.c Src/tickTimer.c stm32f1xx_hal.o stm32f1xx_hal_rcc.o stm32f1xx_hal_rcc_ex.o stm32f1xx_hal_rtc.o stm32f1xx_hal_gpio.o stm32f1xx_hal_cortex.o stm32f1xx_hal_pcd.o stm32f1xx_hal_pcd_ex.o stm32f1xx_hal_uart.o stm32f1xx_hal_usart.o stm32f1xx_hal_dma.o stm32f1xx_hal_adc.o stm32f1xx_hal_adc_ex.o stm32f1xx_hal_spi.o stm32f1xx_hal_i2c.o stm32f1xx_hal_tim.o stm32f1xx_hal_tim_ex.o stm32f1xx_hal_can.o Drivers/BSP/STM32F1xx_Nucleo/stm32f1xx_nucleo.o -o template.elf
+Src/main.c: In function 'VL6180x_Step':
+Src/main.c:223:9: warning: implicit declaration of function 'displayLUX' [-Wimplicit-function-declaration]
+         displayLUX();
+         ^
+Src/main.c: In function 'sendOverCan':
+Src/main.c:277:26: warning: comparison between signed and unsigned integer expressions [-Wsign-compare]
+     for (size_t i = 0; i < dateSize; i++)
+                          ^
+Src/main.c: At top level:
+Src/main.c:284:6: warning: conflicting types for 'displayLUX'
+ void displayLUX()
+      ^
+Src/main.c:223:9: note: previous implicit declaration of 'displayLUX' was here
+         displayLUX();
+         ^
+Src/main.c: In function 'displayLUX':
+Src/main.c:310:9: warning: implicit declaration of function 'int2char_ptr' [-Wimplicit-function-declaration]
+         int2char_ptr((int)Als.lux, buff);
+         ^
+Src/main.c: At top level:
+Src/main.c:315:6: warning: conflicting types for 'int2char_ptr'
+ void int2char_ptr(int in_value, char *out_value)
+      ^
+Src/main.c:310:9: note: previous implicit declaration of 'int2char_ptr' was here
+         int2char_ptr((int)Als.lux, buff);
+         ^
+Src/vl6180x/vl6180x_api.c: In function '_DMax_Compute':
+Src/vl6180x/vl6180x_api.c:2574:18: warning: comparison between signed and unsigned integer expressions [-Wsign-compare]
+  if (rtnAmbRate  < rtnAmbLowLimit_KCps) {
+                  ^
+Src/vl6180x/vl6180x_lib.c: In function 'RangeState':
+Src/vl6180x/vl6180x_lib.c:439:41: warning: comparison of unsigned expression >= 0 is always true [-Wtype-limits]
+             if (g_TickCnt - TimeStarted >= ErrRangeDispTime &&  g_TickCnt - TimeStarted <  ErrRangeDispTime + DMaxDispTime ){
+                                         ^
+Src/vl6180x/vl6180x_lib.c:439:89: warning: comparison of unsigned expression < 0 is always false [-Wtype-limits]
+             if (g_TickCnt - TimeStarted >= ErrRangeDispTime &&  g_TickCnt - TimeStarted <  ErrRangeDispTime + DMaxDispTime ){
+                                                                                         ^
+Src/vl6180x/vl6180x_lib.c:446:40: warning: comparison of unsigned expression < 0 is always false [-Wtype-limits]
+             if(g_TickCnt - TimeStarted < ErrRangeDispTime  )
+                                        ^
+Src/anemo.c: In function 'anemo_ResetCount':
+Src/anemo.c:47:1: warning: control reaches end of non-void function [-Wreturn-type]
+ }
+ ^
+arm-none-eabi-objcopy -O ihex template.elf   template.hex
+arm-none-eabi-objcopy -O binary template.elf template.bin
+10:08:55 **** Incremental Build of configuration Default for project stm32-nucleo-f103rb_base ****
+make all 
+make: Nothing to be done for `all'.
+10:09:45 **** Incremental Build of configuration Default for project stm32-nucleo-f103rb_base ****
+make all 
+make: Nothing to be done for `all'.
+10:11:15 **** Incremental Build of configuration Default for project stm32-nucleo-f103rb_base ****
+make all 
+arm-none-eabi-gcc -IInc/ -IDrivers/STM32F1xx_HAL_Driver/Inc/ -ISrc/vl6180x/ -IDrivers/BSP/STM32F1xx_Nucleo/ -IDrivers/CMSIS/Device/ST/STM32F1xx/Include/ -IDrivers/CMSIS/Include/ -DSTM32F103xBt -ggdb -O0 -mlittle-endian --specs=rdimon.specs -mthumb -mcpu=cortex-m3 -mthumb-interwork -Wl,--gc-sections -lgcc -lc -lm -lrdimon -Wall -Wextra -Warray-bounds -Wno-unused-parameter -TDevice/gcc.ld Src/main.c Device/startup_stm32f103xb.s Src/vl6180x/vl6180x_api.c Src/vl6180x/vl6180x_lib.c Src/vl6180x/x-nucleo-6180xa1.c Src/stm32f1xx_hal_msp.c Src/stm32f1xx_it.c Src/system_stm32f1xx.c Src/systemClock.c Src/drv_can.c Src/drv_spi.c Src/drv_uart.c Src/drv_i2c.c Src/anemo.c Src/mpu9250.c Src/tickTimer.c stm32f1xx_hal.o stm32f1xx_hal_rcc.o stm32f1xx_hal_rcc_ex.o stm32f1xx_hal_rtc.o stm32f1xx_hal_gpio.o stm32f1xx_hal_cortex.o stm32f1xx_hal_pcd.o stm32f1xx_hal_pcd_ex.o stm32f1xx_hal_uart.o stm32f1xx_hal_usart.o stm32f1xx_hal_dma.o stm32f1xx_hal_adc.o stm32f1xx_hal_adc_ex.o stm32f1xx_hal_spi.o stm32f1xx_hal_i2c.o stm32f1xx_hal_tim.o stm32f1xx_hal_tim_ex.o stm32f1xx_hal_can.o Drivers/BSP/STM32F1xx_Nucleo/stm32f1xx_nucleo.o -o template.elf
+Src/main.c: In function 'VL6180x_Step':
+Src/main.c:214:9: warning: implicit declaration of function 'displayLUX' [-Wimplicit-function-declaration]
+         displayLUX();
+         ^
+Src/main.c: In function 'sendOverCan':
+Src/main.c:268:26: warning: comparison between signed and unsigned integer expressions [-Wsign-compare]
+     for (size_t i = 0; i < dateSize; i++)
+                          ^
+Src/main.c: At top level:
+Src/main.c:275:6: warning: conflicting types for 'displayLUX'
+ void displayLUX()
+      ^
+Src/main.c:214:9: note: previous implicit declaration of 'displayLUX' was here
+         displayLUX();
+         ^
+Src/main.c: In function 'displayLUX':
+Src/main.c:301:9: warning: implicit declaration of function 'int2char_ptr' [-Wimplicit-function-declaration]
+         int2char_ptr((int)Als.lux, buff);
+         ^
+Src/main.c: At top level:
+Src/main.c:306:6: warning: conflicting types for 'int2char_ptr'
+ void int2char_ptr(int in_value, char *out_value)
+      ^
+Src/main.c:301:9: note: previous implicit declaration of 'int2char_ptr' was here
+         int2char_ptr((int)Als.lux, buff);
+         ^
+Src/vl6180x/vl6180x_api.c: In function '_DMax_Compute':
+Src/vl6180x/vl6180x_api.c:2574:18: warning: comparison between signed and unsigned integer expressions [-Wsign-compare]
+  if (rtnAmbRate  < rtnAmbLowLimit_KCps) {
+                  ^
+Src/vl6180x/vl6180x_lib.c: In function 'RangeState':
+Src/vl6180x/vl6180x_lib.c:439:41: warning: comparison of unsigned expression >= 0 is always true [-Wtype-limits]
+             if (g_TickCnt - TimeStarted >= ErrRangeDispTime &&  g_TickCnt - TimeStarted <  ErrRangeDispTime + DMaxDispTime ){
+                                         ^
+Src/vl6180x/vl6180x_lib.c:439:89: warning: comparison of unsigned expression < 0 is always false [-Wtype-limits]
+             if (g_TickCnt - TimeStarted >= ErrRangeDispTime &&  g_TickCnt - TimeStarted <  ErrRangeDispTime + DMaxDispTime ){
+                                                                                         ^
+Src/vl6180x/vl6180x_lib.c:446:40: warning: comparison of unsigned expression < 0 is always false [-Wtype-limits]
+             if(g_TickCnt - TimeStarted < ErrRangeDispTime  )
+                                        ^
+Src/anemo.c: In function 'anemo_ResetCount':
+Src/anemo.c:47:1: warning: control reaches end of non-void function [-Wreturn-type]
+ }
+ ^
+arm-none-eabi-objcopy -O ihex template.elf   template.hex
+arm-none-eabi-objcopy -O binary template.elf template.bin
+10:11:20 **** Incremental Build of configuration Default for project stm32-nucleo-f103rb_base ****
+make all 
+make: Nothing to be done for `all'.
+10:12:19 **** Incremental Build of configuration Default for project stm32-nucleo-f103rb_base ****
+make all 
+arm-none-eabi-gcc -IInc/ -IDrivers/STM32F1xx_HAL_Driver/Inc/ -ISrc/vl6180x/ -IDrivers/BSP/STM32F1xx_Nucleo/ -IDrivers/CMSIS/Device/ST/STM32F1xx/Include/ -IDrivers/CMSIS/Include/ -DSTM32F103xBt -ggdb -O0 -mlittle-endian --specs=rdimon.specs -mthumb -mcpu=cortex-m3 -mthumb-interwork -Wl,--gc-sections -lgcc -lc -lm -lrdimon -Wall -Wextra -Warray-bounds -Wno-unused-parameter -TDevice/gcc.ld Src/main.c Device/startup_stm32f103xb.s Src/vl6180x/vl6180x_api.c Src/vl6180x/vl6180x_lib.c Src/vl6180x/x-nucleo-6180xa1.c Src/stm32f1xx_hal_msp.c Src/stm32f1xx_it.c Src/system_stm32f1xx.c Src/systemClock.c Src/drv_can.c Src/drv_spi.c Src/drv_uart.c Src/drv_i2c.c Src/anemo.c Src/mpu9250.c Src/tickTimer.c stm32f1xx_hal.o stm32f1xx_hal_rcc.o stm32f1xx_hal_rcc_ex.o stm32f1xx_hal_rtc.o stm32f1xx_hal_gpio.o stm32f1xx_hal_cortex.o stm32f1xx_hal_pcd.o stm32f1xx_hal_pcd_ex.o stm32f1xx_hal_uart.o stm32f1xx_hal_usart.o stm32f1xx_hal_dma.o stm32f1xx_hal_adc.o stm32f1xx_hal_adc_ex.o stm32f1xx_hal_spi.o stm32f1xx_hal_i2c.o stm32f1xx_hal_tim.o stm32f1xx_hal_tim_ex.o stm32f1xx_hal_can.o Drivers/BSP/STM32F1xx_Nucleo/stm32f1xx_nucleo.o -o template.elf
+Src/main.c: In function 'VL6180x_Step':
+Src/main.c:214:9: warning: implicit declaration of function 'displayLUX' [-Wimplicit-function-declaration]
+         displayLUX();
+         ^
+Src/main.c: In function 'sendOverCan':
+Src/main.c:268:26: warning: comparison between signed and unsigned integer expressions [-Wsign-compare]
+     for (size_t i = 0; i < dateSize; i++)
+                          ^
+Src/main.c: At top level:
+Src/main.c:275:6: warning: conflicting types for 'displayLUX'
+ void displayLUX()
+      ^
+Src/main.c:214:9: note: previous implicit declaration of 'displayLUX' was here
+         displayLUX();
+         ^
+Src/main.c: In function 'displayLUX':
+Src/main.c:301:9: warning: implicit declaration of function 'int2char_ptr' [-Wimplicit-function-declaration]
+         int2char_ptr((int)Als.lux, buff);
+         ^
+Src/main.c: At top level:
+Src/main.c:306:6: warning: conflicting types for 'int2char_ptr'
+ void int2char_ptr(int in_value, char *out_value)
+      ^
+Src/main.c:301:9: note: previous implicit declaration of 'int2char_ptr' was here
+         int2char_ptr((int)Als.lux, buff);
+         ^
+Src/vl6180x/vl6180x_api.c: In function '_DMax_Compute':
+Src/vl6180x/vl6180x_api.c:2574:18: warning: comparison between signed and unsigned integer expressions [-Wsign-compare]
+  if (rtnAmbRate  < rtnAmbLowLimit_KCps) {
+                  ^
+Src/vl6180x/vl6180x_lib.c: In function 'RangeState':
+Src/vl6180x/vl6180x_lib.c:439:41: warning: comparison of unsigned expression >= 0 is always true [-Wtype-limits]
+             if (g_TickCnt - TimeStarted >= ErrRangeDispTime &&  g_TickCnt - TimeStarted <  ErrRangeDispTime + DMaxDispTime ){
+                                         ^
+Src/vl6180x/vl6180x_lib.c:439:89: warning: comparison of unsigned expression < 0 is always false [-Wtype-limits]
+             if (g_TickCnt - TimeStarted >= ErrRangeDispTime &&  g_TickCnt - TimeStarted <  ErrRangeDispTime + DMaxDispTime ){
+                                                                                         ^
+Src/vl6180x/vl6180x_lib.c:446:40: warning: comparison of unsigned expression < 0 is always false [-Wtype-limits]
+             if(g_TickCnt - TimeStarted < ErrRangeDispTime  )
+                                        ^
+Src/anemo.c: In function 'anemo_ResetCount':
+Src/anemo.c:47:1: warning: control reaches end of non-void function [-Wreturn-type]
+ }
+ ^
+arm-none-eabi-objcopy -O ihex template.elf   template.hex
+arm-none-eabi-objcopy -O binary template.elf template.bin
+10:12:22 **** Incremental Build of configuration Default for project stm32-nucleo-f103rb_base ****
+make all 
+make: Nothing to be done for `all'.
+10:13:26 **** Incremental Build of configuration Default for project stm32-nucleo-f103rb_base ****
+make all 
+arm-none-eabi-gcc -IInc/ -IDrivers/STM32F1xx_HAL_Driver/Inc/ -ISrc/vl6180x/ -IDrivers/BSP/STM32F1xx_Nucleo/ -IDrivers/CMSIS/Device/ST/STM32F1xx/Include/ -IDrivers/CMSIS/Include/ -DSTM32F103xBt -ggdb -O0 -mlittle-endian --specs=rdimon.specs -mthumb -mcpu=cortex-m3 -mthumb-interwork -Wl,--gc-sections -lgcc -lc -lm -lrdimon -Wall -Wextra -Warray-bounds -Wno-unused-parameter -TDevice/gcc.ld Src/main.c Device/startup_stm32f103xb.s Src/vl6180x/vl6180x_api.c Src/vl6180x/vl6180x_lib.c Src/vl6180x/x-nucleo-6180xa1.c Src/stm32f1xx_hal_msp.c Src/stm32f1xx_it.c Src/system_stm32f1xx.c Src/systemClock.c Src/drv_can.c Src/drv_spi.c Src/drv_uart.c Src/drv_i2c.c Src/anemo.c Src/mpu9250.c Src/tickTimer.c stm32f1xx_hal.o stm32f1xx_hal_rcc.o stm32f1xx_hal_rcc_ex.o stm32f1xx_hal_rtc.o stm32f1xx_hal_gpio.o stm32f1xx_hal_cortex.o stm32f1xx_hal_pcd.o stm32f1xx_hal_pcd_ex.o stm32f1xx_hal_uart.o stm32f1xx_hal_usart.o stm32f1xx_hal_dma.o stm32f1xx_hal_adc.o stm32f1xx_hal_adc_ex.o stm32f1xx_hal_spi.o stm32f1xx_hal_i2c.o stm32f1xx_hal_tim.o stm32f1xx_hal_tim_ex.o stm32f1xx_hal_can.o Drivers/BSP/STM32F1xx_Nucleo/stm32f1xx_nucleo.o -o template.elf
+Src/main.c: In function 'VL6180x_Step':
+Src/main.c:214:9: warning: implicit declaration of function 'displayLUX' [-Wimplicit-function-declaration]
+         displayLUX();
+         ^
+Src/main.c: In function 'sendOverCan':
+Src/main.c:268:26: warning: comparison between signed and unsigned integer expressions [-Wsign-compare]
+     for (size_t i = 0; i < dateSize; i++)
+                          ^
+Src/main.c: At top level:
+Src/main.c:275:6: warning: conflicting types for 'displayLUX'
+ void displayLUX()
+      ^
+Src/main.c:214:9: note: previous implicit declaration of 'displayLUX' was here
+         displayLUX();
+         ^
+Src/main.c: In function 'displayLUX':
+Src/main.c:301:9: warning: implicit declaration of function 'int2char_ptr' [-Wimplicit-function-declaration]
+         int2char_ptr((int)Als.lux, buff);
+         ^
+Src/main.c: At top level:
+Src/main.c:306:6: warning: conflicting types for 'int2char_ptr'
+ void int2char_ptr(int in_value, char *out_value)
+      ^
+Src/main.c:301:9: note: previous implicit declaration of 'int2char_ptr' was here
+         int2char_ptr((int)Als.lux, buff);
+         ^
+Src/vl6180x/vl6180x_api.c: In function '_DMax_Compute':
+Src/vl6180x/vl6180x_api.c:2574:18: warning: comparison between signed and unsigned integer expressions [-Wsign-compare]
+  if (rtnAmbRate  < rtnAmbLowLimit_KCps) {
+                  ^
+Src/vl6180x/vl6180x_lib.c: In function 'RangeState':
+Src/vl6180x/vl6180x_lib.c:439:41: warning: comparison of unsigned expression >= 0 is always true [-Wtype-limits]
+             if (g_TickCnt - TimeStarted >= ErrRangeDispTime &&  g_TickCnt - TimeStarted <  ErrRangeDispTime + DMaxDispTime ){
+                                         ^
+Src/vl6180x/vl6180x_lib.c:439:89: warning: comparison of unsigned expression < 0 is always false [-Wtype-limits]
+             if (g_TickCnt - TimeStarted >= ErrRangeDispTime &&  g_TickCnt - TimeStarted <  ErrRangeDispTime + DMaxDispTime ){
+                                                                                         ^
+Src/vl6180x/vl6180x_lib.c:446:40: warning: comparison of unsigned expression < 0 is always false [-Wtype-limits]
+             if(g_TickCnt - TimeStarted < ErrRangeDispTime  )
+                                        ^
+Src/anemo.c: In function 'anemo_ResetCount':
+Src/anemo.c:47:1: warning: control reaches end of non-void function [-Wreturn-type]
+ }
+ ^
+arm-none-eabi-objcopy -O ihex template.elf   template.hex
+arm-none-eabi-objcopy -O binary template.elf template.bin
+10:13:54 **** Incremental Build of configuration Default for project stm32-nucleo-f103rb_base ****
+make all 
+make: Nothing to be done for `all'.
+10:44:24 **** Build of configuration Default for project stm32-nucleo-f103rb_base ****
+make all 
+make: Nothing to be done for `all'.
+10:44:26 **** Incremental Build of configuration Default for project stm32-nucleo-f103rb_base ****
+make all 
+make: Nothing to be done for `all'.
+10:49:10 **** Incremental Build of configuration Default for project stm32-nucleo-f103rb_base ****
+make all 
+make: Nothing to be done for `all'.
+10:50:19 **** Incremental Build of configuration Default for project stm32-nucleo-f103rb_base ****
+make all 
+make: Nothing to be done for `all'.
+10:50:20 **** Incremental Build of configuration Default for project stm32-nucleo-f103rb_base ****
+make all 
+make: Nothing to be done for `all'.
+10:50:53 **** Incremental Build of configuration Default for project stm32-nucleo-f103rb_base ****
+make all 
+make: Nothing to be done for `all'.
+10:52:45 **** Incremental Build of configuration Default for project stm32-nucleo-f103rb_base ****
+make all 
+make: Nothing to be done for `all'.
+10:53:05 **** Incremental Build of configuration Default for project stm32-nucleo-f103rb_base ****
+make all 
+arm-none-eabi-gcc -IInc/ -IDrivers/STM32F1xx_HAL_Driver/Inc/ -ISrc/vl6180x/ -IDrivers/BSP/STM32F1xx_Nucleo/ -IDrivers/CMSIS/Device/ST/STM32F1xx/Include/ -IDrivers/CMSIS/Include/ -DSTM32F103xBt -ggdb -O0 -mlittle-endian --specs=rdimon.specs -mthumb -mcpu=cortex-m3 -mthumb-interwork -Wl,--gc-sections -lgcc -lc -lm -lrdimon -Wall -Wextra -Warray-bounds -Wno-unused-parameter -TDevice/gcc.ld Src/main.c Device/startup_stm32f103xb.s Src/vl6180x/vl6180x_api.c Src/vl6180x/vl6180x_lib.c Src/vl6180x/x-nucleo-6180xa1.c Src/stm32f1xx_hal_msp.c Src/stm32f1xx_it.c Src/system_stm32f1xx.c Src/systemClock.c Src/drv_can.c Src/drv_spi.c Src/drv_uart.c Src/drv_i2c.c Src/anemo.c Src/mpu9250.c Src/tickTimer.c stm32f1xx_hal.o stm32f1xx_hal_rcc.o stm32f1xx_hal_rcc_ex.o stm32f1xx_hal_rtc.o stm32f1xx_hal_gpio.o stm32f1xx_hal_cortex.o stm32f1xx_hal_pcd.o stm32f1xx_hal_pcd_ex.o stm32f1xx_hal_uart.o stm32f1xx_hal_usart.o stm32f1xx_hal_dma.o stm32f1xx_hal_adc.o stm32f1xx_hal_adc_ex.o stm32f1xx_hal_spi.o stm32f1xx_hal_i2c.o stm32f1xx_hal_tim.o stm32f1xx_hal_tim_ex.o stm32f1xx_hal_can.o Drivers/BSP/STM32F1xx_Nucleo/stm32f1xx_nucleo.o -o template.elf
+Src/main.c: In function 'VL6180x_Step':
+Src/main.c:214:9: warning: implicit declaration of function 'displayLUX' [-Wimplicit-function-declaration]
+         displayLUX();
+         ^
+Src/main.c: In function 'sendOverCan':
+Src/main.c:268:26: warning: comparison between signed and unsigned integer expressions [-Wsign-compare]
+     for (size_t i = 0; i < dateSize; i++)
+                          ^
+Src/main.c: At top level:
+Src/main.c:275:6: warning: conflicting types for 'displayLUX'
+ void displayLUX()
+      ^
+Src/main.c:214:9: note: previous implicit declaration of 'displayLUX' was here
+         displayLUX();
+         ^
+Src/main.c: In function 'displayLUX':
+Src/main.c:301:9: warning: implicit declaration of function 'int2char_ptr' [-Wimplicit-function-declaration]
+         int2char_ptr((int)Als.lux, buff);
+         ^
+Src/main.c: At top level:
+Src/main.c:306:6: warning: conflicting types for 'int2char_ptr'
+ void int2char_ptr(int in_value, char *out_value)
+      ^
+Src/main.c:301:9: note: previous implicit declaration of 'int2char_ptr' was here
+         int2char_ptr((int)Als.lux, buff);
+         ^
+Src/vl6180x/vl6180x_api.c: In function '_DMax_Compute':
+Src/vl6180x/vl6180x_api.c:2574:18: warning: comparison between signed and unsigned integer expressions [-Wsign-compare]
+  if (rtnAmbRate  < rtnAmbLowLimit_KCps) {
+                  ^
+Src/vl6180x/vl6180x_lib.c: In function 'RangeState':
+Src/vl6180x/vl6180x_lib.c:439:41: warning: comparison of unsigned expression >= 0 is always true [-Wtype-limits]
+             if (g_TickCnt - TimeStarted >= ErrRangeDispTime &&  g_TickCnt - TimeStarted <  ErrRangeDispTime + DMaxDispTime ){
+                                         ^
+Src/vl6180x/vl6180x_lib.c:439:89: warning: comparison of unsigned expression < 0 is always false [-Wtype-limits]
+             if (g_TickCnt - TimeStarted >= ErrRangeDispTime &&  g_TickCnt - TimeStarted <  ErrRangeDispTime + DMaxDispTime ){
+                                                                                         ^
+Src/vl6180x/vl6180x_lib.c:446:40: warning: comparison of unsigned expression < 0 is always false [-Wtype-limits]
+             if(g_TickCnt - TimeStarted < ErrRangeDispTime  )
+                                        ^
+Src/anemo.c: In function 'anemo_ResetCount':
+Src/anemo.c:47:1: warning: control reaches end of non-void function [-Wreturn-type]
+ }
+ ^
+arm-none-eabi-objcopy -O ihex template.elf   template.hex
+arm-none-eabi-objcopy -O binary template.elf template.bin
+10:53:20 **** Incremental Build of configuration Default for project stm32-nucleo-f103rb_base ****
+make all 
+make: Nothing to be done for `all'.
+10:54:24 **** Incremental Build of configuration Default for project stm32-nucleo-f103rb_base ****
+make all 
+make: Nothing to be done for `all'.
+11:26:59 **** Incremental Build of configuration Default for project stm32-nucleo-f103rb_base ****
+make all 
+make: Nothing to be done for `all'.
+11:27:16 **** Incremental Build of configuration Default for project stm32-nucleo-f103rb_base ****
+make all 
+arm-none-eabi-gcc -IInc/ -IDrivers/STM32F1xx_HAL_Driver/Inc/ -ISrc/vl6180x/ -IDrivers/BSP/STM32F1xx_Nucleo/ -IDrivers/CMSIS/Device/ST/STM32F1xx/Include/ -IDrivers/CMSIS/Include/ -DSTM32F103xBt -ggdb -O0 -mlittle-endian --specs=rdimon.specs -mthumb -mcpu=cortex-m3 -mthumb-interwork -Wl,--gc-sections -lgcc -lc -lm -lrdimon -Wall -Wextra -Warray-bounds -Wno-unused-parameter -TDevice/gcc.ld Src/main.c Device/startup_stm32f103xb.s Src/vl6180x/vl6180x_api.c Src/vl6180x/vl6180x_lib.c Src/vl6180x/x-nucleo-6180xa1.c Src/stm32f1xx_hal_msp.c Src/stm32f1xx_it.c Src/system_stm32f1xx.c Src/systemClock.c Src/drv_can.c Src/drv_spi.c Src/drv_uart.c Src/drv_i2c.c Src/anemo.c Src/mpu9250.c Src/tickTimer.c stm32f1xx_hal.o stm32f1xx_hal_rcc.o stm32f1xx_hal_rcc_ex.o stm32f1xx_hal_rtc.o stm32f1xx_hal_gpio.o stm32f1xx_hal_cortex.o stm32f1xx_hal_pcd.o stm32f1xx_hal_pcd_ex.o stm32f1xx_hal_uart.o stm32f1xx_hal_usart.o stm32f1xx_hal_dma.o stm32f1xx_hal_adc.o stm32f1xx_hal_adc_ex.o stm32f1xx_hal_spi.o stm32f1xx_hal_i2c.o stm32f1xx_hal_tim.o stm32f1xx_hal_tim_ex.o stm32f1xx_hal_can.o Drivers/BSP/STM32F1xx_Nucleo/stm32f1xx_nucleo.o -o template.elf
+Src/main.c: In function 'VL6180x_Step':
+Src/main.c:210:9: warning: implicit declaration of function 'displayLENGTH' [-Wimplicit-function-declaration]
+         displayLENGTH();
+         ^
+Src/main.c:214:9: warning: implicit declaration of function 'displayLUX' [-Wimplicit-function-declaration]
+         displayLUX();
+         ^
+Src/main.c: In function 'sendOverCan':
+Src/main.c:268:26: warning: comparison between signed and unsigned integer expressions [-Wsign-compare]
+     for (size_t i = 0; i < dateSize; i++)
+                          ^
+Src/main.c: At top level:
+Src/main.c:275:6: warning: conflicting types for 'displayLUX'
+ void displayLUX()
+      ^
+Src/main.c:214:9: note: previous implicit declaration of 'displayLUX' was here
+         displayLUX();
+         ^
+Src/main.c: In function 'displayLUX':
+Src/main.c:288:9: warning: implicit declaration of function 'int2char_ptr' [-Wimplicit-function-declaration]
+         int2char_ptr((int)Als.lux, buff);
+         ^
+Src/main.c: At top level:
+Src/main.c:293:6: warning: conflicting types for 'int2char_ptr'
+ void int2char_ptr(int in_value, char *out_value)
+      ^
+Src/main.c:288:9: note: previous implicit declaration of 'int2char_ptr' was here
+         int2char_ptr((int)Als.lux, buff);
+         ^
+Src/main.c:301:6: warning: conflicting types for 'displayLENGTH'
+ void displayLENGTH()
+      ^
+Src/main.c:210:9: note: previous implicit declaration of 'displayLENGTH' was here
+         displayLENGTH();
+         ^
+Src/main.c: In function 'displayLENGTH':
+Src/main.c:331:41: warning: comparison of unsigned expression >= 0 is always true [-Wtype-limits]
+             if (g_TickCnt - TimeStarted >= ErrRangeDispTime && g_TickCnt - TimeStarted < ErrRangeDispTime + DMaxDispTime)
+                                         ^
+Src/main.c:331:88: warning: comparison of unsigned expression < 0 is always false [-Wtype-limits]
+             if (g_TickCnt - TimeStarted >= ErrRangeDispTime && g_TickCnt - TimeStarted < ErrRangeDispTime + DMaxDispTime)
+                                                                                        ^
+Src/main.c:339:45: warning: comparison of unsigned expression < 0 is always false [-Wtype-limits]
+                 if (g_TickCnt - TimeStarted < ErrRangeDispTime)
+                                             ^
+Src/main.c:358:17: warning: implicit declaration of function 'SetDisplayString' [-Wimplicit-function-declaration]
+                 SetDisplayString("F---");
+                 ^
+Src/vl6180x/vl6180x_api.c: In function '_DMax_Compute':
+Src/vl6180x/vl6180x_api.c:2574:18: warning: comparison between signed and unsigned integer expressions [-Wsign-compare]
+  if (rtnAmbRate  < rtnAmbLowLimit_KCps) {
+                  ^
+Src/vl6180x/vl6180x_lib.c: In function 'RangeState':
+Src/vl6180x/vl6180x_lib.c:439:41: warning: comparison of unsigned expression >= 0 is always true [-Wtype-limits]
+             if (g_TickCnt - TimeStarted >= ErrRangeDispTime &&  g_TickCnt - TimeStarted <  ErrRangeDispTime + DMaxDispTime ){
+                                         ^
+Src/vl6180x/vl6180x_lib.c:439:89: warning: comparison of unsigned expression < 0 is always false [-Wtype-limits]
+             if (g_TickCnt - TimeStarted >= ErrRangeDispTime &&  g_TickCnt - TimeStarted <  ErrRangeDispTime + DMaxDispTime ){
+                                                                                         ^
+Src/vl6180x/vl6180x_lib.c:446:40: warning: comparison of unsigned expression < 0 is always false [-Wtype-limits]
+             if(g_TickCnt - TimeStarted < ErrRangeDispTime  )
+                                        ^
+Src/anemo.c: In function 'anemo_ResetCount':
+Src/anemo.c:47:1: warning: control reaches end of non-void function [-Wreturn-type]
+ }
+ ^
+arm-none-eabi-objcopy -O ihex template.elf   template.hex
+arm-none-eabi-objcopy -O binary template.elf template.bin
+11:27:20 **** Incremental Build of configuration Default for project stm32-nucleo-f103rb_base ****
+make all 
+make: Nothing to be done for `all'.

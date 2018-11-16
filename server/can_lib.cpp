@@ -10,11 +10,12 @@
 
 using namespace v8;
 
+#define DIR "/dev/pcanusb32"
+
 struct Can_opt
 {
     const char *szDevNode;
     HANDLE h;
-    TPCANRdMsg pMsgBuff;
 
     bool isInitialize = false;
 };
@@ -39,9 +40,7 @@ void initialize(const v8::FunctionCallbackInfo<Value> &args)
         return;
     }
 
-    const char *szDevNode = "/dev/pcanusb32";
-    // const char *szDevNode = args[0].StringValue().c_str();
-    // const char *szDevNode = Local<String>::Cast(args[0]).c_str();
+    const char *szDevNode = DIR;
 
     can_opt.h = LINUX_CAN_Open(szDevNode, O_RDWR);
 
@@ -66,15 +65,16 @@ void getValue(const v8::FunctionCallbackInfo<Value> &args)
 
     TPCANRdMsg pMsgBuff;
 
-    LINUX_CAN_Read_Timeout(can_opt.h, &pMsgBuff, 1);
-    
+    // LINUX_CAN_Read_Timeout(can_opt.h, &pMsgBuff, 10);
+    LINUX_CAN_Read(can_opt.h, &pMsgBuff);
+
     Local<Array> result_list = Array::New(isolate);
 
     result_list->Set(0, Number::New(isolate, pMsgBuff.Msg.ID));
-    
-    for(size_t i = 0; i < 8; i++)
+
+    for (size_t i = 0; i < 8; i++)
     {
-        result_list->Set(i+1, Number::New(isolate, pMsgBuff.Msg.DATA[i]));
+        result_list->Set(i + 1, Number::New(isolate, pMsgBuff.Msg.DATA[i]));
     }
 
     args.GetReturnValue().Set(result_list);
@@ -83,7 +83,7 @@ void getValue(const v8::FunctionCallbackInfo<Value> &args)
 void sendValue(const v8::FunctionCallbackInfo<Value> &args)
 {
     Isolate *isolate = args.GetIsolate();
-    
+
     if (!can_opt.isInitialize)
     {
         isolate->ThrowException(Exception::TypeError(
@@ -98,7 +98,7 @@ void sendValue(const v8::FunctionCallbackInfo<Value> &args)
         return;
     }
 
-    if (!args[0]->IsInteger())
+    if (!args[0]->IsNumber())
     {
         isolate->ThrowException(Exception::TypeError(
             String::NewFromUtf8(isolate, "Argument 1 must be an integer")));
@@ -122,8 +122,7 @@ void sendValue(const v8::FunctionCallbackInfo<Value> &args)
     msgBuff.MSGTYPE = MSGTYPE_STANDARD;
     msgBuff.LEN = data->Length();
 
-    
-    for(size_t i = 0; i < data->Length(); i++)
+    for (size_t i = 0; i < data->Length(); i++)
     {
         msgBuff.DATA[i] = data->Get(i)->NumberValue();
     }
@@ -132,7 +131,6 @@ void sendValue(const v8::FunctionCallbackInfo<Value> &args)
 
     args.GetReturnValue().Set(Undefined(isolate));
 }
-
 
 void Init(Handle<Object> exports)
 {
