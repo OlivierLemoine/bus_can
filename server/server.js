@@ -13,21 +13,24 @@ let transformTable = {
 
 can_lib
     // .setMockData()
-    .init('test', 200)
+    .init('test', 1000)
     .useProcessedData()
+    .toInt32()
     .use(msg => {
+        console.log(msg.rawData);
         lastestData[msg.data.id] = msg.data.values;
     })
     .use(msg => {
         msg.payload = {
             type: 'value',
-            id: transformTable[msg.data.id],
-            value: msg.data.values
+            id: transformTable[msg.int32.id] || 'pression',
+            value: msg.int32.value
         };
     })
     .use(msg => {
         ws.broadcast(msg.payload);
-    });
+    })
+    .send([0,0,0,0,0,0,1,2]);
 
 let app = express();
 
@@ -44,12 +47,13 @@ var ws = new WebSocket.Server({ port: 8001 });
 ws.on('connection', socket => {
     socket.on('message', data => {
         if (data === 'swap') {
+            can_lib.send([0,0,0,0,0,0,0,0]);
             console.log('capteur swaped');
             socket.send(
                 JSON.stringify({
                     type: 'value',
                     id: 'pression',
-                    value: 10
+                    value: 500
                 })
             );
             //swap capteur
