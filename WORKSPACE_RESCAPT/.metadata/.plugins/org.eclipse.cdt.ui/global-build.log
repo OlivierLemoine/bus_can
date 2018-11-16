@@ -686,6 +686,7 @@ make: Nothing to be done for `all'.
 12:30:59 **** Incremental Build of configuration Default for project stm32-nucleo-f103rb_base ****
 make all 
 make: Nothing to be done for `all'.
+<<<<<<< HEAD
 09:42:06 **** Incremental Build of configuration Default for project stm32-nucleo-f103rb_base ****
 make all 
 make: Nothing to be done for `all'.
@@ -1219,5 +1220,11 @@ Src/anemo.c:47:1: warning: control reaches end of non-void function [-Wreturn-ty
 arm-none-eabi-objcopy -O ihex template.elf   template.hex
 arm-none-eabi-objcopy -O binary template.elf template.bin
 11:27:20 **** Incremental Build of configuration Default for project stm32-nucleo-f103rb_base ****
+=======
+09:43:14 **** Incremental Build of configuration Default for project stm32-nucleo-f103rb_base ****
+make all 
+make: Nothing to be done for `all'.
+09:44:22 **** Incremental Build of configuration Default for project stm32-nucleo-f103rb_base ****
+>>>>>>> 08a56d77c26b99121557c30752f3d8c378dad717
 make all 
 make: Nothing to be done for `all'.

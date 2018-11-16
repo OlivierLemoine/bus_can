@@ -683,15 +683,6 @@ org.eclipse.swt.SWTException: Widget is disposed
 	at org.eclipse.equinox.launcher.Main.basicRun(Main.java:603)
 	at org.eclipse.equinox.launcher.Main.run(Main.java:1465)
 	at org.eclipse.equinox.launcher.Main.main(Main.java:1438)
-<<<<<<< HEAD
-
-!ENTRY org.eclipse.core.resources 2 2 2018-11-09 10:30:03.086
-!MESSAGE Save operation warnings.
-!SUBENTRY 1 org.eclipse.core.resources 2 234 2018-11-09 10:30:03.086
-!MESSAGE The project description file (.project) for 'RemoteSystemsTempFiles' was missing.  This file contains important information about the project.  A new project description file has been created, but some information about the project may have been lost.
-!SUBENTRY 1 org.eclipse.core.resources 2 234 2018-11-09 10:30:03.086
-!MESSAGE The project description file (.project) for 'stm32-nucleo-f103rb_base' was missing.  This file contains important information about the project.  A new project description file has been created, but some information about the project may have been lost.
-=======
 !SESSION 2018-11-09 11:49:32.444 -----------------------------------------------
 eclipse.buildId=4.4.2.M20150204-1700
 java.version=1.8.0_161
@@ -854,8 +845,12 @@ org.eclipse.cdt.debug.mi.core.cdi.MI2CDIException: Inferior terminated[]
 	at java.util.Observable.notifyObservers(Observable.java:159)
 	at org.eclipse.cdt.debug.mi.core.MISession.notifyObservers(MISession.java:797)
 	at org.eclipse.cdt.debug.mi.core.EventThread.run(EventThread.java:47)
+<<<<<<< HEAD
 >>>>>>> c5af368778ac1ba0ce24ee2a5288a95c67142486
 !SESSION 2018-11-16 09:37:46.345 -----------------------------------------------
+=======
+!SESSION 2018-11-16 09:39:50.146 -----------------------------------------------
+>>>>>>> 08a56d77c26b99121557c30752f3d8c378dad717
 eclipse.buildId=4.4.2.M20150204-1700
 java.version=1.8.0_161
 java.vendor=Oracle Corporation
@@ -863,6 +858,7 @@ BootLoader constants: OS=linux, ARCH=x86_64, WS=gtk, NL=en_US
 Framework arguments:  -product org.eclipse.epp.package.cpp.product
 Command-line arguments:  -os linux -ws gtk -arch x86_64 -product org.eclipse.epp.package.cpp.product
 
+<<<<<<< HEAD
 !ENTRY org.eclipse.e4.ui.workbench 4 0 2018-11-16 09:38:08.288
 !MESSAGE Unable to load resource file:/home/e2015/o5lemoin/Documents/C/bus_can/WORKSPACE_RESCAPT/.metadata/.plugins/org.eclipse.e4.workbench/workbench.xmi
 !STACK 0
@@ -980,6 +976,9 @@ org.eclipse.cdt.debug.mi.core.cdi.MI2CDIException: Inferior terminated[]
 	at org.eclipse.cdt.debug.mi.core.EventThread.run(EventThread.java:47)
 
 !ENTRY org.eclipse.cdt.debug.mi.core 4 42 2018-11-16 10:11:15.124
+=======
+!ENTRY org.eclipse.cdt.debug.mi.core 4 42 2018-11-16 09:44:09.435
+>>>>>>> 08a56d77c26b99121557c30752f3d8c378dad717
 !MESSAGE Internal Error
 !STACK 0
 org.eclipse.cdt.debug.mi.core.cdi.MI2CDIException: Inferior terminated[]
@@ -991,6 +990,7 @@ org.eclipse.cdt.debug.mi.core.cdi.MI2CDIException: Inferior terminated[]
 	at java.util.Observable.notifyObservers(Observable.java:159)
 	at org.eclipse.cdt.debug.mi.core.MISession.notifyObservers(MISession.java:797)
 	at org.eclipse.cdt.debug.mi.core.EventThread.run(EventThread.java:47)
+<<<<<<< HEAD
 !SESSION 2018-11-16 10:43:58.514 -----------------------------------------------
 eclipse.buildId=4.4.2.M20150204-1700
 java.version=1.8.0_161
@@ -1097,3 +1097,5 @@ java.io.IOException: Output Stream is closed
 	at org.eclipse.debug.internal.core.OutputStreamMonitor.access$1(OutputStreamMonitor.java:137)
 	at org.eclipse.debug.internal.core.OutputStreamMonitor$1.run(OutputStreamMonitor.java:212)
 	at java.lang.Thread.run(Thread.java:748)
+=======
+>>>>>>> 08a56d77c26b99121557c30752f3d8c378dad717

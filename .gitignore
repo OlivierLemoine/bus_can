@@ -51,4 +51,6 @@ Module.symvers
 Mkfile.old
 dkms.conf
 */node_modules/*
-./WORKSPACE_RESCAPT/.metadata/*
+
+# eclipse garbage
+WORKSPACE_RESCAPT/.metadata/*
