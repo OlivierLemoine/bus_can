@@ -10,12 +10,11 @@
 
 using namespace v8;
 
-#define DIR "/dev/pcanusb32"
-
 struct Can_opt
 {
     const char *szDevNode;
     HANDLE h;
+    TPCANRdMsg pMsgBuff;
 
     bool isInitialize = false;
 };
@@ -40,7 +39,9 @@ void initialize(const v8::FunctionCallbackInfo<Value> &args)
         return;
     }
 
-    const char *szDevNode = DIR;
+    const char *szDevNode = "/dev/pcanusb32";
+    // const char *szDevNode = args[0].StringValue().c_str();
+    // const char *szDevNode = Local<String>::Cast(args[0]).c_str();
 
     can_opt.h = LINUX_CAN_Open(szDevNode, O_RDWR);
 
@@ -65,16 +66,15 @@ void getValue(const v8::FunctionCallbackInfo<Value> &args)
 
     TPCANRdMsg pMsgBuff;
 
-    // LINUX_CAN_Read_Timeout(can_opt.h, &pMsgBuff, 10);
-    LINUX_CAN_Read(can_opt.h, &pMsgBuff);
-
+    LINUX_CAN_Read_Timeout(can_opt.h, &pMsgBuff, 1);
+    
     Local<Array> result_list = Array::New(isolate);
 
     result_list->Set(0, Number::New(isolate, pMsgBuff.Msg.ID));
-
-    for (size_t i = 0; i < 8; i++)
+    
+    for(size_t i = 0; i < 8; i++)
     {
-        result_list->Set(i + 1, Number::New(isolate, pMsgBuff.Msg.DATA[i]));
+        result_list->Set(i+1, Number::New(isolate, pMsgBuff.Msg.DATA[i]));
     }
 
     args.GetReturnValue().Set(result_list);
@@ -83,7 +83,7 @@ void getValue(const v8::FunctionCallbackInfo<Value> &args)
 void sendValue(const v8::FunctionCallbackInfo<Value> &args)
 {
     Isolate *isolate = args.GetIsolate();
-
+    
     if (!can_opt.isInitialize)
     {
         isolate->ThrowException(Exception::TypeError(
@@ -91,38 +91,30 @@ void sendValue(const v8::FunctionCallbackInfo<Value> &args)
         return;
     }
 
-    if (args.Length() < 2)
+    if (args.Length() < 1)
     {
         isolate->ThrowException(Exception::TypeError(
             String::NewFromUtf8(isolate, "Wrong number of arguments")));
         return;
     }
 
-    if (!args[0]->IsNumber())
+    if (!args[0]->IsArray())
     {
         isolate->ThrowException(Exception::TypeError(
-            String::NewFromUtf8(isolate, "Argument 1 must be an integer")));
+            String::NewFromUtf8(isolate, "Wrong arguments")));
         return;
     }
 
-    if (!args[1]->IsArray())
-    {
-        isolate->ThrowException(Exception::TypeError(
-            String::NewFromUtf8(isolate, "Argument 2 must be an array")));
-        return;
-    }
-
-    Local<Integer> id = Local<Integer>::Cast(args[0]);
-
-    Local<Array> data = Local<Array>::Cast(args[1]);
+    Local<Array> data = Local<Array>::Cast(args[0]);
 
     TPCANMsg msgBuff;
 
-    msgBuff.ID = id->NumberValue();
+    msgBuff.ID = 0x1;
     msgBuff.MSGTYPE = MSGTYPE_STANDARD;
     msgBuff.LEN = data->Length();
 
-    for (size_t i = 0; i < data->Length(); i++)
+    
+    for(size_t i = 0; i < data->Length(); i++)
     {
         msgBuff.DATA[i] = data->Get(i)->NumberValue();
     }
@@ -131,6 +123,7 @@ void sendValue(const v8::FunctionCallbackInfo<Value> &args)
 
     args.GetReturnValue().Set(Undefined(isolate));
 }
+
 
 void Init(Handle<Object> exports)
 {

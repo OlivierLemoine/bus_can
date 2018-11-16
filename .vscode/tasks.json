@@ -33,7 +33,7 @@
         {
             "label": "serial",
             "type": "shell",
-            "command": "picocom -b 115200 -r -l /dev/ttyACM0",
+            "command": "picocom -b 115200 -r -l /dev/ttyACM1",
             "problemMatcher": []
         }
     ]
