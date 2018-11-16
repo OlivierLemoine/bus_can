@@ -1,0 +1,110 @@
+PATH_TO_BIN = /local/sdk_elec/gcc-arm-none-eabi-5_2-2015q4/bin/
+
+
+TARGET  = $(PATH_TO_BIN)arm-none-eabi-
+
+CC      = $(TARGET)gcc
+OBJCOPY = $(TARGET)objcopy
+AS      = $(TARGET)gcc -x assembler-with-cpp -c
+SIZE    = $(TARGET)size
+OBJDUMP = $(TARGET)objdump
+
+PROJECT_NAME = template
+
+PROJECT_SRC = Src
+STM_SRC = Drivers/STM32F1xx_HAL_Driver/Src/
+
+
+vpath %.c $(PROJECT_SRC)
+vpath %.c $(STM_SRC)
+
+
+SRCS = main.c
+
+SRCS += Device/startup_stm32f103xb.s
+SRCS += vl6180x/vl6180x_api.c
+SRCS += vl6180x/vl6180x_lib.c
+#SRCS += vl6180x/vl6180x_i2c.c
+SRCS += vl6180x/x-nucleo-6180xa1.c
+
+SRCS += stm32f1xx_hal_msp.c
+SRCS += stm32f1xx_it.c
+SRCS += system_stm32f1xx.c
+SRCS += systemClock.c
+
+SRCS += drv_can.c
+SRCS += drv_spi.c
+SRCS += drv_uart.c
+SRCS += drv_i2c.c
+
+SRCS += anemo.c
+SRCS += mpu9250.c
+SRCS += tickTimer.c
+
+EXT_SRCS = stm32f1xx_hal.c
+EXT_SRCS += stm32f1xx_hal_rcc.c
+EXT_SRCS += stm32f1xx_hal_rcc_ex.c
+EXT_SRCS += stm32f1xx_hal_rtc.c
+EXT_SRCS += stm32f1xx_hal_gpio.c
+EXT_SRCS += stm32f1xx_hal_cortex.c
+EXT_SRCS += stm32f1xx_hal_pcd.c
+EXT_SRCS += stm32f1xx_hal_pcd_ex.c
+
+EXT_SRCS += stm32f1xx_hal_uart.c
+EXT_SRCS += stm32f1xx_hal_usart.c
+
+EXT_SRCS += stm32f1xx_hal_dma.c
+
+EXT_SRCS += stm32f1xx_hal_adc.c
+EXT_SRCS += stm32f1xx_hal_adc_ex.c
+
+EXT_SRCS += stm32f1xx_hal_spi.c
+
+EXT_SRCS += stm32f1xx_hal_i2c.c
+
+
+EXT_SRCS += stm32f1xx_hal_tim.c
+EXT_SRCS += stm32f1xx_hal_tim_ex.c
+
+EXT_SRCS += stm32f1xx_hal_can.c
+
+EXT_SRCS +=Drivers/BSP/STM32F1xx_Nucleo/stm32f1xx_nucleo.c
+
+
+EXT_OBJ = $(EXT_SRCS:.c=.o)
+
+INC_DIRS  = Inc/
+INC_DIRS += Drivers/STM32F1xx_HAL_Driver/Inc/
+INC_DIRS += Src/vl6180x/
+INC_DIRS += Drivers/BSP/STM32F1xx_Nucleo/
+INC_DIRS += Drivers/CMSIS/Device/ST/STM32F1xx/Include/
+INC_DIRS += Drivers/CMSIS/Include/
+
+INCLUDE = $(addprefix -I,$(INC_DIRS))
+
+DEFS = -DSTM32F103xBt
+
+CFLAGS  = -ggdb -O0
+CFLAGS += -mlittle-endian --specs=rdimon.specs -mthumb -mcpu=cortex-m3 -mthumb-interwork -Wl,--gc-sections -lgcc -lc -lm -lrdimon
+#CFLAGS += -mlittle-endian -mthumb -mcpu=cortex-m3 -mthumb-interwork -Wl,--gc-sections -lgcc -lc
+
+WFLAGS += -Wall -Wextra -Warray-bounds -Wno-unused-parameter
+
+LFLAGS = -TDevice/gcc.ld
+
+.PHONY: all
+all: $(PROJECT_NAME)
+
+.PHONY: $(PROJECT_NAME)
+$(PROJECT_NAME): $(PROJECT_NAME).elf
+
+$(PROJECT_NAME).elf: $(SRCS) $(EXT_OBJ)
+	$(CC) $(INCLUDE) $(DEFS) $(CFLAGS) $(WFLAGS) $(LFLAGS) $^ -o $@
+	$(OBJCOPY) -O ihex $(PROJECT_NAME).elf   $(PROJECT_NAME).hex
+	$(OBJCOPY) -O binary $(PROJECT_NAME).elf $(PROJECT_NAME).bin
+
+%.o: %.c
+	$(CC) -c -o $@ $(INCLUDE) $(DEFS) $(CFLAGS) $^
+
+clean:
+	rm -f *.o $(PROJECT_NAME).elf $(PROJECT_NAME).hex $(PROJECT_NAME).bin
