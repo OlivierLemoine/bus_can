@@ -2,9 +2,21 @@ const express = require('express');
 const WebSocket = require('ws');
 const can_lib = require('./can_lib.js');
 
-let lastestData = {};
+let lastestData = {
+    vent: 0,
+    lumiere: 0,
+    distance: 0,
+    pression: 0,
+    quat: {
+        x: 0,
+        y: 0,
+        z: 0,
+        w: 0
+    }
+};
 
 let transformTable = {
+    83: 'pression',
     84: 'vent',
 
     85: 'lumiere',
@@ -26,6 +38,7 @@ can_lib
                 lastestData.quat[id[id.length - 1]] = msg.int32.value;
             } else lastestData[id] = msg.int32.value;
         }
+        // console.log(lastestData);
     });
 
 let app = express();
