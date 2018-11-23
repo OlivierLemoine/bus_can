@@ -3021,3 +3021,154 @@ make: Nothing to be done for `all'.
 12:12:25 **** Incremental Build of configuration Default for project stm32-nucleo-f103rb_base ****
 make all 
 make: Nothing to be done for `all'.
+14:34:56 **** Incremental Build of configuration Default for project stm32-nucleo-f103rb_base ****
+make all 
+make: Nothing to be done for `all'.
+14:36:07 **** Incremental Build of configuration Default for project stm32-nucleo-f103rb_base ****
+make all 
+make: Nothing to be done for `all'.
+14:36:46 **** Incremental Build of configuration Default for project stm32-nucleo-f103rb_base ****
+make all 
+make: Nothing to be done for `all'.
+14:44:18 **** Incremental Build of configuration Default for project stm32-nucleo-f103rb_base ****
+make all 
+make: Nothing to be done for `all'.
+14:49:45 **** Incremental Build of configuration Default for project stm32-nucleo-f103rb_base ****
+make all 
+make: Nothing to be done for `all'.
+14:50:27 **** Incremental Build of configuration Default for project stm32-nucleo-f103rb_base ****
+make all 
+make: Nothing to be done for `all'.
+14:50:30 **** Incremental Build of configuration Default for project stm32-nucleo-f103rb_base ****
+make all 
+make: Nothing to be done for `all'.
+14:50:58 **** Incremental Build of configuration Default for project stm32-nucleo-f103rb_base ****
+make all 
+make: Nothing to be done for `all'.
+14:51:50 **** Incremental Build of configuration Default for project stm32-nucleo-f103rb_base ****
+make all 
+make: Nothing to be done for `all'.
+14:52:51 **** Incremental Build of configuration Default for project stm32-nucleo-f103rb_base ****
+make all 
+make: Nothing to be done for `all'.
+14:53:02 **** Incremental Build of configuration Default for project stm32-nucleo-f103rb_base ****
+make all 
+make: Nothing to be done for `all'.
+14:53:28 **** Incremental Build of configuration Default for project stm32-nucleo-f103rb_base ****
+make all 
+make: Nothing to be done for `all'.
+14:57:38 **** Incremental Build of configuration Default for project stm32-nucleo-f103rb_base ****
+make all 
+make: Nothing to be done for `all'.
+15:11:50 **** Incremental Build of configuration Default for project stm32-nucleo-f103rb_base ****
+make all 
+arm-none-eabi-gcc -IInc/ -IDrivers/STM32F1xx_HAL_Driver/Inc/ -ISrc/vl6180x/ -IDrivers/BSP/STM32F1xx_Nucleo/ -IDrivers/CMSIS/Device/ST/STM32F1xx/Include/ -IDrivers/CMSIS/Include/ -DSTM32F103xBt -ggdb -O0 -mlittle-endian --specs=rdimon.specs -mthumb -mcpu=cortex-m3 -mthumb-interwork -Wl,--gc-sections -lgcc -lc -lm -lrdimon -Wall -Wextra -Warray-bounds -Wno-unused-parameter -TDevice/gcc.ld Src/main.c Device/startup_stm32f103xb.s Src/vl6180x/vl6180x_api.c Src/vl6180x/vl6180x_lib.c Src/vl6180x/x-nucleo-6180xa1.c Src/stm32f1xx_hal_msp.c Src/stm32f1xx_it.c Src/system_stm32f1xx.c Src/systemClock.c Src/drv_can.c Src/drv_spi.c Src/drv_uart.c Src/drv_i2c.c Src/anemo.c Src/mpu9250.c Src/tickTimer.c stm32f1xx_hal.o stm32f1xx_hal_rcc.o stm32f1xx_hal_rcc_ex.o stm32f1xx_hal_rtc.o stm32f1xx_hal_gpio.o stm32f1xx_hal_cortex.o stm32f1xx_hal_pcd.o stm32f1xx_hal_pcd_ex.o stm32f1xx_hal_uart.o stm32f1xx_hal_usart.o stm32f1xx_hal_dma.o stm32f1xx_hal_adc.o stm32f1xx_hal_adc_ex.o stm32f1xx_hal_spi.o stm32f1xx_hal_i2c.o stm32f1xx_hal_tim.o stm32f1xx_hal_tim_ex.o stm32f1xx_hal_can.o Drivers/BSP/STM32F1xx_Nucleo/stm32f1xx_nucleo.o -o template.elf
+Src/main.c: In function 'HAL_TIM_PeriodElapsedCallback':
+Src/main.c:162:6: warning: implicit declaration of function 'displayAnemo' [-Wimplicit-function-declaration]
+      displayAnemo();
+      ^
+Src/main.c: In function 'VL6180x_Step':
+Src/main.c:235:9: warning: implicit declaration of function 'displayLUX' [-Wimplicit-function-declaration]
+         displayLUX();
+         ^
+Src/main.c: In function 'sendOverCan':
+Src/main.c:290:26: warning: comparison between signed and unsigned integer expressions [-Wsign-compare]
+     for (size_t i = 0; i < dateSize; i++)
+                          ^
+Src/main.c: At top level:
+Src/main.c:297:6: warning: conflicting types for 'displayLUX'
+ void displayLUX()
+      ^
+Src/main.c:235:9: note: previous implicit declaration of 'displayLUX' was here
+         displayLUX();
+         ^
+Src/main.c: In function 'displayLUX':
+Src/main.c:323:21: warning: passing argument 1 of 'sendOverCan' makes pointer from integer without a cast [-Wint-conversion]
+         sendOverCan(Als.lux,sizeof(Als.lux),0x55);
+                     ^
+Src/main.c:282:6: note: expected 'char *' but argument is of type 'lux_t {aka long unsigned int}'
+ void sendOverCan(char *data,int dateSize,int id)
+      ^
+Src/main.c: At top level:
+Src/main.c:357:6: warning: conflicting types for 'displayAnemo'
+ void displayAnemo()
+      ^
+Src/main.c:162:6: note: previous implicit declaration of 'displayAnemo' was here
+      displayAnemo();
+      ^
+Src/main.c: In function 'displayAnemo':
+Src/main.c:360:11: warning: unused variable 'r' [-Wunused-variable]
+     float r = ((float)anemo_GetCount()); // à modifier pour avoir une vitesse
+           ^
+Src/main.c: In function 'displayPressure':
+Src/main.c:371:13: warning: variable 'tlow' set but not used [-Wunused-but-set-variable]
+     uint8_t tlow = 0;
+             ^
+Src/main.c:370:13: warning: variable 'thigh' set but not used [-Wunused-but-set-variable]
+     uint8_t thigh = 0; // température, bit high et low
+             ^
+Src/main.c:369:13: warning: variable 'coef' set but not used [-Wunused-but-set-variable]
+     uint8_t coef = 0;
+             ^
+Src/vl6180x/vl6180x_api.c: In function '_DMax_Compute':
+Src/vl6180x/vl6180x_api.c:2574:18: warning: comparison between signed and unsigned integer expressions [-Wsign-compare]
+  if (rtnAmbRate  < rtnAmbLowLimit_KCps) {
+                  ^
+Src/vl6180x/vl6180x_lib.c: In function 'RangeState':
+Src/vl6180x/vl6180x_lib.c:439:41: warning: comparison of unsigned expression >= 0 is always true [-Wtype-limits]
+             if (g_TickCnt - TimeStarted >= ErrRangeDispTime &&  g_TickCnt - TimeStarted <  ErrRangeDispTime + DMaxDispTime ){
+                                         ^
+Src/vl6180x/vl6180x_lib.c:439:89: warning: comparison of unsigned expression < 0 is always false [-Wtype-limits]
+             if (g_TickCnt - TimeStarted >= ErrRangeDispTime &&  g_TickCnt - TimeStarted <  ErrRangeDispTime + DMaxDispTime ){
+                                                                                         ^
+Src/vl6180x/vl6180x_lib.c:446:40: warning: comparison of unsigned expression < 0 is always false [-Wtype-limits]
+             if(g_TickCnt - TimeStarted < ErrRangeDispTime  )
+                                        ^
+Src/anemo.c: In function 'anemo_ResetCount':
+Src/anemo.c:47:1: warning: control reaches end of non-void function [-Wreturn-type]
+ }
+ ^
+arm-none-eabi-objcopy -O ihex template.elf   template.hex
+arm-none-eabi-objcopy -O binary template.elf template.bin
+15:12:08 **** Incremental Build of configuration Default for project stm32-nucleo-f103rb_base ****
+make all 
+make: Nothing to be done for `all'.
+15:13:47 **** Incremental Build of configuration Default for project stm32-nucleo-f103rb_base ****
+make all 
+make: Nothing to be done for `all'.
+15:14:22 **** Incremental Build of configuration Default for project stm32-nucleo-f103rb_base ****
+make all 
+make: Nothing to be done for `all'.
+15:16:28 **** Incremental Build of configuration Default for project stm32-nucleo-f103rb_base ****
+make all 
+make: Nothing to be done for `all'.
+15:16:41 **** Incremental Build of configuration Default for project stm32-nucleo-f103rb_base ****
+make all 
+make: Nothing to be done for `all'.
+15:18:10 **** Incremental Build of configuration Default for project stm32-nucleo-f103rb_base ****
+make all 
+make: Nothing to be done for `all'.
+15:18:12 **** Incremental Build of configuration Default for project stm32-nucleo-f103rb_base ****
+make all 
+make: Nothing to be done for `all'.
+15:21:50 **** Incremental Build of configuration Default for project stm32-nucleo-f103rb_base ****
+make all 
+make: Nothing to be done for `all'.
+15:22:17 **** Incremental Build of configuration Default for project stm32-nucleo-f103rb_base ****
+make all 
+make: Nothing to be done for `all'.
+15:30:52 **** Incremental Build of configuration Default for project stm32-nucleo-f103rb_base ****
+make all 
+make: Nothing to be done for `all'.
+15:31:59 **** Incremental Build of configuration Default for project stm32-nucleo-f103rb_base ****
+make all 
+make: Nothing to be done for `all'.
+15:33:20 **** Incremental Build of configuration Default for project stm32-nucleo-f103rb_base ****
+make all 
+make: Nothing to be done for `all'.
+15:33:57 **** Incremental Build of configuration Default for project stm32-nucleo-f103rb_base ****
+make all 
+make: Nothing to be done for `all'.
+15:36:41 **** Incremental Build of configuration Default for project stm32-nucleo-f103rb_base ****
+make all 
+make: Nothing to be done for `all'.

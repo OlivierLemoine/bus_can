@@ -52,7 +52,8 @@ int main(void)
 
 #if MPL115A_ANEMO
     spi1_Init();
-    anemo_Timer1Init();
+    anemo_Timer1Init();   
+    
 #endif
 
 #if VL6180X
@@ -69,7 +70,7 @@ int main(void)
     response = mpu9250_WhoAmI();
     //term_printf("%d",response);
 #endif
-
+//
     can_Init();
     can_SetFreq(CAN_BAUDRATE); // CAN BAUDRATE : 500 MHz -- cf Inc/config.h
 #if USE_FILTER
@@ -112,6 +113,12 @@ int main(void)
     
 
 #endif
+
+#if MPL115A_ANEMO
+
+    //displayPressure();
+
+#endif
     }
     return 0;
 }
@@ -152,13 +159,7 @@ void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef *htim)
     //term_printf("from timer interrupt\n\r");
     // mpu9250_Step();
 
-    
-    displayPressure();
-    int anemo = anemo_GetCount();
-    displayAnemo(anemo);
-    anemo_ResetCount();
-    // convertion Hz to Km/h
-    
+     displayAnemo();
 
 }
 //====================================================================
@@ -353,30 +354,46 @@ void displayLENGTH()
 }
 */
 
-void displayAnemo(int countAnemo)
+void displayAnemo()
 {
-    //float r = (float)countAnemo / 0.01 ; // secondes-1
-    // aproximation 10Hz = 10 Km/h ( voir le graph pour etre plus précis)
-
     
-
-   // sendOverCan((int)r,sizeof(r),0x55); // 0x55 à changer
+    float r = ((float)anemo_GetCount())*10; // S-1
+    // aproximation 10Hz = 10 Km/h ( voir le graph pour etre plus précis)
+    sendOverCan((int)r,sizeof(r),0x84); // 0x55 à changer
+    anemo_ResetCount();
 }
 
+/*
 void displayPressure()
+        // besoin de définir un GPIO 
 {
     uint8_t coef = 0;
-    uint8_t t1 = 0;
-    uint8_t t2 = 0;
+    uint8_t thigh = 0; // température, bit high et low
+    uint8_t tlow = 0;
+    uint8_t phigh = 0; // pression, bit high et low
+    uint8_t plow = 0;
+
+
+    HAL_Delay(4);
+    HAL_GPIO_WritePin(GPIOA,9,0); // cs = 0
     coef = spi1_Transfer(0x24);
     spi1_Transfer(0x00);
-    //HAL_Delay(4);
-    spi1_Transfer(0x24);
-    //HAL_Delay(4);
-    t1 = spi1_Transfer(0x80);
-    t2 = spi1_Transfer(0x82);
+    HAL_GPIO_WritePin(GPIOA,9,1); // cs = 1
+    HAL_Delay(4);
+    HAL_GPIO_WritePin(GPIOA,9,0); // cs = 0
+    phigh = spi1_Transfer(0x80);
+    spi1_Transfer(0x00);
+    plow = spi1_Transfer(0x82);
+    spi1_Transfer(0x00);
+    thigh = spi1_Transfer(0x84);
+    spi1_Transfer(0x00);
+    tlow = spi1_Transfer(0x86);
+    spi1_Transfer(0x00);
+    spi1_Transfer(0x00);
+    HAL_GPIO_WritePin(GPIOA,9,1); // cs = 1
 
-    //term_printf("%d",t1);
-    //term_printf("%d",t2);
+    term_printf("%d",phigh);
+    term_printf("%d",plow);  
    // sendOverCan((int)r,sizeof(r),0x55); // 0x55 à changer
 }
+*/
