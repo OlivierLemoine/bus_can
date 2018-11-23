@@ -2,30 +2,43 @@ const express = require('express');
 const WebSocket = require('ws');
 const can_lib = require('./can_lib.js');
 
-let lastestData = {};
+let lastestData = {
+    vent: 0,
+    lumiere: 0,
+    distance: 0,
+    pression: 0,
+    quat: {
+        x: 0,
+        y: 0,
+        z: 0,
+        w: 0
+    }
+};
 
 let transformTable = {
-    1: 'pression',
-    2: 'vent',
+    83: 'pression',
+    84: 'vent',
+
     85: 'lumiere',
-    86: 'distance'
+    86: 'distance',
+
+    87: 'quat-x',
+    88: 'quat-y',
+    89: 'quat-z',
+    90: 'quat-w'
 };
 
 can_lib
     .useProcessedData()
     .toInt32()
     .use(msg => {
-        lastestData[msg.data.id] = msg.data.values;
-    })
-    .use(msg => {
-        msg.payload = {
-            type: 'value',
-            id: transformTable[msg.int32.id] || 'lumiere',
-            value: msg.int32.value
-        };
-    })
-    .use(msg => {
-        ws.broadcast(msg.payload);
+        let id = transformTable[msg.data.id];
+        if (id) {
+            if (id.match(/quat/)) {
+                lastestData.quat[id[id.length - 1]] = msg.int32.value;
+            } else lastestData[id] = msg.int32.value;
+        }
+        // console.log(lastestData);
     });
 
 let app = express();
@@ -58,3 +71,7 @@ ws.broadcast = function(data) {
         }
     });
 };
+
+setInterval(() => {
+    ws.broadcast(lastestData);
+}, 100);

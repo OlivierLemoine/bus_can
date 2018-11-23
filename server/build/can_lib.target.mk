@@ -35,13 +35,13 @@ CFLAGS_CC_Debug := \
 	-std=gnu++0x
 
 INCS_Debug := \
-	-I/home/e2015/o5lemoin/.node-gyp/9.6.1/include/node \
-	-I/home/e2015/o5lemoin/.node-gyp/9.6.1/src \
-	-I/home/e2015/o5lemoin/.node-gyp/9.6.1/deps/openssl/config \
-	-I/home/e2015/o5lemoin/.node-gyp/9.6.1/deps/openssl/openssl/include \
-	-I/home/e2015/o5lemoin/.node-gyp/9.6.1/deps/uv/include \
-	-I/home/e2015/o5lemoin/.node-gyp/9.6.1/deps/zlib \
-	-I/home/e2015/o5lemoin/.node-gyp/9.6.1/deps/v8/include
+	-I/home/e2015/o5lemoin/.node-gyp/8.9.1/include/node \
+	-I/home/e2015/o5lemoin/.node-gyp/8.9.1/src \
+	-I/home/e2015/o5lemoin/.node-gyp/8.9.1/deps/openssl/config \
+	-I/home/e2015/o5lemoin/.node-gyp/8.9.1/deps/openssl/openssl/include \
+	-I/home/e2015/o5lemoin/.node-gyp/8.9.1/deps/uv/include \
+	-I/home/e2015/o5lemoin/.node-gyp/8.9.1/deps/zlib \
+	-I/home/e2015/o5lemoin/.node-gyp/8.9.1/deps/v8/include
 
 DEFS_Release := \
 	'-DNODE_GYP_MODULE_NAME=can_lib' \
@@ -73,13 +73,13 @@ CFLAGS_CC_Release := \
 	-std=gnu++0x
 
 INCS_Release := \
-	-I/home/e2015/o5lemoin/.node-gyp/9.6.1/include/node \
-	-I/home/e2015/o5lemoin/.node-gyp/9.6.1/src \
-	-I/home/e2015/o5lemoin/.node-gyp/9.6.1/deps/openssl/config \
-	-I/home/e2015/o5lemoin/.node-gyp/9.6.1/deps/openssl/openssl/include \
-	-I/home/e2015/o5lemoin/.node-gyp/9.6.1/deps/uv/include \
-	-I/home/e2015/o5lemoin/.node-gyp/9.6.1/deps/zlib \
-	-I/home/e2015/o5lemoin/.node-gyp/9.6.1/deps/v8/include
+	-I/home/e2015/o5lemoin/.node-gyp/8.9.1/include/node \
+	-I/home/e2015/o5lemoin/.node-gyp/8.9.1/src \
+	-I/home/e2015/o5lemoin/.node-gyp/8.9.1/deps/openssl/config \
+	-I/home/e2015/o5lemoin/.node-gyp/8.9.1/deps/openssl/openssl/include \
+	-I/home/e2015/o5lemoin/.node-gyp/8.9.1/deps/uv/include \
+	-I/home/e2015/o5lemoin/.node-gyp/8.9.1/deps/zlib \
+	-I/home/e2015/o5lemoin/.node-gyp/8.9.1/deps/v8/include
 
 OBJS := \
 	$(obj).target/$(TARGET)/can_lib.o

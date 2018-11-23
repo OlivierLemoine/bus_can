@@ -31,8 +31,33 @@ wing_geometry.faces.push(
     new THREE.Face3(3, 5, 2),
 
     new THREE.Face3(0, 4, 3),
-    new THREE.Face3(3, 4, 5),
+    new THREE.Face3(3, 4, 5)
 );
+
+let rear_wing = new THREE.Geometry();
+rear_wing.vertices.push(
+    new THREE.Vector3(0, 0, -1), //0
+    new THREE.Vector3(6, 0, 0),
+    new THREE.Vector3(2, 10, -1),
+    new THREE.Vector3(0, 10, 0),
+
+    new THREE.Vector3(0, 0, 1), //4
+    new THREE.Vector3(0, 10, 1)
+);
+rear_wing.faces.push(
+    new THREE.Face3(0, 3, 2),
+    new THREE.Face3(0, 2, 1),
+
+    new THREE.Face3(4, 1, 2),
+    new THREE.Face3(4, 2, 5),
+
+    new THREE.Face3(0, 1, 4),
+    new THREE.Face3(3, 5, 2),
+
+    new THREE.Face3(0, 4, 3),
+    new THREE.Face3(3, 4, 5)
+);
+
 wing_geometry.computeBoundingSphere();
 var wing_edges = new THREE.EdgesGeometry(wing_geometry);
 
@@ -93,6 +118,7 @@ let material = new THREE.MeshBasicMaterial({
 let plane = new THREE.Mesh(plane_geometry, material);
 let wing_left = new THREE.Mesh(wing_geometry, material);
 let wing_right = new THREE.Mesh(wing_geometry, material);
+let wing_top = new THREE.Mesh(rear_wing, material);
 
 var plane_line = new THREE.LineSegments(
     plane_edges,
@@ -102,14 +128,36 @@ var wing_line_left = new THREE.LineSegments(
     wing_edges,
     new THREE.LineBasicMaterial({ color: 0x000000 })
 );
+var wing_line_right = new THREE.LineSegments(
+    wing_edges,
+    new THREE.LineBasicMaterial({ color: 0x000000 })
+);
+var wing_line_top = new THREE.LineSegments(
+    wing_edges,
+    new THREE.LineBasicMaterial({ color: 0x000000 })
+);
 scene.add(plane);
 plane.add(plane_line);
 plane.add(wing_left);
+plane.add(wing_right);
+plane.add(wing_top);
+
 wing_left.add(wing_line_left);
 wing_left.rotation.z = -3.141592 / 2;
 wing_left.position.x = 10;
 wing_left.position.y = 10;
 wing_left.position.z = 3;
+
+wing_right.add(wing_line_right);
+wing_right.rotation.z = -3.141592 / 2;
+wing_right.scale.y = -1;
+wing_right.position.z = 3;
+wing_right.position.y = 10;
+
+wing_top.add(wing_line_top);
+wing_top.rotation.y = -3.141592 / 2;
+wing_top.rotation.x = 3.141592 / 2;
+
 
 camera.position.z = 50;
 

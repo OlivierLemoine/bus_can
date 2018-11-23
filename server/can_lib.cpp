@@ -14,7 +14,6 @@ struct Can_opt
 {
     const char *szDevNode;
     HANDLE h;
-    TPCANRdMsg pMsgBuff;
 
     bool isInitialize = false;
 };
@@ -25,23 +24,7 @@ void initialize(const v8::FunctionCallbackInfo<Value> &args)
 {
     Isolate *isolate = args.GetIsolate();
 
-    if (args.Length() < 1)
-    {
-        isolate->ThrowException(Exception::TypeError(
-            String::NewFromUtf8(isolate, "Wrong number of arguments")));
-        return;
-    }
-
-    if (!args[0]->IsString())
-    {
-        isolate->ThrowException(Exception::TypeError(
-            String::NewFromUtf8(isolate, "Wrong arguments")));
-        return;
-    }
-
     const char *szDevNode = "/dev/pcanusb32";
-    // const char *szDevNode = args[0].StringValue().c_str();
-    // const char *szDevNode = Local<String>::Cast(args[0]).c_str();
 
     can_opt.h = LINUX_CAN_Open(szDevNode, O_RDWR);
 
@@ -66,7 +49,8 @@ void getValue(const v8::FunctionCallbackInfo<Value> &args)
 
     TPCANRdMsg pMsgBuff;
 
-    LINUX_CAN_Read_Timeout(can_opt.h, &pMsgBuff, 1);
+    // LINUX_CAN_Read(can_opt.h, &pMsgBuff);
+    LINUX_CAN_Read_Timeout(can_opt.h, &pMsgBuff, 10);
     
     Local<Array> result_list = Array::New(isolate);
 
@@ -98,7 +82,7 @@ void sendValue(const v8::FunctionCallbackInfo<Value> &args)
         return;
     }
 
-    if (!args[0]->IsInteger())
+    if (!args[0]->IsNumber())
     {
         isolate->ThrowException(Exception::TypeError(
             String::NewFromUtf8(isolate, "Argument 1 must be an integer")));
@@ -128,7 +112,7 @@ void sendValue(const v8::FunctionCallbackInfo<Value> &args)
         msgBuff.DATA[i] = data->Get(i)->NumberValue();
     }
 
-    LINUX_CAN_Write_Timeout(can_opt.h, &msgBuff, 0);
+    CAN_Write(can_opt.h, &msgBuff);
 
     args.GetReturnValue().Set(Undefined(isolate));
 }
