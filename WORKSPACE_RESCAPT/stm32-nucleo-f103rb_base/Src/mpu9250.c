@@ -123,15 +123,6 @@ void mpu9250_Step(void)
 	f_a[1] = a[1] * conversion_Acc;
 	f_a[2] = a[2] * conversion_Acc;
 
-	char tmp[4];
-	for (char i = 0; i < 3; i++)
-	{
-		int2char_ptr(g[i], tmp);
-		sendOverCan(tmp, 4, mpu9250_ID + i);
-		int2char_ptr(a[i], tmp);
-		sendOverCan(tmp, 4, mpu9250_ID + i +3);
-	}
-
 #if USE_MAGNETOMETER
 	//_____________________
 	// :::  Magnetometer :::
@@ -160,12 +151,6 @@ void mpu9250_Step(void)
 	// term_printf("f_mx: %f", f_mx);
 	// term_printf("f_my: %f", f_my);
 	// term_printf("f_mz: %f", f_mz);
-
-	for (char i = 0; i < 3; i++)
-	{
-		int2char_ptr(m[i], tmp);
-		sendOverCan(tmp, 3, mpu9250_ID + i + 6);
-	}
 #else
 	MadgwickAHRSupdateIMU(f_g, f_a);
 #endif

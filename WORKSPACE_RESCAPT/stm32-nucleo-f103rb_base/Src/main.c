@@ -86,9 +86,11 @@ int main(void)
     can_IrqInit();
     can_IrqSet(&can_callback);
 
-    // Décommenter pour utiliser ce Timer ; permet de déclencher une interruption toutes les N ms
-    // Le programme d'interruption est dans tickTimer.c
-    //tickTimer_Init(10); // period in ms
+// Décommenter pour utiliser ce Timer ; permet de déclencher une interruption toutes les N ms
+// Le programme d'interruption est dans tickTimer.c
+#if MPU9250
+    tickTimer_Init(10); // period in ms
+#endif
 
     while (1)
     {
@@ -97,9 +99,18 @@ int main(void)
         VL6180x_Step();
 
 #endif
-
 #if MPU9250
-        mpu9250_Step();
+        Quatern q[4];
+        q[0].f = q0;
+        q[1].f = q1;
+        q[2].f = q2;
+        q[3].f = q3;
+        char tmp[4];
+        for(char i = 0;i < 4; i++){
+            sendOverCan(q[0].c, 4, mpu9250_ID + i);
+            HAL_Delay(10);
+        }
+        HAL_Delay(100);
 #endif
     }
     return 0;
@@ -138,8 +149,8 @@ void can_callback(void)
 
 void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef *htim)
 {
-    //term_printf("from timer interrupt\n\r");
-    // mpu9250_Step();
+    // term_printf("from timer interrupt\n\r");
+    mpu9250_Step();
 }
 //====================================================================
 
