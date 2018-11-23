@@ -94,6 +94,7 @@ int main(void)
     {
 
 #if VL6180X
+        HAL_Delay(100);
         VL6180x_Step();
 
 #endif

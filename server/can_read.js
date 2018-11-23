@@ -6,15 +6,6 @@ try {
     console.log('can_lib loaded');
 } catch (error) {
     throw 'cant require can_lib';
-    // can_lib.sendValues = a => {};
-    // can_lib.initialize = a => {};
-    // can_lib.getValue = () => {
-    //     let res = [];
-    //     for (let i = 0; i < 9; i++) {
-    //         res.push(Math.floor(Math.random() * 255));
-    //     }
-    //     return res;
-    // };
 }
 
 setInterval(() => {

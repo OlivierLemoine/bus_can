@@ -49,7 +49,8 @@ void getValue(const v8::FunctionCallbackInfo<Value> &args)
 
     TPCANRdMsg pMsgBuff;
 
-    LINUX_CAN_Read_Timeout(can_opt.h, &pMsgBuff, 1);
+    // LINUX_CAN_Read(can_opt.h, &pMsgBuff);
+    LINUX_CAN_Read_Timeout(can_opt.h, &pMsgBuff, 10);
     
     Local<Array> result_list = Array::New(isolate);
 
@@ -81,7 +82,7 @@ void sendValue(const v8::FunctionCallbackInfo<Value> &args)
         return;
     }
 
-    if (!args[0]->IsInteger())
+    if (!args[0]->IsNumber())
     {
         isolate->ThrowException(Exception::TypeError(
             String::NewFromUtf8(isolate, "Argument 1 must be an integer")));

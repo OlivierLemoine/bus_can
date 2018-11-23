@@ -12,14 +12,16 @@ let ws = new WebSocket('ws://127.0.0.1:8001');
 
 ws.onmessage = event => {
     let data = JSON.parse(event.data);
-    switch (data.type) {
-        case 'value':
-            gauges[data.id].updateValue(data.value);
-            break;
+    for (const i in data) 
+        if (gauges[i]) gauges[i].updateValue(data[i]);
+    // switch (data.type) {
+    //     case 'value':
+    //         gauges[data.id].updateValue(data.value);
+    //         break;
 
-        default:
-            break;
-    }
+    //     default:
+    //         break;
+    // }
 };
 
 document.getElementById('swap_capteur').addEventListener('click', () => {
