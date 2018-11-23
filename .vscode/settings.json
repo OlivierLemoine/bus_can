@@ -44,7 +44,10 @@
         "type_traits": "cpp",
         "tuple": "cpp",
         "typeinfo": "cpp",
-        "utility": "cpp"
+        "utility": "cpp",
+        "thread": "cpp",
+        "madgwickahrs.h": "c",
+        "mpu9250.h": "c"
     },
     
     "spellright.documentTypes": [

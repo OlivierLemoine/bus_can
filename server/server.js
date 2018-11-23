@@ -5,28 +5,27 @@ const can_lib = require('./can_lib.js');
 let lastestData = {};
 
 let transformTable = {
-    1: 'pression',
-    2: 'vent',
-    3: 'lumiere',
-    4: 'distance'
+    84: 'vent',
+
+    85: 'lumiere',
+    86: 'distance',
+
+    87: 'quat-x',
+    88: 'quat-y',
+    89: 'quat-z',
+    90: 'quat-w'
 };
 
 can_lib
-    // .setMockData()
-    .init('test', 200)
     .useProcessedData()
+    .toInt32()
     .use(msg => {
-        lastestData[msg.data.id] = msg.data.values;
-    })
-    .use(msg => {
-        msg.payload = {
-            type: 'value',
-            id: transformTable[msg.data.id],
-            value: msg.data.values
-        };
-    })
-    .use(msg => {
-        ws.broadcast(msg.payload);
+        let id = transformTable[msg.data.id];
+        if (id) {
+            if (id.match(/quat/)) {
+                lastestData.quat[id[id.length - 1]] = msg.int32.value;
+            } else lastestData[id] = msg.int32.value;
+        }
     });
 
 let app = express();
@@ -44,15 +43,8 @@ var ws = new WebSocket.Server({ port: 8001 });
 ws.on('connection', socket => {
     socket.on('message', data => {
         if (data === 'swap') {
+            can_lib.send(1, [0, 0, 0, 0, 0, 0, 0, 0]);
             console.log('capteur swaped');
-            socket.send(
-                JSON.stringify({
-                    type: 'value',
-                    id: 'pression',
-                    value: 10
-                })
-            );
-            //swap capteur
         }
     });
 
@@ -66,3 +58,7 @@ ws.broadcast = function(data) {
         }
     });
 };
+
+setInterval(() => {
+    ws.broadcast(lastestData);
+}, 100);
