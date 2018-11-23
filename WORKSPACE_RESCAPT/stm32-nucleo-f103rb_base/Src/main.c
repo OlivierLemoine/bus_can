@@ -33,6 +33,8 @@ void VL6180x_Step(void);
 int status;
 int new_switch_state;
 int switch_state = -1;
+int cnt = 0;
+
 
 //====================================================================
 // >>>>>>>>>>>>>>>>>>>>>>>>>> MAIN <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
@@ -53,7 +55,7 @@ int main(void)
 #if MPL115A_ANEMO
     spi1_Init();
     anemo_Timer1Init();   
-    
+    MPL115A_init();
 #endif
 
 #if VL6180X
@@ -104,6 +106,10 @@ int main(void)
 #if MPU9250
         mpu9250_Step();
 #endif
+
+#if MPL115A_ANEMO
+        displayPressure();
+#endif
     }
     return 0;
 }
@@ -143,9 +149,11 @@ void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef *htim)
 {
     //term_printf("from timer interrupt\n\r");
     // mpu9250_Step();
-
-     displayAnemo();
-
+    cnt= cnt+1;
+    if(cnt ==5){
+        displayAnemo();
+        cnt = 0;
+    }
 }
 //====================================================================
 
@@ -449,17 +457,54 @@ void displayLENGTH()
 
 
 void displayAnemo()
-{
+{   
     
-    float r = ((float)anemo_GetCount())*10; // S-1
+
+
+    char tab[4] ; 
+    int r = anemo_GetCount()*10; // S-1
+
     // aproximation 10Hz = 10 Km/h ( voir le graph pour etre plus précis)
-    sendOverCan((int)r,sizeof(r),0x84); // 0x55 à changer
+    int2char_ptr((int)r,tab);
+    sendOverCan(tab,4,84); //
     anemo_ResetCount();
+    
+
 }
 
+MPL115A_init(){
+// c'est vraiment utile ? pas déjà fait dans le init spi ?
+
 /*
+float A0_;
+float B1_;
+float B2_;
+float C12_;
+// read registers that contain the chip-unique parameters to do the math
+  unsigned int A0H = readRegister(0x88);
+  unsigned int A0L = readRegister(0x8A);
+         A0_ = (A0H << 5) + (A0L >> 3) + (A0L & 0x07) / 8.0;
+  
+  unsigned int B1H = readRegister(0x8C);
+  unsigned int B1L = readRegister(0x8E);
+          B1_ = ( ( ( (B1H & 0x1F) * 0x100)+B1L) / 8192.0) - 3 ;
+  
+  unsigned int B2H = readRegister(0x90);
+  unsigned int B2L = readRegister(0x92);
+          B2_ = ( ( ( (B2H - 0x80) << 8) + B2L) / 16384.0 ) - 2 ;
+  
+  unsigned int C12H = readRegister(0x94);
+  unsigned int C12L = readRegister(0x96);
+          C12_ = ( ( ( C12H * 0x100 ) + C12L) / 16777216.0 )  ;
+
+          */
+}
+
+
+
 void displayPressure()
-        // besoin de définir un GPIO 
+        // besoin de définir un GPIO ?
+        // ça passe les instructions mais ça revoie rien
 {
     uint8_t coef = 0;
     uint8_t thigh = 0; // température, bit high et low
@@ -467,14 +512,14 @@ void displayPressure()
     uint8_t phigh = 0; // pression, bit high et low
     uint8_t plow = 0;
 
-
+                                // cs pin 5 ?
     HAL_Delay(4);
-    HAL_GPIO_WritePin(GPIOA,9,0); // cs = 0
+    HAL_GPIO_WritePin(GPIOA,5,0); // cs = 0
     coef = spi1_Transfer(0x24);
     spi1_Transfer(0x00);
-    HAL_GPIO_WritePin(GPIOA,9,1); // cs = 1
+    HAL_GPIO_WritePin(GPIOA,5,1); // cs = 1
     HAL_Delay(4);
-    HAL_GPIO_WritePin(GPIOA,9,0); // cs = 0
+    HAL_GPIO_WritePin(GPIOA,5,0); // cs = 0
     phigh = spi1_Transfer(0x80);
     spi1_Transfer(0x00);
     plow = spi1_Transfer(0x82);
@@ -484,10 +529,10 @@ void displayPressure()
     tlow = spi1_Transfer(0x86);
     spi1_Transfer(0x00);
     spi1_Transfer(0x00);
-    HAL_GPIO_WritePin(GPIOA,9,1); // cs = 1
+    HAL_GPIO_WritePin(GPIOA,5,1); // cs = 1
 
     term_printf("%d",phigh);
     term_printf("%d",plow);  
    // sendOverCan((int)r,sizeof(r),0x55); // 0x55 à changer
 }
-*/
+
