@@ -15,6 +15,7 @@
 #include "types.h"
 #include "MadgwickAHRS.h"
 
+#define mpu9250_ID 87
 
 /**************************************************
  * 		REGISTER MAP MPU9250

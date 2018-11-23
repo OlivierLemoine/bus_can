@@ -111,11 +111,11 @@ int main(void)
 
 void can_callback(void)
 {
-    #if VL6180X
+#if VL6180X
     new_switch_state = (new_switch_state == 0) ? 1 : 0;
-    #elif MPU9250
-    
-    #endif
+#elif MPU9250
+
+#endif
     // CAN_Message msg_rcv;
     // int i = 0;
 
@@ -373,9 +373,9 @@ void displayLENGTH()
     {
         State.OutofRAnge = 0;
         TimeStarted = g_TickCnt;
-        int Alpha =(int)(0.85*(1<<16));
+        int Alpha = (int)(0.85 * (1 << 16));
         range = (range * Alpha + Range.range_mm * ((1 << 16) - Alpha)) >> 16;
-        
+
         sprintf(buffer, "Ran");
         char buff[4];
         int2char_ptr((int)range, buff);

@@ -39,6 +39,7 @@ SRCS += drv_i2c.c
 
 SRCS += anemo.c
 SRCS += mpu9250.c
+SRCS += MadgwickAHRS.c
 SRCS += tickTimer.c
 
 EXT_SRCS = stm32f1xx_hal.c
