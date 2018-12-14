@@ -615,3 +615,641 @@ make: Nothing to be done for `all'.
 15:44:38 **** Incremental Build of configuration Default for project stm32-nucleo-f103rb_base ****
 make all 
 make: Nothing to be done for `all'.
+16:02:18 **** Incremental Build of configuration Default for project stm32-nucleo-f103rb_base ****
+make all 
+make: Nothing to be done for `all'.
+16:03:24 **** Incremental Build of configuration Default for project stm32-nucleo-f103rb_base ****
+make all 
+make: Nothing to be done for `all'.
+16:05:56 **** Incremental Build of configuration Default for project stm32-nucleo-f103rb_base ****
+make all 
+make: Nothing to be done for `all'.
+16:10:04 **** Incremental Build of configuration Default for project stm32-nucleo-f103rb_base ****
+make all 
+make: Nothing to be done for `all'.
+16:11:31 **** Incremental Build of configuration Default for project stm32-nucleo-f103rb_base ****
+make all 
+make: Nothing to be done for `all'.
+16:13:20 **** Incremental Build of configuration Default for project stm32-nucleo-f103rb_base ****
+make all 
+make: Nothing to be done for `all'.
+16:19:44 **** Incremental Build of configuration Default for project stm32-nucleo-f103rb_base ****
+make all 
+make: Nothing to be done for `all'.
+16:30:49 **** Incremental Build of configuration Default for project stm32-nucleo-f103rb_base ****
+make all 
+make: Nothing to be done for `all'.
+16:41:21 **** Incremental Build of configuration Default for project stm32-nucleo-f103rb_base ****
+make all 
+make: Nothing to be done for `all'.
+16:46:08 **** Incremental Build of configuration Default for project stm32-nucleo-f103rb_base ****
+make all 
+make: Nothing to be done for `all'.
+16:46:19 **** Incremental Build of configuration Default for project stm32-nucleo-f103rb_base ****
+make all 
+make: Nothing to be done for `all'.
+16:46:20 **** Incremental Build of configuration Default for project stm32-nucleo-f103rb_base ****
+make all 
+make: Nothing to be done for `all'.
+16:46:21 **** Incremental Build of configuration Default for project stm32-nucleo-f103rb_base ****
+make all 
+make: Nothing to be done for `all'.
+16:46:26 **** Incremental Build of configuration Default for project stm32-nucleo-f103rb_base ****
+make all 
+make: Nothing to be done for `all'.
+16:46:42 **** Incremental Build of configuration Default for project stm32-nucleo-f103rb_base ****
+make all 
+make: Nothing to be done for `all'.
+16:46:48 **** Incremental Build of configuration Default for project stm32-nucleo-f103rb_base ****
+make all 
+make: Nothing to be done for `all'.
+16:59:42 **** Incremental Build of configuration Default for project stm32-nucleo-f103rb_base ****
+make all 
+make: Nothing to be done for `all'.
+17:00:38 **** Incremental Build of configuration Default for project stm32-nucleo-f103rb_base ****
+make all 
+make: Nothing to be done for `all'.
+17:04:13 **** Incremental Build of configuration Default for project stm32-nucleo-f103rb_base ****
+make all 
+make: Nothing to be done for `all'.
+10:03:44 **** Build of configuration Default for project stm32-nucleo-f103rb_base ****
+make all 
+make: Nothing to be done for `all'.
+10:03:49 **** Incremental Build of configuration Default for project stm32-nucleo-f103rb_base ****
+make all 
+make: Nothing to be done for `all'.
+10:08:58 **** Incremental Build of configuration Default for project stm32-nucleo-f103rb_base ****
+make all 
+arm-none-eabi-gcc -IInc/ -IDrivers/STM32F1xx_HAL_Driver/Inc/ -ISrc/vl6180x/ -IDrivers/BSP/STM32F1xx_Nucleo/ -IDrivers/CMSIS/Device/ST/STM32F1xx/Include/ -IDrivers/CMSIS/Include/ -DSTM32F103xBt -ggdb -O0 -mlittle-endian --specs=rdimon.specs -mthumb -mcpu=cortex-m3 -mthumb-interwork -Wl,--gc-sections -lgcc -lc -lm -lrdimon -Wall -Wextra -Warray-bounds -Wno-unused-parameter -TDevice/gcc.ld Src/main.c Device/startup_stm32f103xb.s Src/vl6180x/vl6180x_api.c Src/vl6180x/vl6180x_lib.c Src/vl6180x/x-nucleo-6180xa1.c Src/stm32f1xx_hal_msp.c Src/stm32f1xx_it.c Src/system_stm32f1xx.c Src/systemClock.c Src/drv_can.c Src/drv_spi.c Src/drv_uart.c Src/drv_i2c.c Src/anemo.c Src/mpu9250.c Src/MadgwickAHRS.c Src/tickTimer.c stm32f1xx_hal.o stm32f1xx_hal_rcc.o stm32f1xx_hal_rcc_ex.o stm32f1xx_hal_rtc.o stm32f1xx_hal_gpio.o stm32f1xx_hal_cortex.o stm32f1xx_hal_pcd.o stm32f1xx_hal_pcd_ex.o stm32f1xx_hal_uart.o stm32f1xx_hal_usart.o stm32f1xx_hal_dma.o stm32f1xx_hal_adc.o stm32f1xx_hal_adc_ex.o stm32f1xx_hal_spi.o stm32f1xx_hal_i2c.o stm32f1xx_hal_tim.o stm32f1xx_hal_tim_ex.o stm32f1xx_hal_can.o Drivers/BSP/STM32F1xx_Nucleo/stm32f1xx_nucleo.o -o template.elf
+Src/main.c: In function 'main':
+Src/main.c:113:13: warning: implicit declaration of function 'int2char_ptr' [-Wimplicit-function-declaration]
+             int2char_ptr(q[i].i,tmp);
+             ^
+Src/main.c:113:27: warning: array subscript has type 'char' [-Wchar-subscripts]
+             int2char_ptr(q[i].i,tmp);
+                           ^
+Src/main.c:114:48: warning: array subscript has type 'char' [-Wchar-subscripts]
+             term_printf("q%d: %f = %d\r\n", i,q[i].f,q[i].i);
+                                                ^
+Src/main.c:114:55: warning: array subscript has type 'char' [-Wchar-subscripts]
+             term_printf("q%d: %f = %d\r\n", i,q[i].f,q[i].i);
+                                                       ^
+Src/main.c:115:13: warning: implicit declaration of function 'sendOverCan' [-Wimplicit-function-declaration]
+             sendOverCan(tmp, 4, mpu9250_ID + i);
+             ^
+Src/main.c:68:13: warning: variable 'response' set but not used [-Wunused-but-set-variable]
+     uint8_t response = 0;
+             ^
+Src/main.c: In function 'VL6180x_Step':
+Src/main.c:226:9: warning: implicit declaration of function 'displayLENGTH' [-Wimplicit-function-declaration]
+         displayLENGTH();
+         ^
+Src/main.c:230:9: warning: implicit declaration of function 'displayLUX' [-Wimplicit-function-declaration]
+         displayLUX();
+         ^
+Src/main.c: At top level:
+Src/main.c:276:6: warning: conflicting types for 'sendOverCan'
+ void sendOverCan(char *data, int dateSize, int id)
+      ^
+Src/main.c:115:13: note: previous implicit declaration of 'sendOverCan' was here
+             sendOverCan(tmp, 4, mpu9250_ID + i);
+             ^
+Src/main.c: In function 'sendOverCan':
+Src/main.c:284:26: warning: comparison between signed and unsigned integer expressions [-Wsign-compare]
+     for (size_t i = 0; i < dateSize; i++)
+                          ^
+Src/main.c: At top level:
+Src/main.c:291:6: warning: conflicting types for 'displayLUX'
+ void displayLUX()
+      ^
+Src/main.c:230:9: note: previous implicit declaration of 'displayLUX' was here
+         displayLUX();
+         ^
+Src/main.c:309:6: warning: conflicting types for 'int2char_ptr'
+ void int2char_ptr(int in_value, char *out_value)
+      ^
+Src/main.c:113:13: note: previous implicit declaration of 'int2char_ptr' was here
+             int2char_ptr(q[i].i,tmp);
+             ^
+Src/main.c:317:6: warning: conflicting types for 'displayLENGTH'
+ void displayLENGTH()
+      ^
+Src/main.c:226:9: note: previous implicit declaration of 'displayLENGTH' was here
+         displayLENGTH();
+         ^
+Src/main.c: In function 'displayLENGTH':
+Src/main.c:347:41: warning: comparison of unsigned expression >= 0 is always true [-Wtype-limits]
+             if (g_TickCnt - TimeStarted >= ErrRangeDispTime && g_TickCnt - TimeStarted < ErrRangeDispTime + DMaxDispTime)
+                                         ^
+Src/main.c:347:88: warning: comparison of unsigned expression < 0 is always false [-Wtype-limits]
+             if (g_TickCnt - TimeStarted >= ErrRangeDispTime && g_TickCnt - TimeStarted < ErrRangeDispTime + DMaxDispTime)
+                                                                                        ^
+Src/main.c:355:45: warning: comparison of unsigned expression < 0 is always false [-Wtype-limits]
+                 if (g_TickCnt - TimeStarted < ErrRangeDispTime)
+                                             ^
+Src/main.c:374:17: warning: implicit declaration of function 'SetDisplayString' [-Wimplicit-function-declaration]
+                 SetDisplayString("F---");
+                 ^
+Src/vl6180x/vl6180x_api.c: In function '_DMax_Compute':
+Src/vl6180x/vl6180x_api.c:2574:18: warning: comparison between signed and unsigned integer expressions [-Wsign-compare]
+  if (rtnAmbRate  < rtnAmbLowLimit_KCps) {
+                  ^
+Src/vl6180x/vl6180x_lib.c: In function 'RangeState':
+Src/vl6180x/vl6180x_lib.c:439:41: warning: comparison of unsigned expression >= 0 is always true [-Wtype-limits]
+             if (g_TickCnt - TimeStarted >= ErrRangeDispTime &&  g_TickCnt - TimeStarted <  ErrRangeDispTime + DMaxDispTime ){
+                                         ^
+Src/vl6180x/vl6180x_lib.c:439:89: warning: comparison of unsigned expression < 0 is always false [-Wtype-limits]
+             if (g_TickCnt - TimeStarted >= ErrRangeDispTime &&  g_TickCnt - TimeStarted <  ErrRangeDispTime + DMaxDispTime ){
+                                                                                         ^
+Src/vl6180x/vl6180x_lib.c:446:40: warning: comparison of unsigned expression < 0 is always false [-Wtype-limits]
+             if(g_TickCnt - TimeStarted < ErrRangeDispTime  )
+                                        ^
+Src/anemo.c: In function 'anemo_ResetCount':
+Src/anemo.c:47:1: warning: control reaches end of non-void function [-Wreturn-type]
+ }
+ ^
+arm-none-eabi-objcopy -O ihex template.elf   template.hex
+arm-none-eabi-objcopy -O binary template.elf template.bin
+10:23:14 **** Incremental Build of configuration Default for project stm32-nucleo-f103rb_base ****
+make all 
+arm-none-eabi-gcc -IInc/ -IDrivers/STM32F1xx_HAL_Driver/Inc/ -ISrc/vl6180x/ -IDrivers/BSP/STM32F1xx_Nucleo/ -IDrivers/CMSIS/Device/ST/STM32F1xx/Include/ -IDrivers/CMSIS/Include/ -DSTM32F103xBt -ggdb -O0 -mlittle-endian --specs=rdimon.specs -mthumb -mcpu=cortex-m3 -mthumb-interwork -Wl,--gc-sections -lgcc -lc -lm -lrdimon -Wall -Wextra -Warray-bounds -Wno-unused-parameter -TDevice/gcc.ld Src/main.c Device/startup_stm32f103xb.s Src/vl6180x/vl6180x_api.c Src/vl6180x/vl6180x_lib.c Src/vl6180x/x-nucleo-6180xa1.c Src/stm32f1xx_hal_msp.c Src/stm32f1xx_it.c Src/system_stm32f1xx.c Src/systemClock.c Src/drv_can.c Src/drv_spi.c Src/drv_uart.c Src/drv_i2c.c Src/anemo.c Src/mpu9250.c Src/MadgwickAHRS.c Src/tickTimer.c stm32f1xx_hal.o stm32f1xx_hal_rcc.o stm32f1xx_hal_rcc_ex.o stm32f1xx_hal_rtc.o stm32f1xx_hal_gpio.o stm32f1xx_hal_cortex.o stm32f1xx_hal_pcd.o stm32f1xx_hal_pcd_ex.o stm32f1xx_hal_uart.o stm32f1xx_hal_usart.o stm32f1xx_hal_dma.o stm32f1xx_hal_adc.o stm32f1xx_hal_adc_ex.o stm32f1xx_hal_spi.o stm32f1xx_hal_i2c.o stm32f1xx_hal_tim.o stm32f1xx_hal_tim_ex.o stm32f1xx_hal_can.o Drivers/BSP/STM32F1xx_Nucleo/stm32f1xx_nucleo.o -o template.elf
+Src/main.c: In function 'main':
+Src/main.c:113:13: warning: implicit declaration of function 'int2char_ptr' [-Wimplicit-function-declaration]
+             int2char_ptr(q[i].i,tmp);
+             ^
+Src/main.c:113:27: warning: array subscript has type 'char' [-Wchar-subscripts]
+             int2char_ptr(q[i].i,tmp);
+                           ^
+Src/main.c:113:30: error: request for member 'i' in something not a structure or union
+             int2char_ptr(q[i].i,tmp);
+                              ^
+Src/main.c:114:43: warning: array subscript has type 'char' [-Wchar-subscripts]
+             term_printf("q%d: %d\r\n", i,q[i].i);
+                                           ^
+Src/main.c:114:46: error: request for member 'i' in something not a structure or union
+             term_printf("q%d: %d\r\n", i,q[i].i);
+                                              ^
+Src/main.c:115:13: warning: implicit declaration of function 'sendOverCan' [-Wimplicit-function-declaration]
+             sendOverCan(tmp, 4, mpu9250_ID + i);
+             ^
+Src/main.c:103:13: warning: variable 'q' set but not used [-Wunused-but-set-variable]
+         int q[4];
+             ^
+Src/main.c:68:13: warning: variable 'response' set but not used [-Wunused-but-set-variable]
+     uint8_t response = 0;
+             ^
+Src/main.c: In function 'VL6180x_Step':
+Src/main.c:226:9: warning: implicit declaration of function 'displayLENGTH' [-Wimplicit-function-declaration]
+         displayLENGTH();
+         ^
+Src/main.c:230:9: warning: implicit declaration of function 'displayLUX' [-Wimplicit-function-declaration]
+         displayLUX();
+         ^
+Src/main.c: At top level:
+Src/main.c:276:6: warning: conflicting types for 'sendOverCan'
+ void sendOverCan(char *data, int dateSize, int id)
+      ^
+Src/main.c:115:13: note: previous implicit declaration of 'sendOverCan' was here
+             sendOverCan(tmp, 4, mpu9250_ID + i);
+             ^
+Src/main.c: In function 'sendOverCan':
+Src/main.c:284:26: warning: comparison between signed and unsigned integer expressions [-Wsign-compare]
+     for (size_t i = 0; i < dateSize; i++)
+                          ^
+Src/main.c: At top level:
+Src/main.c:291:6: warning: conflicting types for 'displayLUX'
+ void displayLUX()
+      ^
+Src/main.c:230:9: note: previous implicit declaration of 'displayLUX' was here
+         displayLUX();
+         ^
+Src/main.c:309:6: warning: conflicting types for 'int2char_ptr'
+ void int2char_ptr(int in_value, char *out_value)
+      ^
+Src/main.c:113:13: note: previous implicit declaration of 'int2char_ptr' was here
+             int2char_ptr(q[i].i,tmp);
+             ^
+Src/main.c:317:6: warning: conflicting types for 'displayLENGTH'
+ void displayLENGTH()
+      ^
+Src/main.c:226:9: note: previous implicit declaration of 'displayLENGTH' was here
+         displayLENGTH();
+         ^
+Src/main.c: In function 'displayLENGTH':
+Src/main.c:347:41: warning: comparison of unsigned expression >= 0 is always true [-Wtype-limits]
+             if (g_TickCnt - TimeStarted >= ErrRangeDispTime && g_TickCnt - TimeStarted < ErrRangeDispTime + DMaxDispTime)
+                                         ^
+Src/main.c:347:88: warning: comparison of unsigned expression < 0 is always false [-Wtype-limits]
+             if (g_TickCnt - TimeStarted >= ErrRangeDispTime && g_TickCnt - TimeStarted < ErrRangeDispTime + DMaxDispTime)
+                                                                                        ^
+Src/main.c:355:45: warning: comparison of unsigned expression < 0 is always false [-Wtype-limits]
+                 if (g_TickCnt - TimeStarted < ErrRangeDispTime)
+                                             ^
+Src/main.c:374:17: warning: implicit declaration of function 'SetDisplayString' [-Wimplicit-function-declaration]
+                 SetDisplayString("F---");
+                 ^
+Src/vl6180x/vl6180x_api.c: In function '_DMax_Compute':
+Src/vl6180x/vl6180x_api.c:2574:18: warning: comparison between signed and unsigned integer expressions [-Wsign-compare]
+  if (rtnAmbRate  < rtnAmbLowLimit_KCps) {
+                  ^
+Src/vl6180x/vl6180x_lib.c: In function 'RangeState':
+Src/vl6180x/vl6180x_lib.c:439:41: warning: comparison of unsigned expression >= 0 is always true [-Wtype-limits]
+             if (g_TickCnt - TimeStarted >= ErrRangeDispTime &&  g_TickCnt - TimeStarted <  ErrRangeDispTime + DMaxDispTime ){
+                                         ^
+Src/vl6180x/vl6180x_lib.c:439:89: warning: comparison of unsigned expression < 0 is always false [-Wtype-limits]
+             if (g_TickCnt - TimeStarted >= ErrRangeDispTime &&  g_TickCnt - TimeStarted <  ErrRangeDispTime + DMaxDispTime ){
+                                                                                         ^
+Src/vl6180x/vl6180x_lib.c:446:40: warning: comparison of unsigned expression < 0 is always false [-Wtype-limits]
+             if(g_TickCnt - TimeStarted < ErrRangeDispTime  )
+                                        ^
+Src/anemo.c: In function 'anemo_ResetCount':
+Src/anemo.c:47:1: warning: control reaches end of non-void function [-Wreturn-type]
+ }
+ ^
+make: *** [template.elf] Error 1
+10:24:30 **** Incremental Build of configuration Default for project stm32-nucleo-f103rb_base ****
+make all 
+make: Nothing to be done for `all'.
+10:24:39 **** Incremental Build of configuration Default for project stm32-nucleo-f103rb_base ****
+make all 
+make: Nothing to be done for `all'.
+10:26:33 **** Incremental Build of configuration Default for project stm32-nucleo-f103rb_base ****
+make all 
+arm-none-eabi-gcc -IInc/ -IDrivers/STM32F1xx_HAL_Driver/Inc/ -ISrc/vl6180x/ -IDrivers/BSP/STM32F1xx_Nucleo/ -IDrivers/CMSIS/Device/ST/STM32F1xx/Include/ -IDrivers/CMSIS/Include/ -DSTM32F103xBt -ggdb -O0 -mlittle-endian --specs=rdimon.specs -mthumb -mcpu=cortex-m3 -mthumb-interwork -Wl,--gc-sections -lgcc -lc -lm -lrdimon -Wall -Wextra -Warray-bounds -Wno-unused-parameter -TDevice/gcc.ld Src/main.c Device/startup_stm32f103xb.s Src/vl6180x/vl6180x_api.c Src/vl6180x/vl6180x_lib.c Src/vl6180x/x-nucleo-6180xa1.c Src/stm32f1xx_hal_msp.c Src/stm32f1xx_it.c Src/system_stm32f1xx.c Src/systemClock.c Src/drv_can.c Src/drv_spi.c Src/drv_uart.c Src/drv_i2c.c Src/anemo.c Src/mpu9250.c Src/MadgwickAHRS.c Src/tickTimer.c stm32f1xx_hal.o stm32f1xx_hal_rcc.o stm32f1xx_hal_rcc_ex.o stm32f1xx_hal_rtc.o stm32f1xx_hal_gpio.o stm32f1xx_hal_cortex.o stm32f1xx_hal_pcd.o stm32f1xx_hal_pcd_ex.o stm32f1xx_hal_uart.o stm32f1xx_hal_usart.o stm32f1xx_hal_dma.o stm32f1xx_hal_adc.o stm32f1xx_hal_adc_ex.o stm32f1xx_hal_spi.o stm32f1xx_hal_i2c.o stm32f1xx_hal_tim.o stm32f1xx_hal_tim_ex.o stm32f1xx_hal_can.o Drivers/BSP/STM32F1xx_Nucleo/stm32f1xx_nucleo.o -o template.elf
+Src/main.c: In function 'main':
+Src/main.c:113:13: warning: implicit declaration of function 'int2char_ptr' [-Wimplicit-function-declaration]
+             int2char_ptr(q[i],tmp);
+             ^
+Src/main.c:113:27: warning: array subscript has type 'char' [-Wchar-subscripts]
+             int2char_ptr(q[i],tmp);
+                           ^
+Src/main.c:114:43: warning: array subscript has type 'char' [-Wchar-subscripts]
+             term_printf("q%d: %d\r\n", i,q[i]);
+                                           ^
+Src/main.c:115:13: warning: implicit declaration of function 'sendOverCan' [-Wimplicit-function-declaration]
+             sendOverCan(tmp, 4, mpu9250_ID + i);
+             ^
+Src/main.c:68:13: warning: variable 'response' set but not used [-Wunused-but-set-variable]
+     uint8_t response = 0;
+             ^
+Src/main.c: In function 'VL6180x_Step':
+Src/main.c:226:9: warning: implicit declaration of function 'displayLENGTH' [-Wimplicit-function-declaration]
+         displayLENGTH();
+         ^
+Src/main.c:230:9: warning: implicit declaration of function 'displayLUX' [-Wimplicit-function-declaration]
+         displayLUX();
+         ^
+Src/main.c: At top level:
+Src/main.c:276:6: warning: conflicting types for 'sendOverCan'
+ void sendOverCan(char *data, int dateSize, int id)
+      ^
+Src/main.c:115:13: note: previous implicit declaration of 'sendOverCan' was here
+             sendOverCan(tmp, 4, mpu9250_ID + i);
+             ^
+Src/main.c: In function 'sendOverCan':
+Src/main.c:284:26: warning: comparison between signed and unsigned integer expressions [-Wsign-compare]
+     for (size_t i = 0; i < dateSize; i++)
+                          ^
+Src/main.c: At top level:
+Src/main.c:291:6: warning: conflicting types for 'displayLUX'
+ void displayLUX()
+      ^
+Src/main.c:230:9: note: previous implicit declaration of 'displayLUX' was here
+         displayLUX();
+         ^
+Src/main.c:309:6: warning: conflicting types for 'int2char_ptr'
+ void int2char_ptr(int in_value, char *out_value)
+      ^
+Src/main.c:113:13: note: previous implicit declaration of 'int2char_ptr' was here
+             int2char_ptr(q[i],tmp);
+             ^
+Src/main.c:317:6: warning: conflicting types for 'displayLENGTH'
+ void displayLENGTH()
+      ^
+Src/main.c:226:9: note: previous implicit declaration of 'displayLENGTH' was here
+         displayLENGTH();
+         ^
+Src/main.c: In function 'displayLENGTH':
+Src/main.c:347:41: warning: comparison of unsigned expression >= 0 is always true [-Wtype-limits]
+             if (g_TickCnt - TimeStarted >= ErrRangeDispTime && g_TickCnt - TimeStarted < ErrRangeDispTime + DMaxDispTime)
+                                         ^
+Src/main.c:347:88: warning: comparison of unsigned expression < 0 is always false [-Wtype-limits]
+             if (g_TickCnt - TimeStarted >= ErrRangeDispTime && g_TickCnt - TimeStarted < ErrRangeDispTime + DMaxDispTime)
+                                                                                        ^
+Src/main.c:355:45: warning: comparison of unsigned expression < 0 is always false [-Wtype-limits]
+                 if (g_TickCnt - TimeStarted < ErrRangeDispTime)
+                                             ^
+Src/main.c:374:17: warning: implicit declaration of function 'SetDisplayString' [-Wimplicit-function-declaration]
+                 SetDisplayString("F---");
+                 ^
+Src/vl6180x/vl6180x_api.c: In function '_DMax_Compute':
+Src/vl6180x/vl6180x_api.c:2574:18: warning: comparison between signed and unsigned integer expressions [-Wsign-compare]
+  if (rtnAmbRate  < rtnAmbLowLimit_KCps) {
+                  ^
+Src/vl6180x/vl6180x_lib.c: In function 'RangeState':
+Src/vl6180x/vl6180x_lib.c:439:41: warning: comparison of unsigned expression >= 0 is always true [-Wtype-limits]
+             if (g_TickCnt - TimeStarted >= ErrRangeDispTime &&  g_TickCnt - TimeStarted <  ErrRangeDispTime + DMaxDispTime ){
+                                         ^
+Src/vl6180x/vl6180x_lib.c:439:89: warning: comparison of unsigned expression < 0 is always false [-Wtype-limits]
+             if (g_TickCnt - TimeStarted >= ErrRangeDispTime &&  g_TickCnt - TimeStarted <  ErrRangeDispTime + DMaxDispTime ){
+                                                                                         ^
+Src/vl6180x/vl6180x_lib.c:446:40: warning: comparison of unsigned expression < 0 is always false [-Wtype-limits]
+             if(g_TickCnt - TimeStarted < ErrRangeDispTime  )
+                                        ^
+Src/anemo.c: In function 'anemo_ResetCount':
+Src/anemo.c:47:1: warning: control reaches end of non-void function [-Wreturn-type]
+ }
+ ^
+arm-none-eabi-objcopy -O ihex template.elf   template.hex
+arm-none-eabi-objcopy -O binary template.elf template.bin
+10:26:44 **** Incremental Build of configuration Default for project stm32-nucleo-f103rb_base ****
+make all 
+make: Nothing to be done for `all'.
+10:40:17 **** Incremental Build of configuration Default for project stm32-nucleo-f103rb_base ****
+make all 
+arm-none-eabi-gcc -IInc/ -IDrivers/STM32F1xx_HAL_Driver/Inc/ -ISrc/vl6180x/ -IDrivers/BSP/STM32F1xx_Nucleo/ -IDrivers/CMSIS/Device/ST/STM32F1xx/Include/ -IDrivers/CMSIS/Include/ -DSTM32F103xBt -ggdb -O0 -mlittle-endian --specs=rdimon.specs -mthumb -mcpu=cortex-m3 -mthumb-interwork -Wl,--gc-sections -lgcc -lc -lm -lrdimon -Wall -Wextra -Warray-bounds -Wno-unused-parameter -TDevice/gcc.ld Src/main.c Device/startup_stm32f103xb.s Src/vl6180x/vl6180x_api.c Src/vl6180x/vl6180x_lib.c Src/vl6180x/x-nucleo-6180xa1.c Src/stm32f1xx_hal_msp.c Src/stm32f1xx_it.c Src/system_stm32f1xx.c Src/systemClock.c Src/drv_can.c Src/drv_spi.c Src/drv_uart.c Src/drv_i2c.c Src/anemo.c Src/mpu9250.c Src/MadgwickAHRS.c Src/tickTimer.c stm32f1xx_hal.o stm32f1xx_hal_rcc.o stm32f1xx_hal_rcc_ex.o stm32f1xx_hal_rtc.o stm32f1xx_hal_gpio.o stm32f1xx_hal_cortex.o stm32f1xx_hal_pcd.o stm32f1xx_hal_pcd_ex.o stm32f1xx_hal_uart.o stm32f1xx_hal_usart.o stm32f1xx_hal_dma.o stm32f1xx_hal_adc.o stm32f1xx_hal_adc_ex.o stm32f1xx_hal_spi.o stm32f1xx_hal_i2c.o stm32f1xx_hal_tim.o stm32f1xx_hal_tim_ex.o stm32f1xx_hal_can.o Drivers/BSP/STM32F1xx_Nucleo/stm32f1xx_nucleo.o -o template.elf
+Src/main.c: In function 'main':
+Src/main.c:113:13: warning: implicit declaration of function 'int2char_ptr' [-Wimplicit-function-declaration]
+             int2char_ptr(q[i],tmp);
+             ^
+Src/main.c:113:27: warning: array subscript has type 'char' [-Wchar-subscripts]
+             int2char_ptr(q[i],tmp);
+                           ^
+Src/main.c:114:43: warning: array subscript has type 'char' [-Wchar-subscripts]
+             term_printf("q%d: %d\r\n", i,q[i]);
+                                           ^
+Src/main.c:115:13: warning: implicit declaration of function 'sendOverCan' [-Wimplicit-function-declaration]
+             sendOverCan(tmp, 4, mpu9250_ID + i);
+             ^
+Src/main.c:68:13: warning: variable 'response' set but not used [-Wunused-but-set-variable]
+     uint8_t response = 0;
+             ^
+Src/main.c: In function 'VL6180x_Step':
+Src/main.c:226:9: warning: implicit declaration of function 'displayLENGTH' [-Wimplicit-function-declaration]
+         displayLENGTH();
+         ^
+Src/main.c:230:9: warning: implicit declaration of function 'displayLUX' [-Wimplicit-function-declaration]
+         displayLUX();
+         ^
+Src/main.c: At top level:
+Src/main.c:276:6: warning: conflicting types for 'sendOverCan'
+ void sendOverCan(char *data, int dateSize, int id)
+      ^
+Src/main.c:115:13: note: previous implicit declaration of 'sendOverCan' was here
+             sendOverCan(tmp, 4, mpu9250_ID + i);
+             ^
+Src/main.c: In function 'sendOverCan':
+Src/main.c:284:26: warning: comparison between signed and unsigned integer expressions [-Wsign-compare]
+     for (size_t i = 0; i < dateSize; i++)
+                          ^
+Src/main.c: At top level:
+Src/main.c:291:6: warning: conflicting types for 'displayLUX'
+ void displayLUX()
+      ^
+Src/main.c:230:9: note: previous implicit declaration of 'displayLUX' was here
+         displayLUX();
+         ^
+Src/main.c:309:6: warning: conflicting types for 'int2char_ptr'
+ void int2char_ptr(int in_value, char *out_value)
+      ^
+Src/main.c:113:13: note: previous implicit declaration of 'int2char_ptr' was here
+             int2char_ptr(q[i],tmp);
+             ^
+Src/main.c:317:6: warning: conflicting types for 'displayLENGTH'
+ void displayLENGTH()
+      ^
+Src/main.c:226:9: note: previous implicit declaration of 'displayLENGTH' was here
+         displayLENGTH();
+         ^
+Src/main.c: In function 'displayLENGTH':
+Src/main.c:347:41: warning: comparison of unsigned expression >= 0 is always true [-Wtype-limits]
+             if (g_TickCnt - TimeStarted >= ErrRangeDispTime && g_TickCnt - TimeStarted < ErrRangeDispTime + DMaxDispTime)
+                                         ^
+Src/main.c:347:88: warning: comparison of unsigned expression < 0 is always false [-Wtype-limits]
+             if (g_TickCnt - TimeStarted >= ErrRangeDispTime && g_TickCnt - TimeStarted < ErrRangeDispTime + DMaxDispTime)
+                                                                                        ^
+Src/main.c:355:45: warning: comparison of unsigned expression < 0 is always false [-Wtype-limits]
+                 if (g_TickCnt - TimeStarted < ErrRangeDispTime)
+                                             ^
+Src/main.c:374:17: warning: implicit declaration of function 'SetDisplayString' [-Wimplicit-function-declaration]
+                 SetDisplayString("F---");
+                 ^
+Src/vl6180x/vl6180x_api.c: In function '_DMax_Compute':
+Src/vl6180x/vl6180x_api.c:2574:18: warning: comparison between signed and unsigned integer expressions [-Wsign-compare]
+  if (rtnAmbRate  < rtnAmbLowLimit_KCps) {
+                  ^
+Src/vl6180x/vl6180x_lib.c: In function 'RangeState':
+Src/vl6180x/vl6180x_lib.c:439:41: warning: comparison of unsigned expression >= 0 is always true [-Wtype-limits]
+             if (g_TickCnt - TimeStarted >= ErrRangeDispTime &&  g_TickCnt - TimeStarted <  ErrRangeDispTime + DMaxDispTime ){
+                                         ^
+Src/vl6180x/vl6180x_lib.c:439:89: warning: comparison of unsigned expression < 0 is always false [-Wtype-limits]
+             if (g_TickCnt - TimeStarted >= ErrRangeDispTime &&  g_TickCnt - TimeStarted <  ErrRangeDispTime + DMaxDispTime ){
+                                                                                         ^
+Src/vl6180x/vl6180x_lib.c:446:40: warning: comparison of unsigned expression < 0 is always false [-Wtype-limits]
+             if(g_TickCnt - TimeStarted < ErrRangeDispTime  )
+                                        ^
+Src/anemo.c: In function 'anemo_ResetCount':
+Src/anemo.c:47:1: warning: control reaches end of non-void function [-Wreturn-type]
+ }
+ ^
+arm-none-eabi-objcopy -O ihex template.elf   template.hex
+arm-none-eabi-objcopy -O binary template.elf template.bin
+10:41:00 **** Incremental Build of configuration Default for project stm32-nucleo-f103rb_base ****
+make all 
+make: Nothing to be done for `all'.
+11:38:47 **** Incremental Build of configuration Default for project stm32-nucleo-f103rb_base ****
+make all 
+arm-none-eabi-gcc -IInc/ -IDrivers/STM32F1xx_HAL_Driver/Inc/ -ISrc/vl6180x/ -IDrivers/BSP/STM32F1xx_Nucleo/ -IDrivers/CMSIS/Device/ST/STM32F1xx/Include/ -IDrivers/CMSIS/Include/ -DSTM32F103xBt -ggdb -O0 -mlittle-endian --specs=rdimon.specs -mthumb -mcpu=cortex-m3 -mthumb-interwork -Wl,--gc-sections -lgcc -lc -lm -lrdimon -Wall -Wextra -Warray-bounds -Wno-unused-parameter -TDevice/gcc.ld Src/main.c Device/startup_stm32f103xb.s Src/vl6180x/vl6180x_api.c Src/vl6180x/vl6180x_lib.c Src/vl6180x/x-nucleo-6180xa1.c Src/stm32f1xx_hal_msp.c Src/stm32f1xx_it.c Src/system_stm32f1xx.c Src/systemClock.c Src/drv_can.c Src/drv_spi.c Src/drv_uart.c Src/drv_i2c.c Src/anemo.c Src/mpu9250.c Src/MadgwickAHRS.c Src/tickTimer.c stm32f1xx_hal.o stm32f1xx_hal_rcc.o stm32f1xx_hal_rcc_ex.o stm32f1xx_hal_rtc.o stm32f1xx_hal_gpio.o stm32f1xx_hal_cortex.o stm32f1xx_hal_pcd.o stm32f1xx_hal_pcd_ex.o stm32f1xx_hal_uart.o stm32f1xx_hal_usart.o stm32f1xx_hal_dma.o stm32f1xx_hal_adc.o stm32f1xx_hal_adc_ex.o stm32f1xx_hal_spi.o stm32f1xx_hal_i2c.o stm32f1xx_hal_tim.o stm32f1xx_hal_tim_ex.o stm32f1xx_hal_can.o Drivers/BSP/STM32F1xx_Nucleo/stm32f1xx_nucleo.o -o template.elf
+Src/main.c: In function 'main':
+Src/main.c:113:13: warning: implicit declaration of function 'int2char_ptr' [-Wimplicit-function-declaration]
+             int2char_ptr(q[i],tmp);
+             ^
+Src/main.c:113:27: warning: array subscript has type 'char' [-Wchar-subscripts]
+             int2char_ptr(q[i],tmp);
+                           ^
+Src/main.c:114:43: warning: array subscript has type 'char' [-Wchar-subscripts]
+             term_printf("q%d: %d\r\n", i,q[i]);
+                                           ^
+Src/main.c:115:13: warning: implicit declaration of function 'sendOverCan' [-Wimplicit-function-declaration]
+             sendOverCan(tmp, 4, mpu9250_ID + i);
+             ^
+Src/main.c:68:13: warning: variable 'response' set but not used [-Wunused-but-set-variable]
+     uint8_t response = 0;
+             ^
+Src/main.c: In function 'VL6180x_Step':
+Src/main.c:226:9: warning: implicit declaration of function 'displayLENGTH' [-Wimplicit-function-declaration]
+         displayLENGTH();
+         ^
+Src/main.c:230:9: warning: implicit declaration of function 'displayLUX' [-Wimplicit-function-declaration]
+         displayLUX();
+         ^
+Src/main.c: At top level:
+Src/main.c:276:6: warning: conflicting types for 'sendOverCan'
+ void sendOverCan(char *data, int dateSize, int id)
+      ^
+Src/main.c:115:13: note: previous implicit declaration of 'sendOverCan' was here
+             sendOverCan(tmp, 4, mpu9250_ID + i);
+             ^
+Src/main.c: In function 'sendOverCan':
+Src/main.c:284:26: warning: comparison between signed and unsigned integer expressions [-Wsign-compare]
+     for (size_t i = 0; i < dateSize; i++)
+                          ^
+Src/main.c: At top level:
+Src/main.c:291:6: warning: conflicting types for 'displayLUX'
+ void displayLUX()
+      ^
+Src/main.c:230:9: note: previous implicit declaration of 'displayLUX' was here
+         displayLUX();
+         ^
+Src/main.c:309:6: warning: conflicting types for 'int2char_ptr'
+ void int2char_ptr(int in_value, char *out_value)
+      ^
+Src/main.c:113:13: note: previous implicit declaration of 'int2char_ptr' was here
+             int2char_ptr(q[i],tmp);
+             ^
+Src/main.c:317:6: warning: conflicting types for 'displayLENGTH'
+ void displayLENGTH()
+      ^
+Src/main.c:226:9: note: previous implicit declaration of 'displayLENGTH' was here
+         displayLENGTH();
+         ^
+Src/main.c: In function 'displayLENGTH':
+Src/main.c:347:41: warning: comparison of unsigned expression >= 0 is always true [-Wtype-limits]
+             if (g_TickCnt - TimeStarted >= ErrRangeDispTime && g_TickCnt - TimeStarted < ErrRangeDispTime + DMaxDispTime)
+                                         ^
+Src/main.c:347:88: warning: comparison of unsigned expression < 0 is always false [-Wtype-limits]
+             if (g_TickCnt - TimeStarted >= ErrRangeDispTime && g_TickCnt - TimeStarted < ErrRangeDispTime + DMaxDispTime)
+                                                                                        ^
+Src/main.c:355:45: warning: comparison of unsigned expression < 0 is always false [-Wtype-limits]
+                 if (g_TickCnt - TimeStarted < ErrRangeDispTime)
+                                             ^
+Src/main.c:374:17: warning: implicit declaration of function 'SetDisplayString' [-Wimplicit-function-declaration]
+                 SetDisplayString("F---");
+                 ^
+Src/vl6180x/vl6180x_api.c: In function '_DMax_Compute':
+Src/vl6180x/vl6180x_api.c:2574:18: warning: comparison between signed and unsigned integer expressions [-Wsign-compare]
+  if (rtnAmbRate  < rtnAmbLowLimit_KCps) {
+                  ^
+Src/vl6180x/vl6180x_lib.c: In function 'RangeState':
+Src/vl6180x/vl6180x_lib.c:439:41: warning: comparison of unsigned expression >= 0 is always true [-Wtype-limits]
+             if (g_TickCnt - TimeStarted >= ErrRangeDispTime &&  g_TickCnt - TimeStarted <  ErrRangeDispTime + DMaxDispTime ){
+                                         ^
+Src/vl6180x/vl6180x_lib.c:439:89: warning: comparison of unsigned expression < 0 is always false [-Wtype-limits]
+             if (g_TickCnt - TimeStarted >= ErrRangeDispTime &&  g_TickCnt - TimeStarted <  ErrRangeDispTime + DMaxDispTime ){
+                                                                                         ^
+Src/vl6180x/vl6180x_lib.c:446:40: warning: comparison of unsigned expression < 0 is always false [-Wtype-limits]
+             if(g_TickCnt - TimeStarted < ErrRangeDispTime  )
+                                        ^
+Src/anemo.c: In function 'anemo_ResetCount':
+Src/anemo.c:47:1: warning: control reaches end of non-void function [-Wreturn-type]
+ }
+ ^
+arm-none-eabi-objcopy -O ihex template.elf   template.hex
+arm-none-eabi-objcopy -O binary template.elf template.bin
+11:41:19 **** Incremental Build of configuration Default for project stm32-nucleo-f103rb_base ****
+make all 
+arm-none-eabi-gcc -IInc/ -IDrivers/STM32F1xx_HAL_Driver/Inc/ -ISrc/vl6180x/ -IDrivers/BSP/STM32F1xx_Nucleo/ -IDrivers/CMSIS/Device/ST/STM32F1xx/Include/ -IDrivers/CMSIS/Include/ -DSTM32F103xBt -ggdb -O0 -mlittle-endian --specs=rdimon.specs -mthumb -mcpu=cortex-m3 -mthumb-interwork -Wl,--gc-sections -lgcc -lc -lm -lrdimon -Wall -Wextra -Warray-bounds -Wno-unused-parameter -TDevice/gcc.ld Src/main.c Device/startup_stm32f103xb.s Src/vl6180x/vl6180x_api.c Src/vl6180x/vl6180x_lib.c Src/vl6180x/x-nucleo-6180xa1.c Src/stm32f1xx_hal_msp.c Src/stm32f1xx_it.c Src/system_stm32f1xx.c Src/systemClock.c Src/drv_can.c Src/drv_spi.c Src/drv_uart.c Src/drv_i2c.c Src/anemo.c Src/mpu9250.c Src/MadgwickAHRS.c Src/tickTimer.c stm32f1xx_hal.o stm32f1xx_hal_rcc.o stm32f1xx_hal_rcc_ex.o stm32f1xx_hal_rtc.o stm32f1xx_hal_gpio.o stm32f1xx_hal_cortex.o stm32f1xx_hal_pcd.o stm32f1xx_hal_pcd_ex.o stm32f1xx_hal_uart.o stm32f1xx_hal_usart.o stm32f1xx_hal_dma.o stm32f1xx_hal_adc.o stm32f1xx_hal_adc_ex.o stm32f1xx_hal_spi.o stm32f1xx_hal_i2c.o stm32f1xx_hal_tim.o stm32f1xx_hal_tim_ex.o stm32f1xx_hal_can.o Drivers/BSP/STM32F1xx_Nucleo/stm32f1xx_nucleo.o -o template.elf
+Src/main.c: In function 'main':
+Src/main.c:113:13: warning: implicit declaration of function 'int2char_ptr' [-Wimplicit-function-declaration]
+             int2char_ptr(q[i],tmp);
+             ^
+Src/main.c:113:27: warning: array subscript has type 'char' [-Wchar-subscripts]
+             int2char_ptr(q[i],tmp);
+                           ^
+Src/main.c:114:43: warning: array subscript has type 'char' [-Wchar-subscripts]
+             term_printf("q%d: %d\r\n", i,q[i]);
+                                           ^
+Src/main.c:115:13: warning: implicit declaration of function 'sendOverCan' [-Wimplicit-function-declaration]
+             sendOverCan(tmp, 4, mpu9250_ID + i);
+             ^
+Src/main.c:68:13: warning: variable 'response' set but not used [-Wunused-but-set-variable]
+     uint8_t response = 0;
+             ^
+Src/main.c: In function 'VL6180x_Step':
+Src/main.c:226:9: warning: implicit declaration of function 'displayLENGTH' [-Wimplicit-function-declaration]
+         displayLENGTH();
+         ^
+Src/main.c:230:9: warning: implicit declaration of function 'displayLUX' [-Wimplicit-function-declaration]
+         displayLUX();
+         ^
+Src/main.c: At top level:
+Src/main.c:276:6: warning: conflicting types for 'sendOverCan'
+ void sendOverCan(char *data, int dateSize, int id)
+      ^
+Src/main.c:115:13: note: previous implicit declaration of 'sendOverCan' was here
+             sendOverCan(tmp, 4, mpu9250_ID + i);
+             ^
+Src/main.c: In function 'sendOverCan':
+Src/main.c:284:26: warning: comparison between signed and unsigned integer expressions [-Wsign-compare]
+     for (size_t i = 0; i < dateSize; i++)
+                          ^
+Src/main.c: At top level:
+Src/main.c:291:6: warning: conflicting types for 'displayLUX'
+ void displayLUX()
+      ^
+Src/main.c:230:9: note: previous implicit declaration of 'displayLUX' was here
+         displayLUX();
+         ^
+Src/main.c:309:6: warning: conflicting types for 'int2char_ptr'
+ void int2char_ptr(int in_value, char *out_value)
+      ^
+Src/main.c:113:13: note: previous implicit declaration of 'int2char_ptr' was here
+             int2char_ptr(q[i],tmp);
+             ^
+Src/main.c:317:6: warning: conflicting types for 'displayLENGTH'
+ void displayLENGTH()
+      ^
+Src/main.c:226:9: note: previous implicit declaration of 'displayLENGTH' was here
+         displayLENGTH();
+         ^
+Src/main.c: In function 'displayLENGTH':
+Src/main.c:347:41: warning: comparison of unsigned expression >= 0 is always true [-Wtype-limits]
+             if (g_TickCnt - TimeStarted >= ErrRangeDispTime && g_TickCnt - TimeStarted < ErrRangeDispTime + DMaxDispTime)
+                                         ^
+Src/main.c:347:88: warning: comparison of unsigned expression < 0 is always false [-Wtype-limits]
+             if (g_TickCnt - TimeStarted >= ErrRangeDispTime && g_TickCnt - TimeStarted < ErrRangeDispTime + DMaxDispTime)
+                                                                                        ^
+Src/main.c:355:45: warning: comparison of unsigned expression < 0 is always false [-Wtype-limits]
+                 if (g_TickCnt - TimeStarted < ErrRangeDispTime)
+                                             ^
+Src/main.c:374:17: warning: implicit declaration of function 'SetDisplayString' [-Wimplicit-function-declaration]
+                 SetDisplayString("F---");
+                 ^
+Src/vl6180x/vl6180x_api.c: In function '_DMax_Compute':
+Src/vl6180x/vl6180x_api.c:2574:18: warning: comparison between signed and unsigned integer expressions [-Wsign-compare]
+  if (rtnAmbRate  < rtnAmbLowLimit_KCps) {
+                  ^
+Src/vl6180x/vl6180x_lib.c: In function 'RangeState':
+Src/vl6180x/vl6180x_lib.c:439:41: warning: comparison of unsigned expression >= 0 is always true [-Wtype-limits]
+             if (g_TickCnt - TimeStarted >= ErrRangeDispTime &&  g_TickCnt - TimeStarted <  ErrRangeDispTime + DMaxDispTime ){
+                                         ^
+Src/vl6180x/vl6180x_lib.c:439:89: warning: comparison of unsigned expression < 0 is always false [-Wtype-limits]
+             if (g_TickCnt - TimeStarted >= ErrRangeDispTime &&  g_TickCnt - TimeStarted <  ErrRangeDispTime + DMaxDispTime ){
+                                                                                         ^
+Src/vl6180x/vl6180x_lib.c:446:40: warning: comparison of unsigned expression < 0 is always false [-Wtype-limits]
+             if(g_TickCnt - TimeStarted < ErrRangeDispTime  )
+                                        ^
+Src/anemo.c: In function 'anemo_ResetCount':
+Src/anemo.c:47:1: warning: control reaches end of non-void function [-Wreturn-type]
+ }
+ ^
+arm-none-eabi-objcopy -O ihex template.elf   template.hex
+arm-none-eabi-objcopy -O binary template.elf template.bin
+11:42:11 **** Incremental Build of configuration Default for project stm32-nucleo-f103rb_base ****
+make all 
+make: Nothing to be done for `all'.
+11:42:37 **** Incremental Build of configuration Default for project stm32-nucleo-f103rb_base ****
+make all 
+make: Nothing to be done for `all'.
+11:42:42 **** Incremental Build of configuration Default for project stm32-nucleo-f103rb_base ****
+make all 
+make: Nothing to be done for `all'.
+11:42:48 **** Incremental Build of configuration Default for project stm32-nucleo-f103rb_base ****
+make all 
+make: Nothing to be done for `all'.
+11:43:23 **** Incremental Build of configuration Default for project stm32-nucleo-f103rb_base ****
+make all 
+make: Nothing to be done for `all'.
+11:53:13 **** Incremental Build of configuration Default for project stm32-nucleo-f103rb_base ****
+make all 
+make: Nothing to be done for `all'.

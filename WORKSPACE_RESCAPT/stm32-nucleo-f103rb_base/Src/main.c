@@ -100,14 +100,19 @@ int main(void)
 
 #endif
 #if MPU9250
-        Quatern q[4];
-        q[0].f = q0;
-        q[1].f = q1;
-        q[2].f = q2;
-        q[3].f = q3;
+        int q[4];
+        q[0] = q0 * 10000;
+        q[1] = q1 * 10000;
+        q[2] = q2 * 10000;
+        q[3] = q3 * 10000;
+
+        // term_printf("________\r\n");
         char tmp[4];
-        for(char i = 0;i < 4; i++){
-            sendOverCan(q[0].c, 4, mpu9250_ID + i);
+        for (char i = 0; i < 4; i++)
+        {
+            int2char_ptr(q[i],tmp);
+            term_printf("q%d: %d\r\n", i,q[i]);
+            sendOverCan(tmp, 4, mpu9250_ID + i);
             HAL_Delay(10);
         }
         HAL_Delay(100);
