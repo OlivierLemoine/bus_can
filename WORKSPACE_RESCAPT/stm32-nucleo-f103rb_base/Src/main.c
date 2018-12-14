@@ -109,6 +109,7 @@ int main(void)
 
 #if MPL115A_ANEMO
         displayPressure();
+        MPL115A_init();
 #endif
     }
     return 0;
@@ -472,67 +473,88 @@ void displayAnemo()
 
 }
 
-MPL115A_init(){
-// c'est vraiment utile ? pas déjà fait dans le init spi ?
-
-/*
 float A0_;
 float B1_;
 float B2_;
 float C12_;
+MPL115A_init(){
 // read registers that contain the chip-unique parameters to do the math
-  unsigned int A0H = readRegister(0x88);
-  unsigned int A0L = readRegister(0x8A);
+    HAL_Delay(4);
+    HAL_GPIO_WritePin(GPIOA,GPIO_PIN_4,0);
+  spi1_Transfer(0x88);
+  unsigned int A0H = spi1_Transfer(0x00);
+  spi1_Transfer(0x8A);
+  unsigned int A0L = spi1_Transfer(0x00);
          A0_ = (A0H << 5) + (A0L >> 3) + (A0L & 0x07) / 8.0;
   
-  unsigned int B1H = readRegister(0x8C);
-  unsigned int B1L = readRegister(0x8E);
+  spi1_Transfer(0x8C);
+  unsigned int B1H = spi1_Transfer(0x00);
+  spi1_Transfer(0x8E);
+  unsigned int B1L = spi1_Transfer(0x00);
           B1_ = ( ( ( (B1H & 0x1F) * 0x100)+B1L) / 8192.0) - 3 ;
   
-  unsigned int B2H = readRegister(0x90);
-  unsigned int B2L = readRegister(0x92);
+  spi1_Transfer(0x90);
+  unsigned int B2H = spi1_Transfer(0x00);
+  spi1_Transfer(0x92);
+  unsigned int B2L = spi1_Transfer(0x00);
           B2_ = ( ( ( (B2H - 0x80) << 8) + B2L) / 16384.0 ) - 2 ;
   
-  unsigned int C12H = readRegister(0x94);
-  unsigned int C12L = readRegister(0x96);
+  spi1_Transfer(0x94);
+  unsigned int C12H = spi1_Transfer(0x00);
+  spi1_Transfer(0x96);
+  unsigned int C12L = spi1_Transfer(0x00);
           C12_ = ( ( ( C12H * 0x100 ) + C12L) / 16777216.0 )  ;
 
-          */
+    HAL_GPIO_WritePin(GPIOA,GPIO_PIN_4,1);
+          
 }
 
 
-
-void displayPressure()
-        // besoin de définir un GPIO ?
-        // ça passe les instructions mais ça revoie rien
-{
     uint8_t coef = 0;
     uint8_t thigh = 0; // température, bit high et low
     uint8_t tlow = 0;
     uint8_t phigh = 0; // pression, bit high et low
     uint8_t plow = 0;
+    uint8_t temp = 0;
+    uint8_t press = 0;
+    uint8_t Pcomp = 0;
+void displayPressure()
+        
+        // ça passe les instructions mais ça revoie rien
+{
 
                                 // cs pin 5 ?
     HAL_Delay(4);
-    HAL_GPIO_WritePin(GPIOA,5,0); // cs = 0
-    coef = spi1_Transfer(0x24);
+    HAL_GPIO_WritePin(GPIOA,GPIO_PIN_4,0); // cs = 0
+    spi1_Transfer(0x24);
     spi1_Transfer(0x00);
-    HAL_GPIO_WritePin(GPIOA,5,1); // cs = 1
+    HAL_GPIO_WritePin(GPIOA,GPIO_PIN_4,1); // cs = 1
     HAL_Delay(4);
-    HAL_GPIO_WritePin(GPIOA,5,0); // cs = 0
-    phigh = spi1_Transfer(0x80);
-    spi1_Transfer(0x00);
-    plow = spi1_Transfer(0x82);
-    spi1_Transfer(0x00);
-    thigh = spi1_Transfer(0x84);
-    spi1_Transfer(0x00);
-    tlow = spi1_Transfer(0x86);
-    spi1_Transfer(0x00);
-    spi1_Transfer(0x00);
-    HAL_GPIO_WritePin(GPIOA,5,1); // cs = 1
+    HAL_GPIO_WritePin(GPIOA,GPIO_PIN_4,0); // cs = 0
+    spi1_Transfer(0x80);
+    phigh =spi1_Transfer(0x00);
+    spi1_Transfer(0x82);
+    plow = spi1_Transfer(0x00);
+    press = (plow | (phigh<<8))>>6;
 
-    term_printf("%d",phigh);
-    term_printf("%d",plow);  
-   // sendOverCan((int)r,sizeof(r),0x55); // 0x55 à changer
+    
+    spi1_Transfer(0x84);
+    thigh = spi1_Transfer(0x00);
+    spi1_Transfer(0x86);
+    tlow = spi1_Transfer(0x00);
+    temp = (tlow | (thigh<<8))>>6;
+
+    
+    spi1_Transfer(0x00);
+    HAL_GPIO_WritePin(GPIOA,GPIO_PIN_4,1); // cs = 1
+
+    Pcomp = (A0_ +(B1_ + C12_*temp)*temp+ B2_*temp)-20;  // -20(correction)
+    term_printf("%d \r\n",(int)Pcomp);
+
+
+    char tab[4] ; 
+
+    int2char_ptr((int)(Pcomp*10),tab);
+    sendOverCan(tab,4,83); 
 }
 
