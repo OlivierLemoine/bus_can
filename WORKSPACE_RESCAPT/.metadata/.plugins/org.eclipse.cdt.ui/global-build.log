@@ -3425,3 +3425,267 @@ Src/mpu9250.c:113:9: warning: unused variable 'f_gx' [-Wunused-variable]
 arm-none-eabi-objcopy -O ihex template.elf   template.hex
 arm-none-eabi-objcopy -O binary template.elf template.bin
 >>>>>>> server
+09:51:35 **** Incremental Build of configuration Default for project stm32-nucleo-f103rb_base ****
+make all 
+arm-none-eabi-gcc -IInc/ -IDrivers/STM32F1xx_HAL_Driver/Inc/ -ISrc/vl6180x/ -IDrivers/BSP/STM32F1xx_Nucleo/ -IDrivers/CMSIS/Device/ST/STM32F1xx/Include/ -IDrivers/CMSIS/Include/ -DSTM32F103xBt -ggdb -O0 -mlittle-endian --specs=rdimon.specs -mthumb -mcpu=cortex-m3 -mthumb-interwork -Wl,--gc-sections -lgcc -lc -lm -lrdimon -Wall -Wextra -Warray-bounds -Wno-unused-parameter -TDevice/gcc.ld Src/main.c Device/startup_stm32f103xb.s Src/vl6180x/vl6180x_api.c Src/vl6180x/vl6180x_lib.c Src/vl6180x/x-nucleo-6180xa1.c Src/stm32f1xx_hal_msp.c Src/stm32f1xx_it.c Src/system_stm32f1xx.c Src/systemClock.c Src/drv_can.c Src/drv_spi.c Src/drv_uart.c Src/drv_i2c.c Src/anemo.c Src/mpu9250.c Src/tickTimer.c stm32f1xx_hal.o stm32f1xx_hal_rcc.o stm32f1xx_hal_rcc_ex.o stm32f1xx_hal_rtc.o stm32f1xx_hal_gpio.o stm32f1xx_hal_cortex.o stm32f1xx_hal_pcd.o stm32f1xx_hal_pcd_ex.o stm32f1xx_hal_uart.o stm32f1xx_hal_usart.o stm32f1xx_hal_dma.o stm32f1xx_hal_adc.o stm32f1xx_hal_adc_ex.o stm32f1xx_hal_spi.o stm32f1xx_hal_i2c.o stm32f1xx_hal_tim.o stm32f1xx_hal_tim_ex.o stm32f1xx_hal_can.o Drivers/BSP/STM32F1xx_Nucleo/stm32f1xx_nucleo.o -o template.elf
+Src/main.c: In function 'HAL_TIM_PeriodElapsedCallback':
+Src/main.c:147:6: warning: implicit declaration of function 'displayAnemo' [-Wimplicit-function-declaration]
+      displayAnemo();
+      ^
+Src/main.c: In function 'VL6180x_Step':
+Src/main.c:216:9: warning: implicit declaration of function 'displayLENGTH' [-Wimplicit-function-declaration]
+         displayLENGTH();
+         ^
+Src/main.c:220:9: warning: implicit declaration of function 'displayLUX' [-Wimplicit-function-declaration]
+         displayLUX();
+         ^
+Src/main.c: In function 'sendOverCan':
+Src/main.c:275:26: warning: comparison between signed and unsigned integer expressions [-Wsign-compare]
+     for (size_t i = 0; i < dateSize; i++)
+                          ^
+Src/main.c: At top level:
+Src/main.c:282:6: warning: conflicting types for 'displayLUX'
+ void displayLUX()
+      ^
+Src/main.c:220:9: note: previous implicit declaration of 'displayLUX' was here
+         displayLUX();
+         ^
+Src/main.c: In function 'displayLUX':
+Src/main.c:295:9: warning: implicit declaration of function 'int2char_ptr' [-Wimplicit-function-declaration]
+         int2char_ptr((int)Als.lux, buff);
+         ^
+Src/main.c: At top level:
+Src/main.c:300:6: warning: conflicting types for 'int2char_ptr'
+ void int2char_ptr(int in_value, char *out_value)
+      ^
+Src/main.c:295:9: note: previous implicit declaration of 'int2char_ptr' was here
+         int2char_ptr((int)Als.lux, buff);
+         ^
+Src/main.c:308:6: warning: conflicting types for 'displayLENGTH'
+ void displayLENGTH()
+      ^
+Src/main.c:216:9: note: previous implicit declaration of 'displayLENGTH' was here
+         displayLENGTH();
+         ^
+Src/main.c: In function 'displayLENGTH':
+Src/main.c:338:41: warning: comparison of unsigned expression >= 0 is always true [-Wtype-limits]
+             if (g_TickCnt - TimeStarted >= ErrRangeDispTime && g_TickCnt - TimeStarted < ErrRangeDispTime + DMaxDispTime)
+                                         ^
+Src/main.c:338:88: warning: comparison of unsigned expression < 0 is always false [-Wtype-limits]
+             if (g_TickCnt - TimeStarted >= ErrRangeDispTime && g_TickCnt - TimeStarted < ErrRangeDispTime + DMaxDispTime)
+                                                                                        ^
+Src/main.c:346:45: warning: comparison of unsigned expression < 0 is always false [-Wtype-limits]
+                 if (g_TickCnt - TimeStarted < ErrRangeDispTime)
+                                             ^
+Src/main.c:365:17: warning: implicit declaration of function 'SetDisplayString' [-Wimplicit-function-declaration]
+                 SetDisplayString("F---");
+                 ^
+Src/main.c: At top level:
+Src/main.c:451:6: warning: conflicting types for 'displayAnemo'
+ void displayAnemo()
+      ^
+Src/main.c:147:6: note: previous implicit declaration of 'displayAnemo' was here
+      displayAnemo();
+      ^
+Src/main.c: In function 'displayAnemo':
+Src/main.c:456:17: warning: passing argument 1 of 'sendOverCan' makes pointer from integer without a cast [-Wint-conversion]
+     sendOverCan((int)r,sizeof(r),0x84); // 0x55 à changer
+                 ^
+Src/main.c:267:6: note: expected 'char *' but argument is of type 'int'
+ void sendOverCan(char *data, int dateSize, int id)
+      ^
+Src/vl6180x/vl6180x_api.c: In function '_DMax_Compute':
+Src/vl6180x/vl6180x_api.c:2574:18: warning: comparison between signed and unsigned integer expressions [-Wsign-compare]
+  if (rtnAmbRate  < rtnAmbLowLimit_KCps) {
+                  ^
+Src/vl6180x/vl6180x_lib.c: In function 'RangeState':
+Src/vl6180x/vl6180x_lib.c:439:41: warning: comparison of unsigned expression >= 0 is always true [-Wtype-limits]
+             if (g_TickCnt - TimeStarted >= ErrRangeDispTime &&  g_TickCnt - TimeStarted <  ErrRangeDispTime + DMaxDispTime ){
+                                         ^
+Src/vl6180x/vl6180x_lib.c:439:89: warning: comparison of unsigned expression < 0 is always false [-Wtype-limits]
+             if (g_TickCnt - TimeStarted >= ErrRangeDispTime &&  g_TickCnt - TimeStarted <  ErrRangeDispTime + DMaxDispTime ){
+                                                                                         ^
+Src/vl6180x/vl6180x_lib.c:446:40: warning: comparison of unsigned expression < 0 is always false [-Wtype-limits]
+             if(g_TickCnt - TimeStarted < ErrRangeDispTime  )
+                                        ^
+Src/anemo.c: In function 'anemo_ResetCount':
+Src/anemo.c:47:1: warning: control reaches end of non-void function [-Wreturn-type]
+ }
+ ^
+Src/mpu9250.c: In function 'mpu9250_Step':
+Src/mpu9250.c:119:9: warning: unused variable 'f_az' [-Wunused-variable]
+   float f_az = az * conversion_Acc;
+         ^
+Src/mpu9250.c:118:9: warning: unused variable 'f_ay' [-Wunused-variable]
+   float f_ay = ay * conversion_Acc;
+         ^
+Src/mpu9250.c:117:9: warning: unused variable 'f_ax' [-Wunused-variable]
+   float f_ax = ax * conversion_Acc;
+         ^
+Src/mpu9250.c:115:9: warning: unused variable 'f_gz' [-Wunused-variable]
+   float f_gz = gz * conversion_Gyro;
+         ^
+Src/mpu9250.c:114:9: warning: unused variable 'f_gy' [-Wunused-variable]
+   float f_gy = gy * conversion_Gyro;
+         ^
+Src/mpu9250.c:113:9: warning: unused variable 'f_gx' [-Wunused-variable]
+   float f_gx = gx * conversion_Gyro;
+         ^
+arm-none-eabi-objcopy -O ihex template.elf   template.hex
+arm-none-eabi-objcopy -O binary template.elf template.bin
+09:51:55 **** Incremental Build of configuration Default for project stm32-nucleo-f103rb_base ****
+make all 
+make: Nothing to be done for `all'.
+09:54:47 **** Clean-only build of configuration Default for project stm32-nucleo-f103rb_base ****
+make clean 
+rm -f *.o template.elf template.hex template.bin
+09:54:49 **** Build of configuration Default for project stm32-nucleo-f103rb_base ****
+make all 
+arm-none-eabi-gcc -c -o stm32f1xx_hal.o -IInc/ -IDrivers/STM32F1xx_HAL_Driver/Inc/ -ISrc/vl6180x/ -IDrivers/BSP/STM32F1xx_Nucleo/ -IDrivers/CMSIS/Device/ST/STM32F1xx/Include/ -IDrivers/CMSIS/Include/ -DSTM32F103xBt -ggdb -O0 -mlittle-endian --specs=rdimon.specs -mthumb -mcpu=cortex-m3 -mthumb-interwork -Wl,--gc-sections -lgcc -lc -lm -lrdimon Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal.c
+arm-none-eabi-gcc -c -o stm32f1xx_hal_rcc.o -IInc/ -IDrivers/STM32F1xx_HAL_Driver/Inc/ -ISrc/vl6180x/ -IDrivers/BSP/STM32F1xx_Nucleo/ -IDrivers/CMSIS/Device/ST/STM32F1xx/Include/ -IDrivers/CMSIS/Include/ -DSTM32F103xBt -ggdb -O0 -mlittle-endian --specs=rdimon.specs -mthumb -mcpu=cortex-m3 -mthumb-interwork -Wl,--gc-sections -lgcc -lc -lm -lrdimon Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_rcc.c
+arm-none-eabi-gcc -c -o stm32f1xx_hal_rcc_ex.o -IInc/ -IDrivers/STM32F1xx_HAL_Driver/Inc/ -ISrc/vl6180x/ -IDrivers/BSP/STM32F1xx_Nucleo/ -IDrivers/CMSIS/Device/ST/STM32F1xx/Include/ -IDrivers/CMSIS/Include/ -DSTM32F103xBt -ggdb -O0 -mlittle-endian --specs=rdimon.specs -mthumb -mcpu=cortex-m3 -mthumb-interwork -Wl,--gc-sections -lgcc -lc -lm -lrdimon Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_rcc_ex.c
+arm-none-eabi-gcc -c -o stm32f1xx_hal_rtc.o -IInc/ -IDrivers/STM32F1xx_HAL_Driver/Inc/ -ISrc/vl6180x/ -IDrivers/BSP/STM32F1xx_Nucleo/ -IDrivers/CMSIS/Device/ST/STM32F1xx/Include/ -IDrivers/CMSIS/Include/ -DSTM32F103xBt -ggdb -O0 -mlittle-endian --specs=rdimon.specs -mthumb -mcpu=cortex-m3 -mthumb-interwork -Wl,--gc-sections -lgcc -lc -lm -lrdimon Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_rtc.c
+arm-none-eabi-gcc -c -o stm32f1xx_hal_gpio.o -IInc/ -IDrivers/STM32F1xx_HAL_Driver/Inc/ -ISrc/vl6180x/ -IDrivers/BSP/STM32F1xx_Nucleo/ -IDrivers/CMSIS/Device/ST/STM32F1xx/Include/ -IDrivers/CMSIS/Include/ -DSTM32F103xBt -ggdb -O0 -mlittle-endian --specs=rdimon.specs -mthumb -mcpu=cortex-m3 -mthumb-interwork -Wl,--gc-sections -lgcc -lc -lm -lrdimon Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_gpio.c
+arm-none-eabi-gcc -c -o stm32f1xx_hal_cortex.o -IInc/ -IDrivers/STM32F1xx_HAL_Driver/Inc/ -ISrc/vl6180x/ -IDrivers/BSP/STM32F1xx_Nucleo/ -IDrivers/CMSIS/Device/ST/STM32F1xx/Include/ -IDrivers/CMSIS/Include/ -DSTM32F103xBt -ggdb -O0 -mlittle-endian --specs=rdimon.specs -mthumb -mcpu=cortex-m3 -mthumb-interwork -Wl,--gc-sections -lgcc -lc -lm -lrdimon Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_cortex.c
+arm-none-eabi-gcc -c -o stm32f1xx_hal_pcd.o -IInc/ -IDrivers/STM32F1xx_HAL_Driver/Inc/ -ISrc/vl6180x/ -IDrivers/BSP/STM32F1xx_Nucleo/ -IDrivers/CMSIS/Device/ST/STM32F1xx/Include/ -IDrivers/CMSIS/Include/ -DSTM32F103xBt -ggdb -O0 -mlittle-endian --specs=rdimon.specs -mthumb -mcpu=cortex-m3 -mthumb-interwork -Wl,--gc-sections -lgcc -lc -lm -lrdimon Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_pcd.c
+arm-none-eabi-gcc -c -o stm32f1xx_hal_pcd_ex.o -IInc/ -IDrivers/STM32F1xx_HAL_Driver/Inc/ -ISrc/vl6180x/ -IDrivers/BSP/STM32F1xx_Nucleo/ -IDrivers/CMSIS/Device/ST/STM32F1xx/Include/ -IDrivers/CMSIS/Include/ -DSTM32F103xBt -ggdb -O0 -mlittle-endian --specs=rdimon.specs -mthumb -mcpu=cortex-m3 -mthumb-interwork -Wl,--gc-sections -lgcc -lc -lm -lrdimon Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_pcd_ex.c
+arm-none-eabi-gcc -c -o stm32f1xx_hal_uart.o -IInc/ -IDrivers/STM32F1xx_HAL_Driver/Inc/ -ISrc/vl6180x/ -IDrivers/BSP/STM32F1xx_Nucleo/ -IDrivers/CMSIS/Device/ST/STM32F1xx/Include/ -IDrivers/CMSIS/Include/ -DSTM32F103xBt -ggdb -O0 -mlittle-endian --specs=rdimon.specs -mthumb -mcpu=cortex-m3 -mthumb-interwork -Wl,--gc-sections -lgcc -lc -lm -lrdimon Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_uart.c
+arm-none-eabi-gcc -c -o stm32f1xx_hal_usart.o -IInc/ -IDrivers/STM32F1xx_HAL_Driver/Inc/ -ISrc/vl6180x/ -IDrivers/BSP/STM32F1xx_Nucleo/ -IDrivers/CMSIS/Device/ST/STM32F1xx/Include/ -IDrivers/CMSIS/Include/ -DSTM32F103xBt -ggdb -O0 -mlittle-endian --specs=rdimon.specs -mthumb -mcpu=cortex-m3 -mthumb-interwork -Wl,--gc-sections -lgcc -lc -lm -lrdimon Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_usart.c
+arm-none-eabi-gcc -c -o stm32f1xx_hal_dma.o -IInc/ -IDrivers/STM32F1xx_HAL_Driver/Inc/ -ISrc/vl6180x/ -IDrivers/BSP/STM32F1xx_Nucleo/ -IDrivers/CMSIS/Device/ST/STM32F1xx/Include/ -IDrivers/CMSIS/Include/ -DSTM32F103xBt -ggdb -O0 -mlittle-endian --specs=rdimon.specs -mthumb -mcpu=cortex-m3 -mthumb-interwork -Wl,--gc-sections -lgcc -lc -lm -lrdimon Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_dma.c
+arm-none-eabi-gcc -c -o stm32f1xx_hal_adc.o -IInc/ -IDrivers/STM32F1xx_HAL_Driver/Inc/ -ISrc/vl6180x/ -IDrivers/BSP/STM32F1xx_Nucleo/ -IDrivers/CMSIS/Device/ST/STM32F1xx/Include/ -IDrivers/CMSIS/Include/ -DSTM32F103xBt -ggdb -O0 -mlittle-endian --specs=rdimon.specs -mthumb -mcpu=cortex-m3 -mthumb-interwork -Wl,--gc-sections -lgcc -lc -lm -lrdimon Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_adc.c
+arm-none-eabi-gcc -c -o stm32f1xx_hal_adc_ex.o -IInc/ -IDrivers/STM32F1xx_HAL_Driver/Inc/ -ISrc/vl6180x/ -IDrivers/BSP/STM32F1xx_Nucleo/ -IDrivers/CMSIS/Device/ST/STM32F1xx/Include/ -IDrivers/CMSIS/Include/ -DSTM32F103xBt -ggdb -O0 -mlittle-endian --specs=rdimon.specs -mthumb -mcpu=cortex-m3 -mthumb-interwork -Wl,--gc-sections -lgcc -lc -lm -lrdimon Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_adc_ex.c
+arm-none-eabi-gcc -c -o stm32f1xx_hal_spi.o -IInc/ -IDrivers/STM32F1xx_HAL_Driver/Inc/ -ISrc/vl6180x/ -IDrivers/BSP/STM32F1xx_Nucleo/ -IDrivers/CMSIS/Device/ST/STM32F1xx/Include/ -IDrivers/CMSIS/Include/ -DSTM32F103xBt -ggdb -O0 -mlittle-endian --specs=rdimon.specs -mthumb -mcpu=cortex-m3 -mthumb-interwork -Wl,--gc-sections -lgcc -lc -lm -lrdimon Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_spi.c
+arm-none-eabi-gcc -c -o stm32f1xx_hal_i2c.o -IInc/ -IDrivers/STM32F1xx_HAL_Driver/Inc/ -ISrc/vl6180x/ -IDrivers/BSP/STM32F1xx_Nucleo/ -IDrivers/CMSIS/Device/ST/STM32F1xx/Include/ -IDrivers/CMSIS/Include/ -DSTM32F103xBt -ggdb -O0 -mlittle-endian --specs=rdimon.specs -mthumb -mcpu=cortex-m3 -mthumb-interwork -Wl,--gc-sections -lgcc -lc -lm -lrdimon Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_i2c.c
+arm-none-eabi-gcc -c -o stm32f1xx_hal_tim.o -IInc/ -IDrivers/STM32F1xx_HAL_Driver/Inc/ -ISrc/vl6180x/ -IDrivers/BSP/STM32F1xx_Nucleo/ -IDrivers/CMSIS/Device/ST/STM32F1xx/Include/ -IDrivers/CMSIS/Include/ -DSTM32F103xBt -ggdb -O0 -mlittle-endian --specs=rdimon.specs -mthumb -mcpu=cortex-m3 -mthumb-interwork -Wl,--gc-sections -lgcc -lc -lm -lrdimon Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_tim.c
+arm-none-eabi-gcc -c -o stm32f1xx_hal_tim_ex.o -IInc/ -IDrivers/STM32F1xx_HAL_Driver/Inc/ -ISrc/vl6180x/ -IDrivers/BSP/STM32F1xx_Nucleo/ -IDrivers/CMSIS/Device/ST/STM32F1xx/Include/ -IDrivers/CMSIS/Include/ -DSTM32F103xBt -ggdb -O0 -mlittle-endian --specs=rdimon.specs -mthumb -mcpu=cortex-m3 -mthumb-interwork -Wl,--gc-sections -lgcc -lc -lm -lrdimon Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_tim_ex.c
+arm-none-eabi-gcc -c -o stm32f1xx_hal_can.o -IInc/ -IDrivers/STM32F1xx_HAL_Driver/Inc/ -ISrc/vl6180x/ -IDrivers/BSP/STM32F1xx_Nucleo/ -IDrivers/CMSIS/Device/ST/STM32F1xx/Include/ -IDrivers/CMSIS/Include/ -DSTM32F103xBt -ggdb -O0 -mlittle-endian --specs=rdimon.specs -mthumb -mcpu=cortex-m3 -mthumb-interwork -Wl,--gc-sections -lgcc -lc -lm -lrdimon Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_can.c
+arm-none-eabi-gcc -IInc/ -IDrivers/STM32F1xx_HAL_Driver/Inc/ -ISrc/vl6180x/ -IDrivers/BSP/STM32F1xx_Nucleo/ -IDrivers/CMSIS/Device/ST/STM32F1xx/Include/ -IDrivers/CMSIS/Include/ -DSTM32F103xBt -ggdb -O0 -mlittle-endian --specs=rdimon.specs -mthumb -mcpu=cortex-m3 -mthumb-interwork -Wl,--gc-sections -lgcc -lc -lm -lrdimon -Wall -Wextra -Warray-bounds -Wno-unused-parameter -TDevice/gcc.ld Src/main.c Device/startup_stm32f103xb.s Src/vl6180x/vl6180x_api.c Src/vl6180x/vl6180x_lib.c Src/vl6180x/x-nucleo-6180xa1.c Src/stm32f1xx_hal_msp.c Src/stm32f1xx_it.c Src/system_stm32f1xx.c Src/systemClock.c Src/drv_can.c Src/drv_spi.c Src/drv_uart.c Src/drv_i2c.c Src/anemo.c Src/mpu9250.c Src/tickTimer.c stm32f1xx_hal.o stm32f1xx_hal_rcc.o stm32f1xx_hal_rcc_ex.o stm32f1xx_hal_rtc.o stm32f1xx_hal_gpio.o stm32f1xx_hal_cortex.o stm32f1xx_hal_pcd.o stm32f1xx_hal_pcd_ex.o stm32f1xx_hal_uart.o stm32f1xx_hal_usart.o stm32f1xx_hal_dma.o stm32f1xx_hal_adc.o stm32f1xx_hal_adc_ex.o stm32f1xx_hal_spi.o stm32f1xx_hal_i2c.o stm32f1xx_hal_tim.o stm32f1xx_hal_tim_ex.o stm32f1xx_hal_can.o Drivers/BSP/STM32F1xx_Nucleo/stm32f1xx_nucleo.o -o template.elf
+Src/main.c: In function 'HAL_TIM_PeriodElapsedCallback':
+Src/main.c:147:6: warning: implicit declaration of function 'displayAnemo' [-Wimplicit-function-declaration]
+      displayAnemo();
+      ^
+Src/main.c: In function 'VL6180x_Step':
+Src/main.c:216:9: warning: implicit declaration of function 'displayLENGTH' [-Wimplicit-function-declaration]
+         displayLENGTH();
+         ^
+Src/main.c:220:9: warning: implicit declaration of function 'displayLUX' [-Wimplicit-function-declaration]
+         displayLUX();
+         ^
+Src/main.c: In function 'sendOverCan':
+Src/main.c:275:26: warning: comparison between signed and unsigned integer expressions [-Wsign-compare]
+     for (size_t i = 0; i < dateSize; i++)
+                          ^
+Src/main.c: At top level:
+Src/main.c:282:6: warning: conflicting types for 'displayLUX'
+ void displayLUX()
+      ^
+Src/main.c:220:9: note: previous implicit declaration of 'displayLUX' was here
+         displayLUX();
+         ^
+Src/main.c: In function 'displayLUX':
+Src/main.c:295:9: warning: implicit declaration of function 'int2char_ptr' [-Wimplicit-function-declaration]
+         int2char_ptr((int)Als.lux, buff);
+         ^
+Src/main.c: At top level:
+Src/main.c:300:6: warning: conflicting types for 'int2char_ptr'
+ void int2char_ptr(int in_value, char *out_value)
+      ^
+Src/main.c:295:9: note: previous implicit declaration of 'int2char_ptr' was here
+         int2char_ptr((int)Als.lux, buff);
+         ^
+Src/main.c:308:6: warning: conflicting types for 'displayLENGTH'
+ void displayLENGTH()
+      ^
+Src/main.c:216:9: note: previous implicit declaration of 'displayLENGTH' was here
+         displayLENGTH();
+         ^
+Src/main.c: In function 'displayLENGTH':
+Src/main.c:338:41: warning: comparison of unsigned expression >= 0 is always true [-Wtype-limits]
+             if (g_TickCnt - TimeStarted >= ErrRangeDispTime && g_TickCnt - TimeStarted < ErrRangeDispTime + DMaxDispTime)
+                                         ^
+Src/main.c:338:88: warning: comparison of unsigned expression < 0 is always false [-Wtype-limits]
+             if (g_TickCnt - TimeStarted >= ErrRangeDispTime && g_TickCnt - TimeStarted < ErrRangeDispTime + DMaxDispTime)
+                                                                                        ^
+Src/main.c:346:45: warning: comparison of unsigned expression < 0 is always false [-Wtype-limits]
+                 if (g_TickCnt - TimeStarted < ErrRangeDispTime)
+                                             ^
+Src/main.c:365:17: warning: implicit declaration of function 'SetDisplayString' [-Wimplicit-function-declaration]
+                 SetDisplayString("F---");
+                 ^
+Src/main.c: At top level:
+Src/main.c:451:6: warning: conflicting types for 'displayAnemo'
+ void displayAnemo()
+      ^
+Src/main.c:147:6: note: previous implicit declaration of 'displayAnemo' was here
+      displayAnemo();
+      ^
+Src/main.c: In function 'displayAnemo':
+Src/main.c:456:17: warning: passing argument 1 of 'sendOverCan' makes pointer from integer without a cast [-Wint-conversion]
+     sendOverCan((int)r,sizeof(r),0x84); // 0x55 à changer
+                 ^
+Src/main.c:267:6: note: expected 'char *' but argument is of type 'int'
+ void sendOverCan(char *data, int dateSize, int id)
+      ^
+Src/vl6180x/vl6180x_api.c: In function '_DMax_Compute':
+Src/vl6180x/vl6180x_api.c:2574:18: warning: comparison between signed and unsigned integer expressions [-Wsign-compare]
+  if (rtnAmbRate  < rtnAmbLowLimit_KCps) {
+                  ^
+Src/vl6180x/vl6180x_lib.c: In function 'RangeState':
+Src/vl6180x/vl6180x_lib.c:439:41: warning: comparison of unsigned expression >= 0 is always true [-Wtype-limits]
+             if (g_TickCnt - TimeStarted >= ErrRangeDispTime &&  g_TickCnt - TimeStarted <  ErrRangeDispTime + DMaxDispTime ){
+                                         ^
+Src/vl6180x/vl6180x_lib.c:439:89: warning: comparison of unsigned expression < 0 is always false [-Wtype-limits]
+             if (g_TickCnt - TimeStarted >= ErrRangeDispTime &&  g_TickCnt - TimeStarted <  ErrRangeDispTime + DMaxDispTime ){
+                                                                                         ^
+Src/vl6180x/vl6180x_lib.c:446:40: warning: comparison of unsigned expression < 0 is always false [-Wtype-limits]
+             if(g_TickCnt - TimeStarted < ErrRangeDispTime  )
+                                        ^
+Src/anemo.c: In function 'anemo_ResetCount':
+Src/anemo.c:47:1: warning: control reaches end of non-void function [-Wreturn-type]
+ }
+ ^
+Src/mpu9250.c: In function 'mpu9250_Step':
+Src/mpu9250.c:119:9: warning: unused variable 'f_az' [-Wunused-variable]
+   float f_az = az * conversion_Acc;
+         ^
+Src/mpu9250.c:118:9: warning: unused variable 'f_ay' [-Wunused-variable]
+   float f_ay = ay * conversion_Acc;
+         ^
+Src/mpu9250.c:117:9: warning: unused variable 'f_ax' [-Wunused-variable]
+   float f_ax = ax * conversion_Acc;
+         ^
+Src/mpu9250.c:115:9: warning: unused variable 'f_gz' [-Wunused-variable]
+   float f_gz = gz * conversion_Gyro;
+         ^
+Src/mpu9250.c:114:9: warning: unused variable 'f_gy' [-Wunused-variable]
+   float f_gy = gy * conversion_Gyro;
+         ^
+Src/mpu9250.c:113:9: warning: unused variable 'f_gx' [-Wunused-variable]
+   float f_gx = gx * conversion_Gyro;
+         ^
+arm-none-eabi-objcopy -O ihex template.elf   template.hex
+arm-none-eabi-objcopy -O binary template.elf template.bin
+09:55:15 **** Incremental Build of configuration Default for project stm32-nucleo-f103rb_base ****
+make all 
+make: Nothing to be done for `all'.
+09:56:44 **** Incremental Build of configuration Default for project stm32-nucleo-f103rb_base ****
+make all 
+make: Nothing to be done for `all'.
+09:56:45 **** Incremental Build of configuration Default for project stm32-nucleo-f103rb_base ****
+make all 
+make: Nothing to be done for `all'.
+09:56:52 **** Incremental Build of configuration Default for project stm32-nucleo-f103rb_base ****
+make all 
+make: Nothing to be done for `all'.
+09:56:57 **** Incremental Build of configuration Default for project stm32-nucleo-f103rb_base ****
+make all 
+make: Nothing to be done for `all'.
+09:57:19 **** Incremental Build of configuration Default for project stm32-nucleo-f103rb_base ****
+make all 
+make: Nothing to be done for `all'.
+09:58:23 **** Incremental Build of configuration Default for project stm32-nucleo-f103rb_base ****
+make all 
+make: Nothing to be done for `all'.
+10:01:47 **** Build of configuration Default for project stm32-nucleo-f103rb_base ****
+make all 
+make: Nothing to be done for `all'.

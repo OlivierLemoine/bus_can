@@ -29,20 +29,19 @@ let transformTable = {
 };
 
 can_lib
+    .init('', 10)
     .useProcessedData()
     .toInt32()
     .use(msg => {
         let id = transformTable[msg.data.id];
         if (id) {
             if (id.match(/quat/)) {
-                lastestData.quat[id[id.length - 1]] = msg.int32.value;
-            } else lastestData[id] = msg.int32.value;
+                lastestData.quat[id[id.length - 1]] = msg.int32;
+            } else lastestData[id] = msg.int32;
         }
-        // console.log(lastestData);
     });
 
 let app = express();
-
 app.get('/', (req, res) => {
     res.sendFile(__dirname + '/src/index.html');
 });
@@ -73,5 +72,6 @@ ws.broadcast = function(data) {
 };
 
 setInterval(() => {
+    // console.log(lastestData);
     ws.broadcast(lastestData);
-}, 100);
+}, 200);

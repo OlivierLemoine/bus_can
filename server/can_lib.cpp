@@ -15,6 +15,8 @@ struct Can_opt
     const char *szDevNode;
     HANDLE h;
 
+    int timeout;
+
     bool isInitialize = false;
 };
 
@@ -24,7 +26,17 @@ void initialize(const v8::FunctionCallbackInfo<Value> &args)
 {
     Isolate *isolate = args.GetIsolate();
 
+    if (!args[1]->IsNumber())
+    {
+        isolate->ThrowException(Exception::TypeError(
+            String::NewFromUtf8(isolate, "Argument 2 must be an integer")));
+        return;
+    }
+
     const char *szDevNode = "/dev/pcanusb32";
+
+    Local<Integer> timeout = Local<Integer>::Cast(args[0]);
+    can_opt.timeout = timeout->NumberValue();
 
     can_opt.h = LINUX_CAN_Open(szDevNode, O_RDWR);
 
@@ -50,13 +62,13 @@ void getValue(const v8::FunctionCallbackInfo<Value> &args)
     TPCANRdMsg pMsgBuff;
 
     // LINUX_CAN_Read(can_opt.h, &pMsgBuff);
-    LINUX_CAN_Read_Timeout(can_opt.h, &pMsgBuff, 10);
+    LINUX_CAN_Read_Timeout(can_opt.h, &pMsgBuff, can_opt.timeout);
     
     Local<Array> result_list = Array::New(isolate);
 
     result_list->Set(0, Number::New(isolate, pMsgBuff.Msg.ID));
     
-    for(size_t i = 0; i < 8; i++)
+    for(size_t i = 0; i < pMsgBuff.Msg.LEN; i++)
     {
         result_list->Set(i+1, Number::New(isolate, pMsgBuff.Msg.DATA[i]));
     }

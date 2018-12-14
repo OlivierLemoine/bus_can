@@ -1,18 +1,11 @@
-let can_lib = {};
-try {
-    //@ts-ignore
-    can_lib = require('./build/Release/can_lib.node');
-    can_lib.initialize('');
-    console.log('can_lib loaded');
-} catch (error) {
-    throw 'cant require can_lib';
-}
+const can_lib = require('./build/Release/can_lib.node');
+can_lib.initialize(process.argv[1], parseInt(process.argv[2]));
 
 setInterval(() => {
     let msg = {};
     msg.rawData = can_lib.getValue();
     process.send(msg);
-}, 10);
+}, parseInt(process.argv[2]));
 
 process.on('message', msg => {
     can_lib.sendValue(msg.id, msg.data);

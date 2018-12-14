@@ -1,5 +1,7 @@
 // import * as THREE from './three.js';
 
+let quat = { x: 0, y: 0, z: 0, w: 0 };
+
 let width = 500;
 let height = 281;
 
@@ -136,7 +138,9 @@ var wing_line_top = new THREE.LineSegments(
     wing_edges,
     new THREE.LineBasicMaterial({ color: 0x000000 })
 );
-scene.add(plane);
+let planeCenter = new THREE.Group();
+scene.add(planeCenter);
+planeCenter.add(plane);
 plane.add(plane_line);
 plane.add(wing_left);
 plane.add(wing_right);
@@ -157,14 +161,24 @@ wing_right.position.y = 10;
 wing_top.add(wing_line_top);
 wing_top.rotation.y = -3.141592 / 2;
 wing_top.rotation.x = 3.141592 / 2;
-
+wing_top.position.z = 5;
+wing_top.position.y = 19;
+wing_top.position.x = 5;
 
 camera.position.z = 50;
 
+plane.position.x = -5;
+plane.position.y = -10;
+plane.position.z = -10;
+
 function animate() {
     requestAnimationFrame(animate);
+    planeCenter.quaternion.x = quat.x / 10000;
+    planeCenter.quaternion.y = quat.y / 10000;
+    planeCenter.quaternion.z = quat.z / 10000;
+    planeCenter.quaternion.w = quat.w / 10000;
     // plane.rotation.x += 0.02;
-    plane.rotation.y += 0.02;
+    // plane.rotation.y += 0.02;
     renderer.render(scene, camera);
 }
 animate();

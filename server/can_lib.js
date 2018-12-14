@@ -1,14 +1,23 @@
 const childProcess = require('child_process');
 
-let child = childProcess.fork('./can_read.js');
-
-child.on('message', msg => {
-    for (let i = 0; i < middlewares.length; i++) {
-        middlewares[i](msg);
-    }
-});
+let child = null;
 
 let middlewares = [];
+
+exports.init = (dir, timeout) => {
+    child = childProcess.fork('./can_read.js', [dir, timeout.toString()]);
+
+    child.on('exit', err => {
+        throw err;
+    });
+
+    child.on('message', msg => {
+        for (let i = 0; i < middlewares.length; i++) {
+            middlewares[i](msg);
+        }
+    });
+    return exports;
+};
 
 exports.use = middleware => {
     middlewares.push(middleware);
@@ -18,8 +27,7 @@ exports.use = middleware => {
 
 exports.toInt32 = () => {
     exports.use(msg => {
-        msg.int32 = { id: msg.data.id };
-        msg.int32.value =
+        msg.int32 =
             (msg.data.values[0] << 24) |
             (msg.data.values[1] << 16) |
             (msg.data.values[2] << 8) |

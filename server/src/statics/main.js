@@ -14,7 +14,9 @@ ws.onmessage = event => {
     let data = JSON.parse(event.data);
     for (const i in data) {
         if (gauges[i]) gauges[i].updateValue(data[i]);
-        else console.log(data[i]);
+    }
+    if (data.quat) {
+        quat = data.quat;
     }
 
     // switch (data.type) {
